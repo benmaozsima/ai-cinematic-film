@@ -1,0 +1,29 @@
+{
+  "shot_id": "S008",
+  "scene_id": "SCENE_SEARCH_PARTY_001",
+  "version": "v0.1",
+  "quality_tier": "draft",
+  "mode": "reference_to_video",
+  "model_key": "seedance_2_5_reference",
+  "duration_seconds": 4,
+  "aspect_ratio": "9:16",
+  "resolution": "720p",
+  "generate_audio": false,
+  "prompt": "@Image1 is CHAR_001 and @Image2 is the second Shoko. @Image3 is the old neighborhood. Animate the two men walking calmly from left to right together for four seconds. Preserve both faces, the related dark hats, pale shirts, brown cardigans, charcoal trousers, polished shoes and the wooden walking stick and oversized tote bag. Keep the same sidewalk, faded green shutters, warm morning light and screen direction. Subtle natural walking only, no new people, no wardrobe changes, no camera shake, no face drift, no text or logos.",
+  "references": {
+    "reference_image_urls": [
+      "https://example.com/CHAR_001_reference_sheet_v0.1.png",
+      "https://example.com/GROUP_SHOKO_v0.2.png",
+      "https://example.com/LOC_001_reference_sheet_v0.1.png"
+    ]
+  },
+  "budget": {
+    "dry_run": true,
+    "max_cost_usd": 1.00,
+    "require_approval_before_execute": true
+  },
+  "metadata": {
+    "purpose": "Validate multi-reference payload only. Do not generate paid video.",
+    "notes": "Replace placeholder URLs with Fal CDN URLs only after the exact reference subset is approved."
+  }
+}

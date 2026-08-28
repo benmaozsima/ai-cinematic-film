@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "notes": "Manual model registry for planning and guardrails. Prices are placeholders until verified against the Fal account/dashboard.",
+  "models": {
+    "seedance_2_5_i2v": {
+      "provider": "fal",
+      "model_id": "bytedance/seedance-2.5/image-to-video",
+      "modes": ["image_to_video", "first_last_frame"],
+      "resolutions": ["480p", "720p", "1080p"],
+      "durations_seconds": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+      "supports_audio": true,
+      "supports_negative_prompt": false,
+      "supports_seed": false,
+      "estimated_cost_per_second_usd": null,
+      "schema": {
+        "prompt": "prompt",
+        "start_frame_url": "image_url",
+        "end_frame_url": "end_image_url",
+        "resolution": "resolution",
+        "duration": "duration",
+        "generate_audio": "generate_audio",
+        "bitrate_mode": "bitrate_mode"
+      }
+    },
+    "seedance_2_5_reference": {
+      "provider": "fal",
+      "model_id": "bytedance/seedance-2.5/reference-to-video",
+      "modes": ["reference_to_video"],
+      "resolutions": ["480p", "720p", "1080p"],
+      "durations_seconds": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+      "supports_audio": true,
+      "supports_negative_prompt": false,
+      "supports_seed": false,
+      "estimated_cost_per_second_usd": null,
+      "schema": {
+        "prompt": "prompt",
+        "image_urls": "image_urls",
+        "resolution": "resolution",
+        "duration": "duration",
+        "generate_audio": "generate_audio"
+      }
+    },
+    "seedance_2_0_i2v": {
+      "provider": "fal",
+      "model_id": "bytedance/seedance-2.0/image-to-video",
+      "modes": ["image_to_video", "first_last_frame"],
+      "resolutions": ["480p", "720p", "1080p", "4k"],
+      "durations_seconds": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "supports_audio": true,
+      "supports_negative_prompt": false,
+      "supports_seed": false,
+      "estimated_cost_per_second_usd": null,
+      "schema": {
+        "prompt": "prompt",
+        "start_frame_url": "image_url",
+        "end_frame_url": "end_image_url",
+        "aspect_ratio": "aspect_ratio",
+        "resolution": "resolution",
+        "duration": "duration",
+        "generate_audio": "generate_audio",
+        "bitrate_mode": "bitrate_mode"
+      }
+    },
+    "veo_3_1_first_last": {
+      "provider": "fal",
+      "model_id": "fal-ai/veo3.1/first-last-frame-to-video",
+      "modes": ["first_last_frame"],
+      "resolutions": ["720p", "1080p", "4k"],
+      "durations_seconds": [4, 6, 8],
+      "supports_audio": true,
+      "supports_negative_prompt": true,
+      "supports_seed": true,
+      "estimated_cost_per_second_usd": null,
+      "schema": {
+        "prompt": "prompt",
+        "negative_prompt": "negative_prompt",
+        "aspect_ratio": "aspect_ratio",
+        "duration": "duration",
+        "resolution": "resolution",
+        "generate_audio": "generate_audio",
+        "seed": "seed",
+        "first_frame_url": "first_frame_url",
+        "last_frame_url": "last_frame_url",
+        "auto_fix": "auto_fix",
+        "safety_tolerance": "safety_tolerance"
+      }
+    },
+    "veo_3_1_reference": {
+      "provider": "fal",
+      "model_id": "fal-ai/veo3.1/reference-to-video",
+      "modes": ["reference_to_video"],
+      "resolutions": ["720p", "1080p", "4k"],
+      "durations_seconds": [8],
+      "supports_audio": true,
+      "supports_negative_prompt": false,
+      "supports_seed": false,
+      "estimated_cost_per_second_usd": null,
+      "schema": {
+        "prompt": "prompt",
+        "image_urls": "image_urls",
+        "aspect_ratio": "aspect_ratio",
+        "duration": "duration",
+        "resolution": "resolution",
+        "generate_audio": "generate_audio",
+        "auto_fix": "auto_fix",
+        "safety_tolerance": "safety_tolerance"
+      }
+    }
+  }
+}

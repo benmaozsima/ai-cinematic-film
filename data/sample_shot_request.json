@@ -1,0 +1,28 @@
+{
+  "shot_id": "SHOT_TEST_001",
+  "scene_id": "SCENE_TEST_001",
+  "version": "v0",
+  "quality_tier": "draft",
+  "mode": "image_to_video",
+  "model_key": "seedance_2_5_i2v",
+  "duration_seconds": 4,
+  "aspect_ratio": "auto",
+  "resolution": "720p",
+  "generate_audio": false,
+  "bitrate_mode": "standard",
+  "prompt": "A cinematic test shot based on an approved keyframe. Slow handheld push-in, subtle atmospheric movement, restrained motion, realistic lighting, no new characters.",
+  "negative_prompt": "text, subtitles, logos, distorted faces, extra limbs, changing costume, changing location, cartoon look",
+  "references": {
+    "start_frame_url": "https://example.com/start-frame.jpg",
+    "end_frame_url": null,
+    "reference_image_urls": []
+  },
+  "budget": {
+    "max_cost_usd": 1.0,
+    "dry_run": true
+  },
+  "metadata": {
+    "purpose": "Validate request payload only. Do not generate paid video.",
+    "notes": "Replace start_frame_url with a real hosted image before generation."
+  }
+}

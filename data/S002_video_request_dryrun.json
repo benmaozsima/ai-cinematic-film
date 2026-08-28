@@ -1,0 +1,27 @@
+{
+  "shot_id": "S002",
+  "scene_id": "SCENE_SEARCH_PARTY_001",
+  "version": "v0.1",
+  "quality_tier": "draft",
+  "mode": "image_to_video",
+  "model_key": "seedance_2_5_i2v",
+  "prompt": "A quiet older Israeli man, CHAR_001, stands before a small worn mirror in his modest apartment and slowly combs his silver-gray hair once. His expression remains serious and carefully composed. The camera makes a very subtle slow push-in. Soft warm morning light through blinds, realistic cinematic motion, preserve the approved face, hair, wardrobe, mirror reflection, hat and walking stick. No new people, no wardrobe change, no camera shake, no text, no logos, no watermark.",
+  "image_url": "https://example.com/S002_CHAR_001_preparation_v0.1.png",
+  "duration_seconds": 4,
+  "aspect_ratio": "9:16",
+  "resolution": "720p",
+  "generate_audio": false,
+  "bitrate_mode": "standard",
+  "negative_prompt": "text, subtitles, logos, distorted face, extra limbs, changing costume, changing apartment, duplicate comb, exaggerated motion, cartoon look",
+  "references": {
+    "start_frame_url": "https://example.com/S002_CHAR_001_preparation_v0.1.png",
+    "end_frame_url": null,
+    "reference_image_urls": []
+  },
+  "budget": {
+    "dry_run": true,
+    "max_cost_usd": 0.50,
+    "require_approval_before_execute": true
+  },
+  "notes": "Placeholder image URL only. Replace with a valid hosted reference URL before any approved execution. Never execute while dry_run is true."
+}
