@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1880" viewBox="0 0 1600 1880">
+<rect width="100%" height="100%" fill="#211f1b"/>
+<style>.title{font:700 46px Arial,sans-serif}.sub{font:24px Arial,sans-serif}.id{font:700 24px Arial,sans-serif}.head{font:700 27px Arial,sans-serif}.desc{font:20px Arial,sans-serif}.line{stroke:#29261f;stroke-width:8;stroke-linecap:round}.thin{stroke:#29261f;stroke-width:5;stroke-linecap:round;fill:none}.person{fill:#d8c6a4;stroke:#29261f;stroke-width:5}.hat{fill:#403b32}.warm{fill:#df9a59}.cool{fill:#b9c7c4}.wall{fill:#ddd2bd}</style>
+<text x="800" y="65" text-anchor="middle" fill="#f4eee2" class="title">THE SEARCH PARTY — STORYBOARD PREVIS</text>
+<text x="800" y="110" text-anchor="middle" fill="#cfc7b9" class="sub">16 SHOTS · 60 SECONDS · VISUAL PLANNING ONLY · NO VIDEO GENERATED</text>
+<text x="800" y="145" text-anchor="middle" fill="#e1a96f" class="sub">READ LEFT TO RIGHT, TOP TO BOTTOM</text>
+<g><rect x="50" y="170" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="50" y="170" width="360" height="48" rx="18" fill="#4f493f"/><text x="68" y="203" fill="white" class="id">S001</text>
+<path d="M 135 365 Q 230 325 345 375 L 355 415 L 125 415 Z" fill="#3a352e"/>
+<line x1="150" y1="332" x2="320" y2="302" class="thin"/>
+<text x="230" y="485" text-anchor="middle" class="head" fill="#24211d">SHOE</text>
+<text x="230" y="520" text-anchor="middle" class="desc" fill="#504a41">צחצוח הSHOE פותח את הטקס</text>
+</g>
+<g><rect x="430" y="170" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="430" y="170" width="360" height="48" rx="18" fill="#4f493f"/><text x="448" y="203" fill="white" class="id">S002</text>
+<rect x="525" y="260" width="170" height="160" rx="12" fill="#b9c7c4" stroke="#5b554b" stroke-width="7"/>
+<circle cx="610" cy="295" r="15.399999999999999" class="person"/><line x1="610" y1="311.1" x2="610" y2="361.5" class="line"/><line x1="610" y1="326.5" x2="589.0" y2="344.0" class="line"/><line x1="610" y1="326.5" x2="631.0" y2="344.0" class="line"/><line x1="610" y1="361.5" x2="593.2" y2="389.5" class="line"/><line x1="610" y1="361.5" x2="626.8" y2="389.5" class="line"/>
+<text x="610" y="485" text-anchor="middle" class="head" fill="#24211d">MIRROR</text>
+<text x="610" y="520" text-anchor="middle" class="desc" fill="#504a41">Yossi combs his silver hair</text>
+</g>
+<g><rect x="810" y="170" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="810" y="170" width="360" height="48" rx="18" fill="#4f493f"/><text x="828" y="203" fill="white" class="id">S003</text>
+<rect x="935" y="260" width="110" height="175" rx="18" fill="#252a2c"/><circle cx="990" cy="405" r="10" fill="#d8c6a4"/><path d="M 960 305 L 982 328 L 1025 280" class="thin" stroke="#b45d52"/>
+<text x="990" y="485" text-anchor="middle" class="head" fill="#24211d">PHONE</text>
+<text x="990" y="520" text-anchor="middle" class="desc" fill="#504a41">No answer; Yossi takes hat and cane</text>
+</g>
+<g><rect x="1190" y="170" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="1190" y="170" width="360" height="48" rx="18" fill="#4f493f"/><text x="1208" y="203" fill="white" class="id">S004</text>
+<rect x="1230" y="270" width="280" height="150" fill="#d6cdbb"/><rect x="1260" y="315" width="80" height="105" fill="#7e8a69"/>
+<circle cx="1430" cy="275" r="14.3" class="person"/><rect x="1411.15" y="254.85" width="37.7" height="6.5" rx="4" class="hat"/><rect x="1418.3" y="245.75" width="23.400000000000002" height="11.05" rx="5" class="hat"/><line x1="1430" y1="289.95" x2="1430" y2="336.75" class="line"/><line x1="1430" y1="304.25" x2="1410.5" y2="320.5" class="line"/><line x1="1430" y1="304.25" x2="1449.5" y2="320.5" class="line"/><line x1="1430" y1="336.75" x2="1414.4" y2="362.75" class="line"/><line x1="1430" y1="336.75" x2="1445.6" y2="362.75" class="line"/><line x1="1450.15" y1="320.5" x2="1459.25" y2="366.0" class="thin"/>
+<text x="1370" y="485" text-anchor="middle" class="head" fill="#24211d">EXIT</text>
+<text x="1370" y="520" text-anchor="middle" class="desc" fill="#504a41">Yossi enters the neighborhood</text>
+</g>
+<g><rect x="50" y="580" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="50" y="580" width="360" height="48" rx="18" fill="#4f493f"/><text x="68" y="613" fill="white" class="id">S005</text>
+<rect x="95" y="665" width="270" height="190" fill="#d9d0bf"/><rect x="180" y="695" width="100" height="160" fill="#9a6049"/>
+<circle cx="150" cy="715" r="12.100000000000001" class="person"/><rect x="134.05" y="697.95" width="31.900000000000002" height="5.5" rx="4" class="hat"/><rect x="140.1" y="690.25" width="19.8" height="9.350000000000001" rx="5" class="hat"/><line x1="150" y1="727.65" x2="150" y2="767.25" class="line"/><line x1="150" y1="739.75" x2="133.5" y2="753.5" class="line"/><line x1="150" y1="739.75" x2="166.5" y2="753.5" class="line"/><line x1="150" y1="767.25" x2="136.8" y2="789.25" class="line"/><line x1="150" y1="767.25" x2="163.2" y2="789.25" class="line"/><line x1="167.05" y1="753.5" x2="174.75" y2="792.0" class="thin"/>
+<circle cx="315" cy="715" r="12.100000000000001" class="person"/><rect x="299.05" y="697.95" width="31.900000000000002" height="5.5" rx="4" class="hat"/><rect x="305.1" y="690.25" width="19.8" height="9.350000000000001" rx="5" class="hat"/><line x1="315" y1="727.65" x2="315" y2="767.25" class="line"/><line x1="315" y1="739.75" x2="298.5" y2="753.5" class="line"/><line x1="315" y1="739.75" x2="331.5" y2="753.5" class="line"/><line x1="315" y1="767.25" x2="301.8" y2="789.25" class="line"/><line x1="315" y1="767.25" x2="328.2" y2="789.25" class="line"/>
+<text x="230" y="895" text-anchor="middle" class="head" fill="#24211d">FIRST DOOR</text>
+<text x="230" y="930" text-anchor="middle" class="desc" fill="#504a41">Yossi asks about Shoko</text>
+</g>
+<g><rect x="430" y="580" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="430" y="580" width="360" height="48" rx="18" fill="#4f493f"/><text x="448" y="613" fill="white" class="id">S006</text>
+<rect x="475" y="665" width="270" height="190" fill="#d9d0bf"/><rect x="560" y="695" width="100" height="160" fill="#9a6049"/>
+<circle cx="610" cy="695" r="14.3" class="person"/><rect x="591.15" y="674.85" width="37.7" height="6.5" rx="4" class="hat"/><rect x="598.3" y="665.75" width="23.400000000000002" height="11.05" rx="5" class="hat"/><line x1="610" y1="709.95" x2="610" y2="756.75" class="line"/><line x1="610" y1="724.25" x2="590.5" y2="740.5" class="line"/><line x1="610" y1="724.25" x2="629.5" y2="740.5" class="line"/><line x1="610" y1="756.75" x2="594.4" y2="782.75" class="line"/><line x1="610" y1="756.75" x2="625.6" y2="782.75" class="line"/>
+<rect x="645" y="770" width="55" height="45" rx="10" fill="#76624c"/>
+<text x="610" y="895" text-anchor="middle" class="head" fill="#24211d">FRIEND JOINS</text>
+<text x="610" y="930" text-anchor="middle" class="desc" fill="#504a41">Male friend locks up and joins</text>
+</g>
+<g><rect x="810" y="580" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="810" y="580" width="360" height="48" rx="18" fill="#4f493f"/><text x="828" y="613" fill="white" class="id">S007</text>
+<rect x="845" y="680" width="290" height="160" fill="#c4b99f"/><rect x="870" y="715" width="110" height="125" fill="#68745e"/>
+<circle cx="1055" cy="695" r="13.2" class="person"/><rect x="1037.6" y="676.4" width="34.8" height="6.0" rx="4" class="hat"/><rect x="1044.2" y="668.0" width="21.599999999999998" height="10.2" rx="5" class="hat"/><line x1="1055" y1="708.8" x2="1055" y2="752.0" class="line"/><line x1="1055" y1="722.0" x2="1037.0" y2="737.0" class="line"/><line x1="1055" y1="722.0" x2="1073.0" y2="737.0" class="line"/><line x1="1055" y1="752.0" x2="1040.6" y2="776.0" class="line"/><line x1="1055" y1="752.0" x2="1069.4" y2="776.0" class="line"/>
+<rect x="1085" y="765" width="30" height="45" fill="#9b6e49"/>
+<text x="990" y="895" text-anchor="middle" class="head" fill="#24211d">MOTI</text>
+<text x="990" y="930" text-anchor="middle" class="desc" fill="#504a41">Coffee and pastry at the cafe</text>
+</g>
+<g><rect x="1190" y="580" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="1190" y="580" width="360" height="48" rx="18" fill="#4f493f"/><text x="1208" y="613" fill="white" class="id">S008</text>
+<rect x="1235" y="665" width="270" height="190" fill="#d9d0bf"/><rect x="1320" y="695" width="100" height="160" fill="#9a6049"/>
+<circle cx="1370" cy="695" r="14.3" class="person"/><rect x="1351.15" y="674.85" width="37.7" height="6.5" rx="4" class="hat"/><rect x="1358.3" y="665.75" width="23.400000000000002" height="11.05" rx="5" class="hat"/><line x1="1370" y1="709.95" x2="1370" y2="756.75" class="line"/><line x1="1370" y1="724.25" x2="1350.5" y2="740.5" class="line"/><line x1="1370" y1="724.25" x2="1389.5" y2="740.5" class="line"/><line x1="1370" y1="756.75" x2="1354.4" y2="782.75" class="line"/><line x1="1370" y1="756.75" x2="1385.6" y2="782.75" class="line"/>
+<path d="M 1400 770 h70 v18 h-70 z" fill="#b99555"/>
+<text x="1370" y="895" text-anchor="middle" class="head" fill="#24211d">AVI</text>
+<text x="1370" y="930" text-anchor="middle" class="desc" fill="#504a41">A giant spare key at the next door</text>
+</g>
+<g><rect x="50" y="990" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="50" y="990" width="360" height="48" rx="18" fill="#4f493f"/><text x="68" y="1023" fill="white" class="id">S009</text>
+<circle cx="125" cy="1110" r="9.9" class="person"/><rect x="111.95" y="1096.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="116.9" y="1089.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="125" y1="1120.35" x2="125" y2="1152.75" class="line"/><line x1="125" y1="1130.25" x2="111.5" y2="1141.5" class="line"/><line x1="125" y1="1130.25" x2="138.5" y2="1141.5" class="line"/><line x1="125" y1="1152.75" x2="114.2" y2="1170.75" class="line"/><line x1="125" y1="1152.75" x2="135.8" y2="1170.75" class="line"/><line x1="138.95" y1="1141.5" x2="145.25" y2="1173.0" class="thin"/>
+<circle cx="203" cy="1118" r="9.9" class="person"/><rect x="189.95" y="1104.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="194.9" y="1097.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="203" y1="1128.35" x2="203" y2="1160.75" class="line"/><line x1="203" y1="1138.25" x2="189.5" y2="1149.5" class="line"/><line x1="203" y1="1138.25" x2="216.5" y2="1149.5" class="line"/><line x1="203" y1="1160.75" x2="192.2" y2="1178.75" class="line"/><line x1="203" y1="1160.75" x2="213.8" y2="1178.75" class="line"/>
+<circle cx="281" cy="1126" r="9.9" class="person"/><rect x="267.95" y="1112.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="272.9" y="1105.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="281" y1="1136.35" x2="281" y2="1168.75" class="line"/><line x1="281" y1="1146.25" x2="267.5" y2="1157.5" class="line"/><line x1="281" y1="1146.25" x2="294.5" y2="1157.5" class="line"/><line x1="281" y1="1168.75" x2="270.2" y2="1186.75" class="line"/><line x1="281" y1="1168.75" x2="291.8" y2="1186.75" class="line"/>
+<circle cx="359" cy="1134" r="9.9" class="person"/><rect x="345.95" y="1120.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="350.9" y="1113.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="359" y1="1144.35" x2="359" y2="1176.75" class="line"/><line x1="359" y1="1154.25" x2="345.5" y2="1165.5" class="line"/><line x1="359" y1="1154.25" x2="372.5" y2="1165.5" class="line"/><line x1="359" y1="1176.75" x2="348.2" y2="1194.75" class="line"/><line x1="359" y1="1176.75" x2="369.8" y2="1194.75" class="line"/>
+<text x="230" y="1305" text-anchor="middle" class="head" fill="#24211d">THE HOMAGE</text>
+<text x="230" y="1340" text-anchor="middle" class="desc" fill="#504a41">Four men march in formation</text>
+</g>
+<g><rect x="430" y="990" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="430" y="990" width="360" height="48" rx="18" fill="#4f493f"/><text x="448" y="1023" fill="white" class="id">S010</text>
+<circle cx="505" cy="1110" r="9.9" class="person"/><rect x="491.95" y="1096.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="496.9" y="1089.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="505" y1="1120.35" x2="505" y2="1152.75" class="line"/><line x1="505" y1="1130.25" x2="491.5" y2="1141.5" class="line"/><line x1="505" y1="1130.25" x2="518.5" y2="1141.5" class="line"/><line x1="505" y1="1152.75" x2="494.2" y2="1170.75" class="line"/><line x1="505" y1="1152.75" x2="515.8" y2="1170.75" class="line"/><line x1="518.95" y1="1141.5" x2="525.25" y2="1173.0" class="thin"/>
+<circle cx="583" cy="1118" r="9.9" class="person"/><rect x="569.95" y="1104.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="574.9" y="1097.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="583" y1="1128.35" x2="583" y2="1160.75" class="line"/><line x1="583" y1="1138.25" x2="569.5" y2="1149.5" class="line"/><line x1="583" y1="1138.25" x2="596.5" y2="1149.5" class="line"/><line x1="583" y1="1160.75" x2="572.2" y2="1178.75" class="line"/><line x1="583" y1="1160.75" x2="593.8" y2="1178.75" class="line"/>
+<circle cx="661" cy="1126" r="9.9" class="person"/><rect x="647.95" y="1112.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="652.9" y="1105.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="661" y1="1136.35" x2="661" y2="1168.75" class="line"/><line x1="661" y1="1146.25" x2="647.5" y2="1157.5" class="line"/><line x1="661" y1="1146.25" x2="674.5" y2="1157.5" class="line"/><line x1="661" y1="1168.75" x2="650.2" y2="1186.75" class="line"/><line x1="661" y1="1168.75" x2="671.8" y2="1186.75" class="line"/>
+<circle cx="739" cy="1134" r="9.9" class="person"/><rect x="725.95" y="1120.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="730.9" y="1113.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="739" y1="1144.35" x2="739" y2="1176.75" class="line"/><line x1="739" y1="1154.25" x2="725.5" y2="1165.5" class="line"/><line x1="739" y1="1154.25" x2="752.5" y2="1165.5" class="line"/><line x1="739" y1="1176.75" x2="728.2" y2="1194.75" class="line"/><line x1="739" y1="1176.75" x2="749.8" y2="1194.75" class="line"/>
+<circle cx="505" cy="1090" r="18" fill="#d6b16d"/><circle cx="720" cy="1090" r="18" fill="#d6b16d"/>
+<text x="610" y="1305" text-anchor="middle" class="head" fill="#24211d">EILAT</text>
+<text x="610" y="1340" text-anchor="middle" class="desc" fill="#504a41">Shoko does not like sand</text>
+</g>
+<g><rect x="810" y="990" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="810" y="990" width="360" height="48" rx="18" fill="#4f493f"/><text x="828" y="1023" fill="white" class="id">S011</text>
+<rect x="855" y="1085" width="270" height="190" fill="#b9c7c4"/><rect x="935" y="1120" width="110" height="155" fill="#4f493f"/>
+<path d="M 920 1105 Q 990 1060 1060 1105" class="thin"/>
+<text x="990" y="1305" text-anchor="middle" class="head" fill="#24211d">THE BUILDING</text>
+<text x="990" y="1340" text-anchor="middle" class="desc" fill="#504a41">Bass and laughter behind the door</text>
+</g>
+<g><rect x="1190" y="990" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="1190" y="990" width="360" height="48" rx="18" fill="#4f493f"/><text x="1208" y="1023" fill="white" class="id">S012</text>
+<rect x="1235" y="1075" width="270" height="190" fill="#d9d0bf"/><rect x="1320" y="1105" width="100" height="160" fill="#9a6049"/>
+<circle cx="1275" cy="1130" r="11.0" class="person"/><rect x="1260.5" y="1114.5" width="29.0" height="5.0" rx="4" class="hat"/><rect x="1266.0" y="1107.5" width="18.0" height="8.5" rx="5" class="hat"/><line x1="1275" y1="1141.5" x2="1275" y2="1177.5" class="line"/><line x1="1275" y1="1152.5" x2="1260.0" y2="1165.0" class="line"/><line x1="1275" y1="1152.5" x2="1290.0" y2="1165.0" class="line"/><line x1="1275" y1="1177.5" x2="1263.0" y2="1197.5" class="line"/><line x1="1275" y1="1177.5" x2="1287.0" y2="1197.5" class="line"/><line x1="1290.5" y1="1165.0" x2="1297.5" y2="1200.0" class="thin"/>
+<circle cx="1340" cy="1130" r="11.0" class="person"/><rect x="1325.5" y="1114.5" width="29.0" height="5.0" rx="4" class="hat"/><rect x="1331.0" y="1107.5" width="18.0" height="8.5" rx="5" class="hat"/><line x1="1340" y1="1141.5" x2="1340" y2="1177.5" class="line"/><line x1="1340" y1="1152.5" x2="1325.0" y2="1165.0" class="line"/><line x1="1340" y1="1152.5" x2="1355.0" y2="1165.0" class="line"/><line x1="1340" y1="1177.5" x2="1328.0" y2="1197.5" class="line"/><line x1="1340" y1="1177.5" x2="1352.0" y2="1197.5" class="line"/>
+<circle cx="1405" cy="1130" r="11.0" class="person"/><rect x="1390.5" y="1114.5" width="29.0" height="5.0" rx="4" class="hat"/><rect x="1396.0" y="1107.5" width="18.0" height="8.5" rx="5" class="hat"/><line x1="1405" y1="1141.5" x2="1405" y2="1177.5" class="line"/><line x1="1405" y1="1152.5" x2="1390.0" y2="1165.0" class="line"/><line x1="1405" y1="1152.5" x2="1420.0" y2="1165.0" class="line"/><line x1="1405" y1="1177.5" x2="1393.0" y2="1197.5" class="line"/><line x1="1405" y1="1177.5" x2="1417.0" y2="1197.5" class="line"/>
+<circle cx="1470" cy="1130" r="11.0" class="person"/><rect x="1455.5" y="1114.5" width="29.0" height="5.0" rx="4" class="hat"/><rect x="1461.0" y="1107.5" width="18.0" height="8.5" rx="5" class="hat"/><line x1="1470" y1="1141.5" x2="1470" y2="1177.5" class="line"/><line x1="1470" y1="1152.5" x2="1455.0" y2="1165.0" class="line"/><line x1="1470" y1="1152.5" x2="1485.0" y2="1165.0" class="line"/><line x1="1470" y1="1177.5" x2="1458.0" y2="1197.5" class="line"/><line x1="1470" y1="1177.5" x2="1482.0" y2="1197.5" class="line"/>
+<text x="1370" y="1305" text-anchor="middle" class="head" fill="#24211d">THE KNOCK</text>
+<text x="1370" y="1340" text-anchor="middle" class="desc" fill="#504a41">Everyone looks to Yossi</text>
+</g>
+<g><rect x="50" y="1400" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="50" y="1400" width="360" height="48" rx="18" fill="#4f493f"/><text x="68" y="1433" fill="white" class="id">S013</text>
+<rect x="85" y="1485" width="290" height="205" fill="#b9c7c4"/><rect x="165" y="1520" width="130" height="170" class="warm"/>
+<circle cx="230" cy="1525" r="12.100000000000001" class="person"/><line x1="230" y1="1537.65" x2="230" y2="1577.25" class="line"/><line x1="230" y1="1549.75" x2="213.5" y2="1563.5" class="line"/><line x1="230" y1="1549.75" x2="246.5" y2="1563.5" class="line"/><line x1="230" y1="1577.25" x2="216.8" y2="1599.25" class="line"/><line x1="230" y1="1577.25" x2="243.2" y2="1599.25" class="line"/>
+<rect x="205" y="1532" width="50" height="12" fill="#252525"/>
+<text x="230" y="1715" text-anchor="middle" class="head" fill="#24211d">THE REVEAL</text>
+<text x="230" y="1750" text-anchor="middle" class="desc" fill="#504a41">Barefoot Shoko; warm party inside</text>
+</g>
+<g><rect x="430" y="1400" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="430" y="1400" width="360" height="48" rx="18" fill="#4f493f"/><text x="448" y="1433" fill="white" class="id">S014</text>
+<rect x="465" y="1485" width="290" height="205" fill="#b9c7c4"/><rect x="545" y="1520" width="130" height="170" class="warm"/>
+<circle cx="610" cy="1525" r="12.100000000000001" class="person"/><line x1="610" y1="1537.65" x2="610" y2="1577.25" class="line"/><line x1="610" y1="1549.75" x2="593.5" y2="1563.5" class="line"/><line x1="610" y1="1549.75" x2="626.5" y2="1563.5" class="line"/><line x1="610" y1="1577.25" x2="596.8" y2="1599.25" class="line"/><line x1="610" y1="1577.25" x2="623.2" y2="1599.25" class="line"/>
+<circle cx="510" cy="1555" r="8.36" class="person"/><rect x="498.98" y="1543.22" width="22.04" height="3.8" rx="4" class="hat"/><rect x="503.16" y="1537.9" width="13.68" height="6.46" rx="5" class="hat"/><line x1="510" y1="1563.74" x2="510" y2="1591.1" class="line"/><line x1="510" y1="1572.1" x2="498.6" y2="1581.6" class="line"/><line x1="510" y1="1572.1" x2="521.4" y2="1581.6" class="line"/><line x1="510" y1="1591.1" x2="500.88" y2="1606.3" class="line"/><line x1="510" y1="1591.1" x2="519.12" y2="1606.3" class="line"/><line x1="521.78" y1="1581.6" x2="527.1" y2="1608.2" class="thin"/>
+<text x="610" y="1715" text-anchor="middle" class="head" fill="#24211d">THE REVERSAL</text>
+<text x="610" y="1750" text-anchor="middle" class="desc" fill="#504a41">I was waiting for you</text>
+</g>
+<g><rect x="810" y="1400" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="810" y="1400" width="360" height="48" rx="18" fill="#4f493f"/><text x="828" y="1433" fill="white" class="id">S015</text>
+<rect x="845" y="1485" width="290" height="205" class="warm"/>
+<circle cx="940" cy="1545" r="9.9" class="person"/><rect x="926.95" y="1531.05" width="26.1" height="4.5" rx="4" class="hat"/><rect x="931.9" y="1524.75" width="16.2" height="7.65" rx="5" class="hat"/><line x1="940" y1="1555.35" x2="940" y2="1587.75" class="line"/><line x1="940" y1="1565.25" x2="926.5" y2="1576.5" class="line"/><line x1="940" y1="1565.25" x2="953.5" y2="1576.5" class="line"/><line x1="940" y1="1587.75" x2="929.2" y2="1605.75" class="line"/><line x1="940" y1="1587.75" x2="950.8" y2="1605.75" class="line"/>
+<circle cx="1035" cy="1545" r="9.9" class="person"/><line x1="1035" y1="1555.35" x2="1035" y2="1587.75" class="line"/><line x1="1035" y1="1565.25" x2="1021.5" y2="1576.5" class="line"/><line x1="1035" y1="1565.25" x2="1048.5" y2="1576.5" class="line"/><line x1="1035" y1="1587.75" x2="1024.2" y2="1605.75" class="line"/><line x1="1035" y1="1587.75" x2="1045.8" y2="1605.75" class="line"/>
+<rect x="1055" y="1600" width="25" height="40" fill="#8a6545"/>
+<text x="990" y="1715" text-anchor="middle" class="head" fill="#24211d">THEY ENTER</text>
+<text x="990" y="1750" text-anchor="middle" class="desc" fill="#504a41">MOTI לוקח כוס ונכנס</text>
+</g>
+<g><rect x="1190" y="1400" width="360" height="390" rx="18" fill="#f0e9dc" stroke="#6f675b" stroke-width="3"/>
+<rect x="1190" y="1400" width="360" height="48" rx="18" fill="#4f493f"/><text x="1208" y="1433" fill="white" class="id">S016</text>
+<rect x="1225" y="1485" width="290" height="205" class="cool"/><rect x="1310" y="1515" width="120" height="175" fill="#6d4338"/>
+<path d="M 1325 1535 L 1415 1670" class="thin"/>
+<text x="1370" y="1715" text-anchor="middle" class="head" fill="#24211d">PUNCHLINE</text>
+<text x="1370" y="1750" text-anchor="middle" class="desc" fill="#504a41">Who invited the building committee?</text>
+</g>
+<text x="800" y="1840" text-anchor="middle" fill="#cfc7b9" class="sub">PREVIS v0.1 — STORY, RHYTHM AND COMPOSITION ONLY; NOT FINAL CHARACTER ART</text>
+</svg>

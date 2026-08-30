@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1180" viewBox="0 0 1600 1180">
+  <defs>
+    <linearGradient id="warmRoom" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eadbbf"/><stop offset="1" stop-color="#b89063"/></linearGradient>
+    <linearGradient id="street" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d8c9a7"/><stop offset="1" stop-color="#8b9276"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity=".28"/></filter>
+    <style>
+      .title{font:700 48px Arial,sans-serif}.sub{font:24px Arial,sans-serif}.id{font:700 25px Arial,sans-serif}.head{font:700 28px Arial,sans-serif}.body{font:18px Arial,sans-serif}.dialogue{font:italic 22px Georgia,serif}.line{stroke:#29251f;stroke-width:7;stroke-linecap:round;fill:none}.thin{stroke:#51483b;stroke-width:4;stroke-linecap:round;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="1180" fill="#201e1a"/>
+  <text x="800" y="62" text-anchor="middle" fill="#f4eee2" class="title">THE SEARCH PARTY — OPENING VISUAL PASS</text>
+  <text x="800" y="103" text-anchor="middle" fill="#d9cbb5" class="sub">Shots S001–S004 · 0:00–0:14 · schematic detail pass · $0</text>
+
+  <!-- CARD 1 -->
+  <g transform="translate(55 145)" filter="url(#shadow)">
+    <rect width="715" height="455" rx="22" fill="#f2eadc"/>
+    <rect width="715" height="52" rx="22" fill="#4b463d"/><text x="22" y="36" fill="white" class="id">S001 · 0:00–0:03</text>
+    <rect x="24" y="70" width="310" height="330" rx="12" fill="url(#warmRoom)"/>
+    <path d="M48 315 Q160 258 296 310 L306 363 L42 363 Z" fill="#24221f"/>
+    <path d="M82 279 Q160 230 268 270" stroke="#36322c" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <path d="M110 238 L257 194" class="thin"/>
+    <path d="M238 178 q38 -42 67 3 q-15 36 -67 54" fill="#d2b08d" stroke="#51483b" stroke-width="4"/>
+    <path d="M34 110 L314 210 M34 145 L314 245" stroke="#f6ebd4" stroke-width="14" opacity=".35"/>
+    <text x="365" y="110" class="head" fill="#2d2923">THE RITUAL</text>
+    <text x="365" y="150" class="body" fill="#554e43">Extreme close-up, low and locked.</text>
+    <text x="365" y="187" class="body" fill="#554e43">A cloth crosses one polished shoe.</text>
+    <text x="365" y="224" class="body" fill="#554e43">Warm morning light through blinds.</text>
+    <text x="365" y="280" class="head" fill="#2d2923">DIALOGUE</text><text x="365" y="317" class="dialogue" fill="#766756">None</text>
+    <text x="365" y="360" class="head" fill="#2d2923">SOUND</text><text x="365" y="394" class="body" fill="#554e43">Cloth · faint clock · quiet room</text>
+  </g>
+
+  <!-- CARD 2 -->
+  <g transform="translate(830 145)" filter="url(#shadow)">
+    <rect width="715" height="455" rx="22" fill="#f2eadc"/>
+    <rect width="715" height="52" rx="22" fill="#4b463d"/><text x="22" y="36" fill="white" class="id">S002 · 0:03–0:06</text>
+    <rect x="24" y="70" width="310" height="330" rx="12" fill="url(#warmRoom)"/>
+    <rect x="76" y="92" width="206" height="257" rx="22" fill="#9eb0ad" stroke="#5b5246" stroke-width="10"/>
+    <circle cx="179" cy="164" r="42" fill="#d0ac87" stroke="#4e473c" stroke-width="6"/>
+    <path d="M140 150 q40 -55 81 0" fill="#c4c0b8" stroke="#5c5a55" stroke-width="7"/>
+    <path d="M133 210 Q179 183 225 210 L244 325 L114 325 Z" fill="#74573e"/>
+    <path d="M150 207 L179 250 L208 207" fill="#eee4cf"/>
+    <path d="M232 135 L271 110" class="thin"/><path d="M249 98 L279 120 M255 90 L285 112 M261 82 L291 104" class="thin"/>
+    <text x="365" y="110" class="head" fill="#2d2923">YOSSI</text>
+    <text x="365" y="150" class="body" fill="#554e43">Close mirror composition.</text>
+    <text x="365" y="187" class="body" fill="#554e43">Silver hair, pale shirt, brown knitwear.</text>
+    <text x="365" y="224" class="body" fill="#554e43">One precise combing motion.</text>
+    <text x="365" y="280" class="head" fill="#2d2923">DIALOGUE</text><text x="365" y="317" class="dialogue" fill="#766756">None</text>
+    <text x="365" y="360" class="head" fill="#2d2923">SOUND</text><text x="365" y="394" class="body" fill="#554e43">Comb · clock continues</text>
+  </g>
+
+  <!-- CARD 3 -->
+  <g transform="translate(55 635)" filter="url(#shadow)">
+    <rect width="715" height="455" rx="22" fill="#f2eadc"/>
+    <rect width="715" height="52" rx="22" fill="#4b463d"/><text x="22" y="36" fill="white" class="id">S003 · 0:06–0:10</text>
+    <rect x="24" y="70" width="310" height="330" rx="12" fill="url(#warmRoom)"/>
+    <ellipse cx="176" cy="346" rx="136" ry="23" fill="#806c54" opacity=".45"/>
+    <rect x="73" y="155" width="105" height="174" rx="20" fill="#242a2c"/>
+    <circle cx="126" cy="300" r="9" fill="#d6bea0"/>
+    <circle cx="110" cy="195" r="13" fill="#b5574c"/><circle cx="142" cy="195" r="13" fill="#b5574c"/>
+    <path d="M213 183 q40 -58 82 0 L283 207 L224 207 Z" fill="#36332d"/><rect x="203" y="199" width="103" height="13" rx="5" fill="#36332d"/>
+    <path d="M249 220 L279 347" class="line"/><path d="M243 220 q12 -16 28 0" class="thin"/>
+    <text x="365" y="110" class="head" fill="#2d2923">THE PROBLEM</text>
+    <text x="365" y="150" class="body" fill="#554e43">Two missed-call marks on the phone.</text>
+    <text x="365" y="187" class="body" fill="#554e43">Yossi takes the hat and cane.</text>
+    <text x="365" y="258" class="head" fill="#2d2923">DIALOGUE</text>
+    <text x="365" y="298" class="dialogue" fill="#6f4c38">“Shoko isn’t answering.</text><text x="365" y="330" class="dialogue" fill="#6f4c38">I’ll go check.”</text>
+    <text x="365" y="372" class="head" fill="#2d2923">SOUND</text><text x="365" y="406" class="body" fill="#554e43">Phone buzz stops · cane lifted</text>
+  </g>
+
+  <!-- CARD 4 -->
+  <g transform="translate(830 635)" filter="url(#shadow)">
+    <rect width="715" height="455" rx="22" fill="#f2eadc"/>
+    <rect width="715" height="52" rx="22" fill="#4b463d"/><text x="22" y="36" fill="white" class="id">S004 · 0:10–0:14</text>
+    <rect x="24" y="70" width="310" height="330" rx="12" fill="url(#street)"/>
+    <rect x="38" y="135" width="125" height="171" fill="#d1c5ad"/><rect x="58" y="169" width="34" height="47" fill="#71806b"/><rect x="108" y="169" width="34" height="47" fill="#8b604b"/>
+    <rect x="220" y="105" width="92" height="201" fill="#c1b49c"/><rect x="242" y="142" width="47" height="70" fill="#758269"/>
+    <path d="M24 322 L334 274 L334 400 L24 400 Z" fill="#a79c88"/>
+    <path d="M188 95 L188 262" stroke="#625542" stroke-width="14"/><circle cx="188" cy="95" r="64" fill="#738064"/>
+    <circle cx="188" cy="225" r="22" fill="#d0ac87" stroke="#403a32" stroke-width="5"/><path d="M164 210 h48" stroke="#35322c" stroke-width="11"/><path d="M174 202 q14 -19 29 0" fill="#35322c"/>
+    <path d="M188 248 L188 323 M188 270 L158 291 M188 270 L218 291 M188 323 L164 364 M188 323 L214 364" class="line"/><path d="M219 290 L230 365" class="thin"/>
+    <text x="365" y="110" class="head" fill="#2d2923">THE ROUTE BEGINS</text>
+    <text x="365" y="150" class="body" fill="#554e43">Vertical rear-follow composition.</text>
+    <text x="365" y="187" class="body" fill="#554e43">A modest Israeli neighborhood.</text>
+    <text x="365" y="224" class="body" fill="#554e43">Yossi walks toward the first door.</text>
+    <text x="365" y="280" class="head" fill="#2d2923">DIALOGUE</text><text x="365" y="317" class="dialogue" fill="#766756">None</text>
+    <text x="365" y="360" class="head" fill="#2d2923">SOUND</text><text x="365" y="394" class="body" fill="#554e43">Steps · cane taps · rhythm</text>
+  </g>
+  <text x="800" y="1145" text-anchor="middle" fill="#c9c0b1" class="sub">PREVIS v0.1 — approve composition, story information and dialogue placement; not final photoreal art</text>
+</svg>

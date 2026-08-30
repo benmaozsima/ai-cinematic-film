@@ -1,8 +1,10 @@
 # Story Variant G v0.2 - The Search Party
 
-Status: DESIGNED
+Status: SUPERSEDED DEVELOPMENT TREATMENT
 Tone: Israeli adult comedy with emotional warmth
 Target runtime: 5-7 minutes
+
+Superseded by the approved 60-second screenplay in `32_Short_Film_Screenplay_v0.3_60s.md`. Preserve this file as development history.
 
 ## Logline
 

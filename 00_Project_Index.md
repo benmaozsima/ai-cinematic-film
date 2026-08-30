@@ -2,9 +2,9 @@
 
 ## Project Status
 
-Phase: Phase 1 - Reverse Engineering
+Phase: Original short pre-production - 60-second screenplay and shot lock
 
-Current focus: collect source material, verify attribution, build shot-by-shot analysis, and extract a reusable AI film production pipeline.
+Current focus: produce the approved 60-second Israeli comedy `The Search Party` from locked references, beginning with screenplay, shot-list and dry-run preparation. Reference-film research remains preserved as methodology work.
 
 ## Standing Decisions
 
@@ -13,6 +13,14 @@ Current focus: collect source material, verify attribution, build shot-by-shot a
 | DEC_001 | Use Red Alert 2 AI cinematic only as a methodology reference, not as creative source material | Approved | No copying plot, characters, locations, vehicles, dialogue, or distinctive designs. |
 | DEC_002 | Preserve confirmed / inferred / speculative labels in all research | Approved | Required before tool or workflow conclusions. |
 | DEC_003 | Prioritize reusable references and image-to-video/keyframe workflows for continuity | Working assumption | To be validated during Phase 1. |
+| DEC_004 | Develop `The Search Party` as an Israeli comedy | Approved | This is the active creative direction; preserve the serious `The Visitor in the Green House` materials as a prior branch. |
+| DEC_005 | Target a 60-second finished runtime | Approved | Existing 60-90 second and 5-7 minute drafts require a new 60-second conform before shot approval. |
+| DEC_006 | Keep Shoko and the search-party characters male | Approved | Do not use the rejected female `CHAR_003` experiment; assign every recurring man a distinct persistent character ID. |
+| DEC_007 | Make the structural homage to `Adon Shoko` clear | Approved | Preserve an original story, dialogue, music, staging and visual execution; do not use the song lyrics, melody or recording. |
+| DEC_008 | Approve the after-party reveal as the final story | Approved | The search party totals four men—Yossi plus three friends—and they find Shoko hosting an after-party after leaving his phone on silent. |
+| DEC_009 | Approve the five-man principal cast and existing Yossi design | Approved | Principals are Yossi, three male friends, and Shoko. `CHAR_001_reference_sheet_v0.1.png` is the canonical Yossi identity reference. |
+| DEC_010 | Begin pre-production, not paid generation | Approved | Prepare the 60-second screenplay, shots, references and costed dry run. Fal execution still requires a separate explicit approval after the exact cost is shown. |
+| DEC_011 | Publish the production dashboard publicly without authentication | Approved | The dashboard is not sensitive; prioritize the simplest internet access. This does not change the separate Fal/payment approval gate. |
 
 ## Phase Deliverables
 
@@ -25,6 +33,15 @@ Current focus: collect source material, verify attribution, build shot-by-shot a
 | Phase 1 | 2026 tool map for reproducing techniques | Planned |
 | Phase 1 | Reusable AI film production pipeline | Drafted in `14_AI_Film_Production_Pipeline_v1.md` |
 | Phase 1 | Fal dry-run/cost-control runner | Created and verified dry-run only |
+| Pre-production | 60-second canonical screenplay | Created in `32_Short_Film_Screenplay_v0.3_60s.md` |
+| Pre-production | 60-second canonical shot list | Created in `33_Shot_List_v0.2_60s.md` |
+| Pre-production | Character and group direction | Approved; supporting individual close-up references still incomplete |
+| Pre-production | Visual Review Pack 001 | One-page schematic storyboard ready; 18 legacy raster references require source recovery before detailed visual approval |
+| Pre-production | Opening visual pass A | S001-S004 schematic shot cards with dialogue and sound ready in `assets/review/OPENING_PREVIS_v0.1.png` |
+| Pre-production | Friends-join visual pass B | S005-S008 schematic shot cards with dialogue, props and sound ready in `assets/review/JOINING_PREVIS_v0.1.png` |
+| Pre-production | March-to-door visual pass C | S009-S012 schematic shot cards with formation, dialogue and suspense sound ready in `assets/review/MARCH_PREVIS_v0.1.png` |
+| Pre-production | Production dashboard v0.3 | S001-S012 review passes visible; approved for public access; publishing blocked only by the missing Git remote |
+| Production | Paid video generation | Blocked pending cost estimate and separate explicit approval |
 
 ## Persistent ID Registry
 
