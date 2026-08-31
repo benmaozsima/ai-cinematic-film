@@ -17,10 +17,11 @@ Current focus: produce the approved 60-second Israeli comedy `The Search Party` 
 | DEC_005 | Target a 60-second finished runtime | Approved | Existing 60-90 second and 5-7 minute drafts require a new 60-second conform before shot approval. |
 | DEC_006 | Keep Shoko and the search-party characters male | Approved | Do not use the rejected female `CHAR_003` experiment; assign every recurring man a distinct persistent character ID. |
 | DEC_007 | Make the structural homage to `Adon Shoko` clear | Approved | Preserve an original story, dialogue, music, staging and visual execution; do not use the song lyrics, melody or recording. |
-| DEC_008 | Approve the after-party reveal as the final story | Approved | The search party totals four men—Yossi plus three friends—and they find Shoko hosting an after-party after leaving his phone on silent. |
-| DEC_009 | Approve the five-man principal cast and existing Yossi design | Approved | Principals are Yossi, three male friends, and Shoko. `CHAR_001_reference_sheet_v0.1.png` is the canonical Yossi identity reference. |
+| DEC_008 | Approve the after-party reveal as the final story | Approved | The search party totals four male Shokos, and they find a fifth Shoko hosting an after-party after leaving his phone on silent. |
+| DEC_009 | Approve the five-man principal cast and existing Shoko A direction | Approved | All principals are named Shoko on screen. `CHAR_001` / Shoko A is the approved protagonist direction. |
 | DEC_010 | Begin pre-production, not paid generation | Approved | Prepare the 60-second screenplay, shots, references and costed dry run. Fal execution still requires a separate explicit approval after the exact cost is shown. |
 | DEC_011 | Publish the production dashboard publicly without authentication | Approved | The dashboard is not sensitive; prioritize the simplest internet access. This does not change the separate Fal/payment approval gate. |
+| DEC_012 | Name every principal man Shoko on screen | Approved | Preserve distinct `CHAR_###` IDs and internal Shoko A-E labels for production continuity. Yossi, Moti and Avi are superseded active labels. |
 
 ## Phase Deliverables
 
@@ -40,7 +41,8 @@ Current focus: produce the approved 60-second Israeli comedy `The Search Party` 
 | Pre-production | Opening visual pass A | S001-S004 schematic shot cards with dialogue and sound ready in `assets/review/OPENING_PREVIS_v0.1.png` |
 | Pre-production | Friends-join visual pass B | S005-S008 schematic shot cards with dialogue, props and sound ready in `assets/review/JOINING_PREVIS_v0.1.png` |
 | Pre-production | March-to-door visual pass C | S009-S012 schematic shot cards with formation, dialogue and suspense sound ready in `assets/review/MARCH_PREVIS_v0.1.png` |
-| Pre-production | Production dashboard v0.3 | S001-S012 review passes visible; approved for public access; publishing blocked only by the missing Git remote |
+| Pre-production | Production dashboard v0.3 | S001-S012 schematic review passes visible; public deployment workflow exists; real model-input stills remain missing |
+| Pre-production | Codex handoff | Current continuation brief and next-agent prompt in `35_CODEX_HANDOFF.md` |
 | Production | Paid video generation | Blocked pending cost estimate and separate explicit approval |
 
 ## Persistent ID Registry
