@@ -5,7 +5,27 @@ Date: 2026-08-29
 Scope: Existing still assets only
 Cost: $0
 
-No AI image or video was generated for this pack. No Fal call, upload or paid operation was performed.
+The original schematic pack generated no AI image or video. On 2026-09-01, one real CHAR_001 reference image was added through OpenAI's built-in image tool at $0 incremental API cost. No Fal call, video-model upload or paid API operation was performed.
+
+## New valid character reference — CHAR_001 / Shoko A v0.2
+
+Status: **REVIEW**
+
+[Open the full-size valid reference PNG](assets/characters/CHAR_001_reference_sheet_v0.2.png)
+
+![CHAR_001 Shoko A valid identity and wardrobe reference v0.2](assets/characters/CHAR_001_reference_sheet_v0.2.png)
+
+- Filename: `CHAR_001_reference_sheet_v0.2.png`
+- Persistent ID: `CHAR_001`
+- Internal label: Shoko A
+- Version: v0.2
+- Provider/model: OpenAI built-in `image_gen`; internal model ID is not exposed by the tool
+- Generation date: 2026-09-01
+- Dimensions/color: 1024×1536, RGB PNG
+- SHA-256: `65930d7ce3c9874fd57fb681eda6bc3d4ee8159ac063bd494eb550bdb37847f6`
+- Intended downstream role: primary identity, wardrobe, hat and cane reference for future still/keyframe generation; not approved for video-model upload
+
+The exact prompt, constraints, selectable Hebrew dialogue, sound plan and `Approve / Revise / Reject` controls are published beside the image in the dashboard. This candidate does not become canonical until the review decision is written back into the Production Bible and committed.
 
 ## Open this first - one-page storyboard
 
@@ -29,7 +49,7 @@ Canonical spoken text in this opening package:
 
 - S001: no dialogue.
 - S002: no dialogue.
-- S003, Yossi: `שוקו לא עונה. אני הולך לבדוק.`
+- S003, Shoko A: `שוקו לא עונה. אני הולך לבדוק.`
 - S004: no dialogue.
 
 The English line inside the schematic is a readable layout translation only. The Hebrew line above remains the canonical dialogue.
@@ -46,10 +66,10 @@ The second free schematic detail pass covers S005-S008 and shows how the male se
 
 Canonical spoken text in this package:
 
-- S005, Yossi: `ראית את שוקו?`
+- S005, Shoko A: `ראית את שוקו?`
 - S006, first friend: `לא. אני בא איתך.`
-- S007: no dialogue; Moti joins with coffee and a pastry.
-- S008: no dialogue; Avi joins with the giant spare key.
+- S007: no dialogue; Shoko C joins with coffee and a pastry.
+- S008: no dialogue; Shoko D joins with the giant spare key.
 
 Review this package for the repeated-door rule, readable male identities, comic props and pace. Respond with `APPROVE JOINING` or list the shot number and requested change.
 
@@ -64,10 +84,10 @@ The third free schematic detail pass covers S009-S012 and establishes the main h
 Canonical spoken text in this package:
 
 - S009: no dialogue; four men march in an orderly vertical formation.
-- S010, Moti: `אולי הוא נסע לאילת.`
+- S010, Shoko C: `אולי הוא נסע לאילת.`
 - S010, first friend: `שוקו לא אוהב חול.`
 - S011: no dialogue; muffled bass and laughter identify the destination.
-- S012: no dialogue; Yossi knocks and the music stops.
+- S012: no dialogue; Shoko A knocks and the music stops.
 
 Review this package for group readability, joke timing, destination clarity and the pause before the party reveal. Respond with `APPROVE MARCH` or list the shot number and requested change.
 
@@ -88,21 +108,21 @@ Review the working schematic storyboard first. The four legacy visual zones and 
 
 An approved image becomes a continuity source only for the role stated below. Approval does not authorize video generation.
 
-## 1. Yossi - canonical identity
+## 1. Shoko A - identity review
 
-Purpose: lock `CHAR_001` face, age, silver-gray hair, wardrobe family, hat, body proportions and walking stick.
+Purpose: review and, if approved, lock `CHAR_001` face, age, silver-gray hair, wardrobe family, hat, body proportions and walking stick.
 
-![CHAR_001 canonical reference sheet](assets/characters/CHAR_001_reference_sheet_v0.1.png)
+![CHAR_001 valid reference sheet v0.2](assets/characters/CHAR_001_reference_sheet_v0.2.png)
 
 Supporting views:
 
 | Portrait / look | Full body | Walking pose |
 |---|---|---|
-| ![Yossi portrait](assets/characters/CHAR_001_v0.1.png) | ![Yossi full body](assets/characters/CHAR_001_fullbody_v0.1.png) | ![Yossi walking](assets/characters/CHAR_001_walking_v0.1.png) |
+| ![Legacy corrupt portrait](assets/characters/CHAR_001_v0.1.png) | ![Legacy corrupt full body](assets/characters/CHAR_001_fullbody_v0.1.png) | ![Legacy corrupt walking](assets/characters/CHAR_001_walking_v0.1.png) |
 
 Review questions:
 
-1. Does he read immediately as Yossi: caring, orderly and comically serious?
+1. Does he read immediately as Shoko A: caring, orderly and comically serious?
 2. Are the age, face and hair right?
 3. Are the hat, cardigan, trousers, shoes and cane restrained enough?
 4. Should this exact identity remain unchanged through all 60 seconds?
@@ -115,12 +135,12 @@ Purpose: approve the related wardrobe family, distinct male faces, heights and s
 
 Production use:
 
-- The active search party contains four men: Yossi, `CHAR_003`, Moti and Avi.
-- Yossi alone carries the walking stick.
-- `CHAR_003` carries the oversized bag.
-- Moti carries coffee and a pastry.
-- Avi carries the large spare key.
-- Shoko is a fifth principal character, but he is not part of this walking formation and needs a separate reveal identity.
+- The active search party contains Shoko A (`CHAR_001`), Shoko B (`CHAR_003`), Shoko C (`CHAR_004`) and Shoko D (`CHAR_005`).
+- Shoko A alone carries the walking stick.
+- Shoko B carries the oversized bag.
+- Shoko C carries coffee and a pastry.
+- Shoko D carries the large spare key.
+- Shoko E (`CHAR_002`) is a fifth principal character, but he is not part of this walking formation and needs a separate reveal identity.
 
 Review questions:
 
@@ -170,11 +190,11 @@ Purpose: review the recurring physical comedy and continuity anchors.
 
 Required reads at phone size:
 
-- Yossi's walking stick
+- Shoko A's walking stick
 - related dark hats
 - oversized everyday bag
-- Moti's coffee and pastry
-- Avi's large spare key
+- Shoko C's coffee and pastry
+- Shoko D's large spare key
 - phone with unanswered calls
 - apartment doorbell and handle
 - party cups and small speaker
@@ -185,9 +205,9 @@ These images were made during earlier development. They are visual candidates, n
 
 ### A. Preparation candidate - canonical S002 zone
 
-![Yossi preparation keyframe](assets/keyframes/S002_CHAR_001_preparation_v0.1.png)
+![Legacy corrupt Shoko A preparation keyframe](assets/keyframes/S002_CHAR_001_preparation_v0.1.png)
 
-Intended beat: Yossi combs his silver hair once in a worn mirror. This remains the recommended first motion-test zone after still approval and cost review.
+Intended beat: Shoko A combs his silver hair once in a worn mirror. This remains the recommended first motion-test zone after still approval and cost review.
 
 ### B. Neighborhood exit candidates - canonical S004 zone
 
@@ -201,7 +221,7 @@ Only the vertical composition is eligible for the 9:16 master. The landscape ima
 
 ![First male friend doorway candidate](assets/keyframes/S006_S007_first_shoko_doorway_v0.1.png)
 
-Intended beat: Yossi asks about Shoko; the first male friend immediately locks his door and joins.
+Intended beat: Shoko A asks about Shoko E; Shoko B immediately locks his door and joins.
 
 ### D. Two-man walking progression - canonical S006-S007 transition zone
 
@@ -234,7 +254,7 @@ This image is a composition and atmosphere candidate. Shoko's exact face is not 
 The following must not be inferred as approved merely because the overall direction is approved:
 
 1. Shoko's exact canonical face.
-2. Individual close-up references for `CHAR_003`, Moti and Avi.
+2. Individual close-up references for Shoko B (`CHAR_003`), Shoko C (`CHAR_004`) and Shoko D (`CHAR_005`).
 3. Final stills for all 16 canonical shots.
 4. Final dialogue performance and lip-sync strategy.
 5. Exact Fal model, price or execution approval.
@@ -244,7 +264,7 @@ The following must not be inferred as approved merely because the overall direct
 Copy, fill and return:
 
 ```text
-1. Yossi identity: APPROVE / REVISE / REJECT
+1. Shoko A identity v0.2: APPROVE / REVISE / REJECT
 Notes:
 
 2. Search-party wardrobe and faces: APPROVE / REVISE / REJECT

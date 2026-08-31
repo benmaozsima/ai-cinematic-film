@@ -1,6 +1,6 @@
 # Codex Handoff — The Search Party
 
-Status: ACTIVE HANDOFF  
+Status: WAITING FOR CHAR_001 v0.2 REVIEW
 Date: 2026-08-31  
 Branch: `work`  
 Repository: `benmaozsima/ai-cinematic-film`
@@ -65,6 +65,7 @@ Do not ask an image model to render Hebrew dialogue inside the cinematic frame. 
 - No Fal execution has been approved and no generative video has been made.
 - The public dashboard source is in `dashboard/`.
 - GitHub Pages deployment is defined in `.github/workflows/deploy-dashboard.yml`.
+- One valid `CHAR_001` / Shoko A reference sheet now exists at `assets/characters/CHAR_001_reference_sheet_v0.2.png`; it is `REVIEW`, not `APPROVED`.
 
 ## Critical image-asset problem
 
@@ -75,6 +76,8 @@ The PNGs under `assets/review/` are valid schematic previs boards, not cinematic
 The existing dry-run payloads under `data/` still contain `example.com` placeholder URLs. Do not claim that those URLs are hosted model inputs. Do not execute them.
 
 ## Next production objective
+
+Current gate: the first image below has been completed. Stop and wait for Ben to choose `Approve`, `Revise` or `Reject` before generating any other asset.
 
 Create a new, valid, versioned still-image approval pipeline, one asset at a time:
 

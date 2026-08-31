@@ -43,6 +43,7 @@ Current focus: produce the approved 60-second Israeli comedy `The Search Party` 
 | Pre-production | March-to-door visual pass C | S009-S012 schematic shot cards with formation, dialogue and suspense sound ready in `assets/review/MARCH_PREVIS_v0.1.png` |
 | Pre-production | Production dashboard v0.3 | S001-S012 schematic review passes visible; public deployment workflow exists; real model-input stills remain missing |
 | Pre-production | Codex handoff | Current continuation brief and next-agent prompt in `35_CODEX_HANDOFF.md` |
+| Pre-production | CHAR_001 / Shoko A reference v0.2 | Valid 1024×1536 RGB PNG generated and published to the dashboard; status `REVIEW` pending Ben's decision |
 | Production | Paid video generation | Blocked pending cost estimate and separate explicit approval |
 
 ## Persistent ID Registry
