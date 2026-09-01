@@ -29,7 +29,7 @@ Total planned duration: **60 seconds**.
 ## Continuity locks
 
 - Shoko A reference candidate: `assets/characters/CHAR_001_reference_sheet_v0.2.png` (`REVIEW`); corrupt v0.1 remains historical only.
-- Canonical group reference: `assets/characters/GROUP_SHOKO_v0.2.png`.
+- Canonical group reference: `assets/characters/GROUP_SHOKO_v0.3.png`; corrupt v0.2 remains historical only.
 - Canonical neighborhood reference: `assets/environments/LOC_001_reference_sheet_v0.1.png`.
 - Canonical party reference: `assets/environments/LOC_002_party_apartment_sheet_v0.1.png`, registered as `LOC_003` despite the legacy filename.
 - Shoko A alone carries the walking stick. Shoko B has the bag, Shoko C has coffee/pastry, and Shoko D has the key.
