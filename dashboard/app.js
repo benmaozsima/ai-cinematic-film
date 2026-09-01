@@ -61,7 +61,7 @@ charNote.addEventListener('change',()=>{savedCharReview.note=charNote.value;loca
 renderCharReview();
 const videoReviewKeys={S001:'s001VideoV01Review',S002:'s002VideoV02Review'};
 const savedVideoReviews={S001:JSON.parse(localStorage.getItem(videoReviewKeys.S001)||'{}'),S002:JSON.parse(localStorage.getItem(videoReviewKeys.S002)||'{}')};
-Object.entries(savedVideoReviews).forEach(([shot,review])=>{const note=document.querySelector(`#${shot.toLowerCase()}VideoNote`);if(note)note.value=review.note||''});
+Object.keys(videoReviewKeys).forEach(shot=>{const note=document.querySelector(`#${shot.toLowerCase()}VideoNote`);if(note)note.value=savedVideoReviews[shot].note||''});
 async function loadReviewMedia(){
  try{
   const response=await fetch('../data/media_registry_v0.1.json',{cache:'no-store'});
@@ -95,6 +95,5 @@ document.querySelectorAll('[data-video-review-shot]').forEach(button=>button.onc
  renderVideoReview(shot);
 });
 Object.keys(videoReviewKeys).forEach(shot=>{const note=document.querySelector(`#${shot.toLowerCase()}VideoNote`);note?.addEventListener('change',()=>{savedVideoReviews[shot].note=note.value;localStorage.setItem(videoReviewKeys[shot],JSON.stringify(savedVideoReviews[shot]))})});
-renderVideoReview();
 loadReviewMedia();
 render();
