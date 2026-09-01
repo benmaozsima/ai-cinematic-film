@@ -80,8 +80,9 @@ async function loadReviewMedia(){
 }
 function renderVideoReview(shot){
  const decision=savedVideoReviews[shot].decision;
+ const displayDecision=decision||(shot==='S003'?'REVISE':'REVIEW');
  const status=document.querySelector(`#${shot.toLowerCase()}VideoStatus`);
- if(status){status.textContent=decision||'REVIEW';status.className=`tag ${decision==='APPROVE'?'designed':'review'}`}
+ if(status){status.textContent=displayDecision;status.className=`tag ${displayDecision==='APPROVE'?'designed':'review'}`}
  document.querySelectorAll(`[data-video-review-shot="${shot}"]`).forEach(button=>button.classList.toggle('selected',button.dataset.videoReview===decision));
 }
 Object.keys(videoReviewKeys).forEach(shot=>renderVideoReview(shot));
