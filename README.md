@@ -6,6 +6,8 @@ Goal: reverse-engineer high-quality cinematic AI film methodology, then use the 
 
 Core principle: consistency matters more than impressive isolated shots.
 
+The public production portal is the user-facing canonical review interface: [open the portal](https://benmaozsima.github.io/ai-cinematic-film/dashboard/). It exposes the same character locks, shot statuses, prompts, review gates, and rejected-history policy as the repository; Git remains the immutable backing history.
+
 ## Current Phase
 
 Original short pre-production: screenplay and shot lock for the approved 60-second, 9:16 Israeli comedy `The Search Party`.
