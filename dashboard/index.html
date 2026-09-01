@@ -14,7 +14,7 @@
       <span><strong>מסיבת החיפוש</strong><small>לוח הפקה חי · 60 שניות</small></span>
     </a>
     <nav aria-label="ניווט ראשי">
-      <a href="#overview">סקירה</a><a href="#visuals">ויזואל</a><a href="#canon">קאנון</a><a href="#shots">שוטים</a><a href="#model-pipeline">מודלים</a><a href="#readiness">מוכנות</a><a href="#process">תהליך</a>
+      <a href="#overview">סקירה</a><a href="#visuals">ויזואל</a><a href="#canon">קאנון</a><a href="#shots">שוטים</a><a href="#model-pipeline">מודלים</a><a href="#readiness">מוכנות</a><a href="#todo">TODO</a><a href="#process">תהליך</a>
     </nav>
     <span class="safety-pill">₪0 הוצאו · Fal כבוי</span>
   </header>
@@ -182,6 +182,18 @@ Avoid: all text, letters, numbers, labels, Hebrew, logos, watermarks, signatures
         <tr><th>Sign-off</th><td>Approve/Revise/Reject מתועד</td><td><span class="legend revise">חלקי</span></td><td>החלטות דפדפן אינן קאנוניות עד commit מפורש.</td></tr>
       </tbody></table></div>
       <div class="review-panel-grid"><article><h3>חובה עכשיו</h3><ol><li>לאשר את חמשת גיליונות הדמויות והלוקיישן.</li><li>לתקן/לאשר S001–S004 בלי identity drift.</li><li>להשלים Shot Pack מלא לשוט הראשון.</li><li>לבחור מודל וידאו ולראות מחיר מדויק — לפני תשלום.</li></ol></article><article><h3>אפשר אחרי הסצינה הראשונה</h3><ol><li>אופטימיזציית batch לשוטים הבאים.</li><li>פיין־טיונינג צבע וקצב לכל הסרט.</li><li>מיקס סופי, כתוביות וגרסת הפצה.</li></ol></article></div>
+    </section>
+
+    <section id="todo" class="section-shell block todo-section">
+      <div class="section-heading"><div><p class="eyebrow">PRODUCTION TODO</p><h2>תוכנית השלמה מדורגת</h2></div><p>המשימות מסודרות לפי תלות. לא מדלגים על שער איכות כדי “להתקדם”; כל שלב נסגר רק עם ראיה וקובץ מתועד.</p></div>
+      <div class="todo-list">
+        <article class="todo-phase"><div class="todo-phase-head"><span>01</span><div><h3>נעילת קאנון</h3><small>חוסם את כל השאר</small></div><b class="todo-status blocked">עכשיו</b></div><ol><li>לאשר רשמית את `CHAR_001–005 v0.2` ואת `LOC_001 v0.2`.</li><li>להגדיר רפרנס פנים לדירה ול־`LOC_003` (דירת האפטר).</li><li>לאמת PROP IDs: תיק, קפה/מאפה, מפתח, מקל, טלפון ומסרק.</li><li>לעדכן את Production Bible לסטטוס הקאנוני שנבחר.</li></ol><p class="acceptance"><strong>תנאי סגירה:</strong> לכל ID יש קובץ תקין, גרסה, SHA, סטטוס והערת רציפות.</p></article>
+        <article class="todo-phase"><div class="todo-phase-head"><span>02</span><div><h3>Shot Pack מלא</h3><small>S001–S016</small></div><b class="todo-status partial">חלקי</b></div><ol><li>להשלים לכל שוט start/end frame, blocking, כיוון מסך, עדשה ותנועת מצלמה.</li><li>לשייך CHAR/LOC/PROP IDs ו־negative constraints.</li><li>לתקן את `S002`, `S003`, `S005` ללא identity drift.</li><li>ליצור שוטים חסרים אחד־אחד ולשמור ניסויים rejected.</li></ol><p class="acceptance"><strong>תנאי סגירה:</strong> כל שוט מסומן APPROVED או REVISE; אין “נראה בערך”.</p></article>
+        <article class="todo-phase"><div class="todo-phase-head"><span>03</span><div><h3>בחירת מודל וידאו</h3><small>שער תשלום מפורש</small></div><b class="todo-status blocked">חסום</b></div><ol><li>להשוות מודלים לפי identity fidelity, image-to-video, אורך, FPS, privacy ו־input limits.</li><li>לתעד provider, model, version, prompt schema ועלות לשוט אחד.</li><li>להכין credential חדש דרך Secrets/Environment בלבד.</li><li>להציג לך בדיוק מה נשלח ומה המחיר — ולעצור לאישור.</li></ol><p class="acceptance"><strong>תנאי סגירה:</strong> אישור מפורש לפעולה מוגבלת אחת; Fal וה־Gemini key הישן נשארים מחוץ לתהליך.</p></article>
+        <article class="todo-phase"><div class="todo-phase-head"><span>04</span><div><h3>סצינת ניסיון אחת</h3><small>S002 מומלץ</small></div><b class="todo-status blocked">ממתין</b></div><ol><li>לבנות payload יבש ולוודא שכל URLs והקבצים אמיתיים.</li><li>להריץ שוט אחד בלבד עם start/end/reference מוגדרים.</li><li>לבדוק face, hair, wardrobe, hands, mirror, motion ו־audio timing.</li><li>לרשום תוצאה, cost, output SHA והחלטת ריוויו.</li></ol><p class="acceptance"><strong>תנאי סגירה:</strong> וידאו מפוענח 1080×1920, משך/FPS נכונים, ללא drift, ואישור אנושי.</p></article>
+        <article class="todo-phase"><div class="todo-phase-head"><span>05</span><div><h3>הפקה מדורגת</h3><small>ארבע חבילות</small></div><b class="todo-status blocked">ממתין</b></div><ol><li>להפיק פתיחה → הצטרפות → צעדה → דלת/אפטר.</li><li>לעצור לריוויו אחרי כל חבילה, לא לבצע batch עיוור.</li><li>לשמור prompts, outputs, costs, hashes והחלטות לכל גרסה.</li></ol><p class="acceptance"><strong>תנאי סגירה:</strong> 16 שוטים מאושרים או מתועדים כ־REVISE, עם timeline רציף.</p></article>
+        <article class="todo-phase"><div class="todo-phase-head"><span>06</span><div><h3>אודיו, עריכה ומסירה</h3><small>נעילה סופית</small></div><b class="todo-status blocked">ממתין</b></div><ol><li>להקליט/לבחור VO, דיאלוג עברי, SFX ומוזיקה עם זכויות.</li><li>לערוך timeline של 60 שניות ולשמור כתוביות מחוץ לתמונה.</li><li>לבצע color/QC ולייצא master 1080×1920 בפורמט מוסכם.</li><li>לפרסם גרסת צפייה, checksum ו־release notes.</li></ol><p class="acceptance"><strong>תנאי סגירה:</strong> master נפתח, מסונכרן, חוקי ומתועד; הפורטל והריפו תואמים.</p></article>
+      </div>
     </section>
 
     <section class="section-shell approval-panel">
