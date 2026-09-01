@@ -1,0 +1,36 @@
+{
+  "shot_id": "S002",
+  "scene_id": "SCENE_001_OPENING",
+  "version": "v0.2",
+  "quality_tier": "controlled_continuity_test",
+  "mode": "image_to_video",
+  "model_key": "seedance_1_5_pro_i2v",
+  "duration_seconds": 4,
+  "aspect_ratio": "9:16",
+  "resolution": "720p",
+  "generate_audio": false,
+  "camera_fixed": false,
+  "seed": 19002,
+  "prompt": "The exact elderly man already visible in the supplied start frame makes one slow, controlled combing pass through his silver-gray hair while watching his own physically correct reflection. Preserve his exact face, age, hair, cream shirt, brown cardigan, solemn expression, mirror, apartment, warm restrained morning light, frame geometry and foreground shoulder. One subtle natural blink and restrained breathing are allowed. The camera performs an extremely subtle straight slow push-in with no pan, tilt, roll or handheld shake. Exactly one real man and his single mirror reflection. No hat worn yet, no walking stick in frame, no new people, no women, no girls, no children, no duplicate person beyond the legitimate reflection, no extra comb, no wardrobe change, no distorted reflection, no extra fingers or limbs, no morphing, no text, no Hebrew, no subtitles, no logos and no watermark.",
+  "references": {
+    "start_frame_url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S002_real_v0.2.png",
+    "end_frame_url": null,
+    "reference_image_urls": []
+  },
+  "budget": {
+    "max_cost_usd": 0.12,
+    "estimated_cost_usd": 0.10368,
+    "dry_run": true,
+    "require_approval_before_execute": true,
+    "approval_status": "PENDING_EXPLICIT_USER_APPROVAL"
+  },
+  "metadata": {
+    "provider": "fal",
+    "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "pricing_verified_date": "2026-09-01",
+    "start_frame_sha256": "f8063f0df95691bdabe2d1f7f0617b9e8f813b12668da92e0ec3c8e38b6ed5da",
+    "edit_plan": "Generate 4 seconds and trim to the canonical 3-second edit duration after QC.",
+    "audio_plan": "Generate silently; bridge the faint clock from S001 and add one controlled comb pass plus room tone in post.",
+    "continuity_plan": "Hard cut from the S001 shoe insert; preserve morning grade and wardrobe palette. Hard cut out to the S003 phone insert before CHAR_001 takes his hat and walking stick."
+  }
+}

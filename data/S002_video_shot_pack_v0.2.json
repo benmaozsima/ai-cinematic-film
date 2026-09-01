@@ -1,0 +1,79 @@
+{
+  "shot_id": "S002",
+  "version": "v0.2",
+  "status": "AWAITING_KEYFRAME_REVIEW_AND_EXPLICIT_PAID_APPROVAL",
+  "creative": {
+    "title": "שוקו א׳ מול המראה",
+    "timecode": "00:03-00:06",
+    "duration_edit_seconds": 3,
+    "action": "Shoko A makes one slow, controlled combing pass through his silver-gray hair while watching himself in the mirror.",
+    "dialogue_hebrew": "אין",
+    "sound_plan": "single comb pass, quiet room tone, the faint clock from S001 continues across the cut"
+  },
+  "canonical_inputs": {
+    "character_ids": ["CHAR_001"],
+    "location_ids": ["LOC_003_INTERIOR_PENDING"],
+    "prop_ids": ["PROP_008_COMB", "PROP_003_HAT", "PROP_001_WALKING_STICK"],
+    "start_frame": {
+      "filename": "S002_real_v0.2.png",
+      "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S002_real_v0.2.png",
+      "sha256": "f8063f0df95691bdabe2d1f7f0617b9e8f813b12668da92e0ec3c8e38b6ed5da",
+      "width": 941,
+      "height": 1672,
+      "color_mode": "RGB",
+      "format": "PNG"
+    },
+    "identity_reference": "https://benmaozsima.github.io/ai-cinematic-film/assets/characters/CHAR_001_reference_sheet_v0.2.png"
+  },
+  "continuity": {
+    "incoming_from_S001": "Hard cut from the shoe-polishing insert. Preserve warm restrained morning light, brown/cream wardrobe palette and the faint clock as an audio bridge. S001 need not be supplied to the video model because it is a different composition and contains no face.",
+    "outgoing_to_S003": "Finish with the comb near the same side of the silver hair and a composed expression. Cut to the phone insert in S003; only after the phone beat does CHAR_001 take PROP_003_HAT and PROP_001_WALKING_STICK.",
+    "identity_lock": "The approved CHAR_001 face, age, silver-gray hair, cream shirt and brown cardigan are invariant. The hat is not worn in S002.",
+    "screen_direction": "The reflected face remains front-facing; foreground shoulder stays on frame right. No axis change during the shot."
+  },
+  "camera_and_motion": {
+    "framing": "vertical mirror close-up",
+    "lens_feel": "50mm natural portrait perspective, shallow depth of field",
+    "camera_motion": "one extremely subtle slow push-in; no pan, tilt, roll or handheld shake",
+    "subject_motion": "one small combing pass only; restrained blink and breathing are permitted",
+    "motion_priority": "identity and reflection stability outrank camera motion; if the push-in causes drift, revise to a locked camera"
+  },
+  "keyframe_generation": {
+    "provider": "OpenAI built-in image_gen",
+    "model": "internal model ID not exposed by the tool",
+    "generation_date": "2026-09-01",
+    "review_status": "REVIEW",
+    "agent_qc": "PASS: one male subject plus a physically correct reflection, consistent approved wardrobe and facial identity, one comb, natural anatomy, no text or watermark.",
+    "human_decision": null
+  },
+  "video_model_candidate": {
+    "provider": "Fal",
+    "endpoint": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "model": "Seedance 1.5 Pro image-to-video",
+    "input_mode": "image-to-video",
+    "requested_output": "720p vertical 720x1280, 4 seconds, no generated audio; trim to the canonical 3-second edit duration",
+    "estimated_operation_cost_usd": 0.10368,
+    "cost_basis": "$1.20 per million video tokens without audio; 720x1280x24fpsx4s/1024 = 86,400 tokens",
+    "approval_required": true
+  },
+  "prompt": "The exact elderly man already visible in the supplied start frame makes one slow, controlled combing pass through his silver-gray hair while watching his own physically correct reflection. Preserve his exact face, age, hair, cream shirt, brown cardigan, solemn expression, mirror, apartment, warm restrained morning light, frame geometry and foreground shoulder. One subtle natural blink and restrained breathing are allowed. The camera performs an extremely subtle straight slow push-in with no pan, tilt, roll or handheld shake. Exactly one real man and his single mirror reflection. No hat worn yet, no walking stick in frame, no new people, no women, no girls, no children, no duplicate person beyond the legitimate reflection, no extra comb, no wardrobe change, no distorted reflection, no extra fingers or limbs, no morphing, no text, no Hebrew, no subtitles, no logos and no watermark.",
+  "negative_constraints": [
+    "no identity drift or facial reshaping",
+    "no women, girls, children or additional people",
+    "no duplicate character outside the legitimate mirror reflection",
+    "no hat worn in S002",
+    "no text, Hebrew, subtitles, logo or watermark",
+    "no extra comb, fingers or limbs",
+    "no reflection mismatch or object morphing",
+    "no camera shake, pan, tilt or roll"
+  ],
+  "post_generation_qc": [
+    "decode output and verify 720x1280, H.264, FPS, duration and audio-stream absence",
+    "compare opening frame to S002_real_v0.2.png and sampled faces to CHAR_001_reference_sheet_v0.2.png",
+    "verify reflection synchronization, one combing pass and natural hand anatomy",
+    "verify no new people, hat, text, logo or watermark",
+    "compare grade and room tone plan against S001 and prepare a 3-second edit trim",
+    "compute SHA-256 and expose through media_registry without tracking the MP4 in Git",
+    "record Approve / Revise / Reject before continuing to S003"
+  ]
+}
