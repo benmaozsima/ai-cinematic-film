@@ -79,7 +79,7 @@ async function loadReviewMedia(){
  }
 }
 const sequenceOrder=['S001','S002','S003'];
-let sequenceItems=[],sequenceIndex=0,sequenceSelections=JSON.parse(localStorage.getItem('sequenceSelections')||'{}');
+let sequenceItems=[],sequenceIndex=0,sequenceSelections=JSON.parse(localStorage.getItem('sequenceSelections')||'{}'),sequencePlaying=false;
 function renderSequenceList(){
  const list=document.querySelector('#sequenceList'); if(!list)return;
  list.innerHTML='';
@@ -94,7 +94,9 @@ function setSequenceSource(){
 }
 async function loadSequence(){
  try{const response=await fetch('../data/media_registry_v0.1.json',{cache:'no-store'});if(!response.ok)throw new Error('registry');const registry=await response.json();const titles={S001:'הטקס',S002:'שוקו א׳ מול המראה',S003:'שוקו ה׳ לא עונה'};sequenceItems=sequenceOrder.map(shot=>{const variants=registry.media.filter(item=>item.shot_id===shot&&item.kind==='video'&&item.review_url);return{shot_id:shot,title:titles[shot]||shot,variants}});renderSequenceList();setSequenceSource()}catch{document.querySelector('#sequenceMessage').textContent='לא ניתן לטעון את Media Registry כרגע.'}}
-document.querySelector('#sequenceVideo')?.addEventListener('ended',()=>{let next=sequenceIndex+1;while(next<sequenceItems.length&&!sequenceItems[next].media)next++;if(next<sequenceItems.length){sequenceIndex=next;setSequenceSource();document.querySelector('#sequenceVideo').play().catch(()=>{})}else document.querySelector('#sequenceMessage').textContent='סוף הקליפים הקיימים. השוטים החסרים נשארו מסומנים ברשימה.'});
+document.querySelector('#sequenceVideo')?.addEventListener('ended',()=>{if(!sequencePlaying)return;let next=sequenceIndex+1;while(next<sequenceItems.length&&!sequenceItems[next].variants.length)next++;if(next<sequenceItems.length){sequenceIndex=next;setSequenceSource();const video=document.querySelector('#sequenceVideo');video.play().catch(()=>{sequencePlaying=false;document.querySelector('#sequenceMessage').textContent='הדפדפן עצר את המעבר האוטומטי; לחץ שוב על “נגן את כל הרצף”.'})}else{sequencePlaying=false;document.querySelector('#sequenceMessage').textContent='סוף הקליפים הקיימים. השוטים החסרים נשארו מסומנים ברשימה.'}});
+document.querySelector('#playAllSequence')?.addEventListener('click',()=>{const first=sequenceItems.findIndex(item=>item.variants.length);if(first<0){document.querySelector('#sequenceMessage').textContent='אין עדיין קליפים זמינים לנגינה.';return}sequenceIndex=first;sequencePlaying=true;setSequenceSource();document.querySelector('#sequenceVideo').play().catch(()=>{sequencePlaying=false;document.querySelector('#sequenceMessage').textContent='לחץ שוב על כפתור הנגינה כדי לאשר הפעלה בדפדפן.'})});
+document.querySelector('#restartSequence')?.addEventListener('click',()=>{sequencePlaying=false;sequenceIndex=0;setSequenceSource();document.querySelector('#sequenceVideo').currentTime=0});
 function renderVideoReview(shot){
  const decision=savedVideoReviews[shot].decision;
  const displayDecision=decision||'REVIEW';
