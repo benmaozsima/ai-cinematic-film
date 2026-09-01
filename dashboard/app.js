@@ -59,38 +59,42 @@ document.querySelectorAll('[data-char-review]').forEach(button=>button.onclick=(
 });
 charNote.addEventListener('change',()=>{savedCharReview.note=charNote.value;localStorage.setItem(charReviewKey,JSON.stringify(savedCharReview))});
 renderCharReview();
-const videoReviewKey='s001VideoV01Review';
-const videoNote=document.querySelector('#s001VideoNote'),videoMessage=document.querySelector('#s001VideoReviewMessage'),videoStatus=document.querySelector('#s001VideoStatus');
-const savedVideoReview=JSON.parse(localStorage.getItem(videoReviewKey)||'{}');
-videoNote.value=savedVideoReview.note||'';
+const videoReviewKeys={S001:'s001VideoV01Review',S002:'s002VideoV02Review'};
+const savedVideoReviews=Object.fromEntries(Object.entries(videoReviewKeys).map(([shot,key])=>[shot,JSON.parse(localStorage.getItem(key)||'{}')]));
+Object.entries(savedVideoReviews).forEach(([shot,review])=>{const note=document.querySelector(`#${shot.toLowerCase()}VideoNote`);if(note)note.value=review.note||''});
 async function loadReviewMedia(){
- const video=document.querySelector('#s001ReviewVideo'),mediaMessage=document.querySelector('#s001MediaMessage');
  try{
   const response=await fetch('../data/media_registry_v0.1.json',{cache:'no-store'});
   if(!response.ok)throw new Error(`registry ${response.status}`);
   const registry=await response.json();
-  const media=registry.media.find(item=>item.media_id===video.dataset.mediaId);
-  if(!media?.review_url)throw new Error('review URL missing');
-  video.src=media.review_url;
-  mediaMessage.textContent='הווידאו נטען מאחסון חיצוני; הקובץ אינו שמור ב־Git.';
+  document.querySelectorAll('video[data-media-id]').forEach(video=>{
+   const media=registry.media.find(item=>item.media_id===video.dataset.mediaId);
+   if(!media?.review_url)throw new Error(`review URL missing for ${video.dataset.mediaId}`);
+   video.src=media.review_url;
+   const message=document.querySelector(`#${video.id.replace('ReviewVideo','MediaMessage')}`);
+   if(message)message.textContent='הווידאו נטען מאחסון חיצוני; הקובץ אינו שמור ב־Git.';
+  });
  }catch(error){
-  mediaMessage.textContent='הווידאו אינו זמין כרגע. המטא־דאטה וה־SHA נשמרו; יש לסנכרן את קובץ ה־outputs לאחסון חיצוני.';
+  document.querySelectorAll('.media-message').forEach(message=>{message.textContent='הווידאו אינו זמין כרגע. המטא־דאטה וה־SHA נשמרו; יש לסנכרן את קובץ ה־outputs לאחסון חיצוני.'});
  }
 }
-function renderVideoReview(){
- const decision=savedVideoReview.decision;
- videoStatus.textContent=decision||'REVIEW';
- videoStatus.className=`tag ${decision==='APPROVE'?'designed':'review'}`;
- document.querySelectorAll('[data-video-review]').forEach(button=>button.classList.toggle('selected',button.dataset.videoReview===decision));
+function renderVideoReview(shot){
+ const decision=savedVideoReviews[shot].decision;
+ const status=document.querySelector(`#${shot.toLowerCase()}VideoStatus`);
+ if(status){status.textContent=decision||'REVIEW';status.className=`tag ${decision==='APPROVE'?'designed':'review'}`}
+ document.querySelectorAll(`[data-video-review-shot="${shot}"]`).forEach(button=>button.classList.toggle('selected',button.dataset.videoReview===decision));
 }
-document.querySelectorAll('[data-video-review]').forEach(button=>button.onclick=()=>{
- savedVideoReview.decision=button.dataset.videoReview;
- savedVideoReview.note=videoNote.value;
- localStorage.setItem(videoReviewKey,JSON.stringify(savedVideoReview));
- videoMessage.textContent=`${savedVideoReview.decision} נשמר בדפדפן בלבד. שלח את ההחלטה בצ׳אט כדי שאעדכן את הקאנון.`;
- renderVideoReview();
+Object.keys(videoReviewKeys).forEach(shot=>renderVideoReview(shot));
+document.querySelectorAll('[data-video-review-shot]').forEach(button=>button.onclick=()=>{
+ const shot=button.dataset.videoReviewShot,review=savedVideoReviews[shot];
+ review.decision=button.dataset.videoReview;
+ review.note=document.querySelector(`#${shot.toLowerCase()}VideoNote`)?.value||'';
+ localStorage.setItem(videoReviewKeys[shot],JSON.stringify(review));
+ const message=document.querySelector(`#${shot.toLowerCase()}VideoReviewMessage`);
+ if(message)message.textContent=`${review.decision} נשמר בדפדפן בלבד. שלח את ההחלטה בצ׳אט כדי שאעדכן את הקאנון.`;
+ renderVideoReview(shot);
 });
-videoNote.addEventListener('change',()=>{savedVideoReview.note=videoNote.value;localStorage.setItem(videoReviewKey,JSON.stringify(savedVideoReview))});
+Object.keys(videoReviewKeys).forEach(shot=>{const note=document.querySelector(`#${shot.toLowerCase()}VideoNote`);note?.addEventListener('change',()=>{savedVideoReviews[shot].note=note.value;localStorage.setItem(videoReviewKeys[shot],JSON.stringify(savedVideoReviews[shot]))})});
 renderVideoReview();
 loadReviewMedia();
 render();

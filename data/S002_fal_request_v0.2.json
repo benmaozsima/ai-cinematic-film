@@ -20,9 +20,9 @@
   "budget": {
     "max_cost_usd": 0.12,
     "estimated_cost_usd": 0.10368,
-    "dry_run": true,
+    "dry_run": false,
     "require_approval_before_execute": true,
-    "approval_status": "PENDING_EXPLICIT_USER_APPROVAL"
+    "approval_status": "EXPLICIT_USER_APPROVED_UP_TO_0.12_USD"
   },
   "metadata": {
     "provider": "fal",
