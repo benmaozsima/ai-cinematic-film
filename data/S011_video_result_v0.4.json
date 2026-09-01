@@ -1,0 +1,25 @@
+{
+  "shot_id": "S011",
+  "version": "v0.4",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "The same four older male Shokos approach a black apartment door from outside. CHAR_001 leads with cane; CHAR_003 bag, CHAR_004 coffee and pastry, CHAR_005 giant key. Slow approach and stop before the threshold. Nobody enters. Preserve exact faces, wardrobe and props. No women, children, extras or text.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bc6a/nqpDDPGVP49dFOAyYH2SZ_S011_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bc6a/nqpDDPGVP49dFOAyYH2SZ_S011_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bc6f/DDkbHvOV7Shzy_Y8Mlrcf_video.mp4",
+  "filename": "S011_seedance_1_5_pro_v0.4.mp4",
+  "local_path": "outputs/videos/review/S011_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "81ba9030a8cb451bef9340f2740228f12e6711bfc77ba11dbc1247dfeb83356d",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED"
+}

@@ -16,7 +16,7 @@ const shots=[
  {id:'S015',time:'0:54–0:57',title:'נכנסים',action:'שוקו ג׳ לוקח כוס ונכנס; האחרים אחריו.',dialogue:'אין',sound:'כוס, צחוק'},
  {id:'S016',time:'0:57–1:00',title:'הפאנץ׳',action:'שוקו א׳ מחייך ונכנס. הדלת נסגרת.',dialogue:'קול: „מי הזמין את ועד הבית?”',sound:'הפאנץ׳ מתוך הדירה'}
 ];
-const statusByShot={S001:'APPROVED',S002:'REVIEW',S003:'REVISE',S004:'REVIEW',S005:'REVISE',S006:'REVIEW',S007:'REVIEW',S008:'REVIEW',S009:'REVISE',S010:'REVISE',S011:'REVISE',S012:'REVISE',S013:'REVISE',S014:'REVISE',S015:'REVISE',S016:'REVISE'};
+const statusByShot={S001:'APPROVED',S002:'REVIEW',S003:'REVISE',S004:'REVIEW',S005:'REVISE',S006:'REVIEW',S007:'REVIEW',S008:'REVIEW',S009:'REVIEW',S010:'REVIEW',S011:'REVIEW',S012:'REVIEW',S013:'REVIEW',S014:'REVIEW',S015:'REVIEW',S016:'REVIEW'};
 const statusLabel={APPROVED:'מאושר בריוויו',REVIEW:'חדש לבדיקה',REVISE:'לתיקון',MISSING:'חסר — עדיין לא נוצר'};
 const grid=document.querySelector('#shotGrid'),dialog=document.querySelector('#shotDialog'),content=document.querySelector('#dialogContent');
 const approvals=JSON.parse(localStorage.getItem('shotApprovals')||'{}');
@@ -78,7 +78,7 @@ async function loadReviewMedia(){
   document.querySelectorAll('.media-message').forEach(message=>{message.textContent='הווידאו אינו זמין כרגע. המטא־דאטה וה־SHA נשמרו; יש לסנכרן את קובץ ה־outputs לאחסון חיצוני.'});
  }
 }
-const sequenceOrder=['S001','S002','S003','S004','S005','S006','S007','S008'];
+const sequenceOrder=['S001','S002','S003','S004','S005','S006','S007','S008','S009','S010','S011','S012','S013','S014','S015','S016'];
 let sequenceItems=[],sequenceIndex=0,sequenceSelections=JSON.parse(localStorage.getItem('sequenceSelections')||'{}'),sequencePlaying=false,sequenceActivePlayer=0;
 function sequencePlayers(){return[document.querySelector('#sequenceVideo'),document.querySelector('#sequenceVideoNext')]}
 function renderSequenceList(){

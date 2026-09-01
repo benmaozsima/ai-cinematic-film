@@ -1,0 +1,25 @@
+{
+  "shot_id": "S013",
+  "version": "v0.4",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "The black apartment door opens inward. CHAR_002, the same older silver-haired male host wearing dark sunglasses, blue patterned shirt, white T-shirt, beige trousers and barefoot, appears inside and greets the four arriving older male Shokos. The four remain outside with fedora/cane, oversized bag, coffee/pastry and giant key. Gentle door-opening motion, exactly five men, no one else, no text.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bc78/O9XAaT7V1pjQGjEczPPIh_S013_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bc78/O9XAaT7V1pjQGjEczPPIh_S013_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bc7e/B3KECeIwcBKlhCpW6FT4E_video.mp4",
+  "filename": "S013_seedance_1_5_pro_v0.4.mp4",
+  "local_path": "outputs/videos/review/S013_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "de1ffdd971a399de7f4d3eec10eb2d67a409ca4a8c3d209b7011c3b2076ee485",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED"
+}

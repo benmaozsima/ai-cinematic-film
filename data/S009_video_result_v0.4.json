@@ -1,0 +1,15 @@
+{
+  "shot_id": "S009",
+  "version": "v0.4",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bc55/MZBD7KJ4KNzP8POhvEyyp_video.mp4",
+  "filename": "S009_seedance_1_5_pro_v0.4.mp4",
+  "local_path": "outputs/videos/review/S009_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "6bc95e147cbd1965b3a9d1a8971c9a9a54b3411bd3f5cc36beac0ac14acf5b5e",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED"
+}

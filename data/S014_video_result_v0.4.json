@@ -1,0 +1,25 @@
+{
+  "shot_id": "S014",
+  "version": "v0.4",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "At the same apartment doorway, CHAR_001 remains outside facing CHAR_002 host inside for a brief friendly conversation. CHAR_003 with bag, CHAR_004 with coffee/pastry and CHAR_005 with giant key remain outside behind CHAR_001. Subtle conversational gestures only; nobody crosses threshold. Exactly five older male Shokos, preserve identity and props, no extras or text.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bc7f/vC0c5QGvi31q-Pq6xoNdx_S014_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bc7f/vC0c5QGvi31q-Pq6xoNdx_S014_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bc9a/AUcg6FZyonMioz3mivVE1_video.mp4",
+  "filename": "S014_seedance_1_5_pro_v0.4.mp4",
+  "local_path": "outputs/videos/review/S014_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "d1e29da0a21caa478ac7173007703a7c9885d8605f70ccf0b7ee9d350b937e65",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED"
+}
