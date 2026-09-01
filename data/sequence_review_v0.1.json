@@ -1,0 +1,35 @@
+{
+  "sequence_id": "OPENING_ASSEMBLY",
+  "version": "v0.1",
+  "review_date": "2026-09-01",
+  "reviewer": "Codex visual continuity review",
+  "scope": ["S001_VIDEO_V0_1", "S002_VIDEO_V0_2", "S003_VIDEO_V0_3"],
+  "decision": "CONTINUE_TO_S004_COST_GATE",
+  "technical": {
+    "all_clips_decode": true,
+    "all_clips_vertical_9_16": true,
+    "all_clips_h264": true,
+    "all_clips_24fps": true,
+    "audio_streams_present": false
+  },
+  "continuity_review": {
+    "S001_to_S002": {
+      "result": "PASS",
+      "notes": "S001 is a stable shoe insert; S002 establishes the same warm apartment ritual with no identity requirement in the insert itself. Faint-clock sound bridge remains planned for post."
+    },
+    "S002_to_S003": {
+      "result": "PASS",
+      "notes": "CHAR_001 face, silver hair, cream shirt and brown cardigan remain consistent. Mirror grooming resolves into the phone/launch setup."
+    },
+    "S003_to_S004": {
+      "result": "PASS_WITH_HANDOFF_READY",
+      "notes": "S003 v0.3 ends with the hat worn and walking stick held upright. The next shot can begin as the exterior rear-follow without inventing a prop handoff."
+    }
+  },
+  "known_limits": [
+    "The clips are silent visual passes; dialogue, voice, Foley and music are not yet mixed.",
+    "S003 dialogue is explicitly offscreen/post-production; no visible lip-sync is expected.",
+    "S004 still requires its own keyframe, exact payload and paid model/cost approval."
+  ],
+  "next_action": "Prepare S004 keyframe and show exact provider/model/cost before any paid generation."
+}
