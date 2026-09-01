@@ -63,6 +63,20 @@ const videoReviewKey='s001VideoV01Review';
 const videoNote=document.querySelector('#s001VideoNote'),videoMessage=document.querySelector('#s001VideoReviewMessage'),videoStatus=document.querySelector('#s001VideoStatus');
 const savedVideoReview=JSON.parse(localStorage.getItem(videoReviewKey)||'{}');
 videoNote.value=savedVideoReview.note||'';
+async function loadReviewMedia(){
+ const video=document.querySelector('#s001ReviewVideo'),mediaMessage=document.querySelector('#s001MediaMessage');
+ try{
+  const response=await fetch('../data/media_registry_v0.1.json',{cache:'no-store'});
+  if(!response.ok)throw new Error(`registry ${response.status}`);
+  const registry=await response.json();
+  const media=registry.media.find(item=>item.media_id===video.dataset.mediaId);
+  if(!media?.review_url)throw new Error('review URL missing');
+  video.src=media.review_url;
+  mediaMessage.textContent='הווידאו נטען מאחסון חיצוני; הקובץ אינו שמור ב־Git.';
+ }catch(error){
+  mediaMessage.textContent='הווידאו אינו זמין כרגע. המטא־דאטה וה־SHA נשמרו; יש לסנכרן את קובץ ה־outputs לאחסון חיצוני.';
+ }
+}
 function renderVideoReview(){
  const decision=savedVideoReview.decision;
  videoStatus.textContent=decision||'REVIEW';
@@ -78,4 +92,5 @@ document.querySelectorAll('[data-video-review]').forEach(button=>button.onclick=
 });
 videoNote.addEventListener('change',()=>{savedVideoReview.note=videoNote.value;localStorage.setItem(videoReviewKey,JSON.stringify(savedVideoReview))});
 renderVideoReview();
+loadReviewMedia();
 render();

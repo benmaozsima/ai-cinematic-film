@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "storage_policy": {
+    "git_tracks_generated_media": false,
+    "local_output_root": "outputs/",
+    "shared_media_requirement": "External object storage or provider CDN",
+    "portable_contract": "Consumers resolve a stable media_id through this registry instead of assuming a repository file path."
+  },
+  "media": [
+    {
+      "media_id": "S001_VIDEO_V0_1",
+      "shot_id": "S001",
+      "kind": "video",
+      "version": "v0.1",
+      "review_status": "REVIEW",
+      "filename": "S001_seedance_1_5_pro_v0.1.mp4",
+      "local_path": "outputs/videos/review/S001_seedance_1_5_pro_v0.1.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8aedb/XcLiWF54k6t_2aA7o88pA_video.mp4",
+      "storage_provider": "fal_provider_cdn",
+      "retention": "provider-managed; migrate approved media to durable object storage",
+      "git_tracked": false,
+      "sha256": "2f15b1195740fb8e4e3c2fdd1eb32569342df01b5e5e6d199cabf5887f76787f",
+      "content_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "duration_seconds": 4.041667
+    }
+  ]
+}

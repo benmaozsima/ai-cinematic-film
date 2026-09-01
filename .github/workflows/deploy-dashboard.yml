@@ -9,7 +9,6 @@ on:
       - "assets/characters/**"
       - "assets/environments/**"
       - "assets/keyframes/**"
-      - "assets/videos/**"
       - "data/**"
       - ".github/workflows/deploy-dashboard.yml"
   workflow_dispatch:
@@ -36,12 +35,11 @@ jobs:
           mkdir -p _site/assets
           cp -R dashboard _site/dashboard
           cp -R assets/review _site/assets/review
-          mkdir -p _site/assets/characters _site/assets/environments _site/assets/keyframes _site/assets/videos _site/data
+          mkdir -p _site/assets/characters _site/assets/environments _site/assets/keyframes _site/data
           cp assets/characters/*reference_sheet_v0.2.png _site/assets/characters/
           cp assets/environments/*reference_sheet_v0.2.png _site/assets/environments/
           cp assets/keyframes/S001_real_v0.1.png assets/keyframes/S004_real_v0.1.png _site/assets/keyframes/
-          cp -R assets/videos/review _site/assets/videos/
-          cp data/S001_fal_request_v0.1.json data/S001_video_result_v0.1.json _site/data/
+          cp data/S001_fal_request_v0.1.json data/S001_video_result_v0.1.json data/media_registry_v0.1.json _site/data/
           cat > _site/index.html <<'HTML'
           <!doctype html>
           <meta charset="utf-8">

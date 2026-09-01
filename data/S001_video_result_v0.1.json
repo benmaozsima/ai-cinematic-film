@@ -19,7 +19,10 @@
   },
   "output": {
     "filename": "S001_seedance_1_5_pro_v0.1.mp4",
-    "repository_path": "assets/videos/review/S001_seedance_1_5_pro_v0.1.mp4",
+    "git_tracked": false,
+    "local_path": "outputs/videos/review/S001_seedance_1_5_pro_v0.1.mp4",
+    "review_url": "https://v3b.fal.media/files/b/0aa8aedb/XcLiWF54k6t_2aA7o88pA_video.mp4",
+    "storage_class": "provider_cdn_temporary_review",
     "sha256": "2f15b1195740fb8e4e3c2fdd1eb32569342df01b5e5e6d199cabf5887f76787f",
     "container": "MP4",
     "video_codec": "H.264",

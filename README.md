@@ -8,6 +8,15 @@ Core principle: consistency matters more than impressive isolated shots.
 
 The public production portal is the user-facing canonical review interface: [open the portal](https://benmaozsima.github.io/ai-cinematic-film/dashboard/). It exposes the same character locks, shot statuses, prompts, review gates, and rejected-history policy as the repository; Git remains the immutable backing history.
 
+## Media Storage Policy
+
+Git stores code, prompts, shot packs, manifests, hashes, review decisions and lightweight production references. Generated video, audio, frame sequences, edit caches and delivery masters are never tracked in Git.
+
+- Local generated media lives under the ignored `outputs/` directory.
+- Shared review media lives in external object storage or the provider CDN.
+- `data/media_registry_v0.1.json` maps stable media IDs to local paths, external review URLs, hashes and retention status.
+- The dashboard resolves review media through the registry. A storage provider can change without changing the shot IDs or production data.
+
 ## Current Phase
 
 Original short pre-production: screenplay and shot lock for the approved 60-second, 9:16 Israeli comedy `The Search Party`.
@@ -31,6 +40,7 @@ The Red Alert 2 cinematic credited online to lyxw1327 / Douyin remains a methodo
 - `assets/review/JOINING_PREVIS_v0.1.png` - directly viewable S005-S008 friends-join pass with dialogue, props and sound.
 - `assets/review/MARCH_PREVIS_v0.1.png` - directly viewable S009-S012 march-to-door pass with dialogue and suspense sound.
 - `dashboard/` - static, phone-friendly production dashboard with visuals, all 16 shots, dialogue, status and approval gates.
+- `data/media_registry_v0.1.json` - versioned registry for generated media stored outside Git.
 - `assets/review/PRODUCTION_DASHBOARD_v0.1.png` - preserved first dashboard preview.
 - `assets/review/PRODUCTION_DASHBOARD_v0.2.png` - preserved dashboard preview through S005-S008.
 - `assets/review/PRODUCTION_DASHBOARD_v0.3.png` - current full-page dashboard preview including S009-S012.
