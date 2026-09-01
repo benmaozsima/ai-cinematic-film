@@ -60,3 +60,8 @@ Approved designs are stable. Once an element is approved, preserve its descripti
 | DEC_010 | 2026-08-29 | Start with a 60-second conform and dry-run preparation only. | The production can begin, but no exact paid Fal operation or cost has yet been approved. | Approved |
 | DEC_011 | 2026-08-29 | Publish the production dashboard publicly without authentication. | Ben confirmed that the dashboard is not sensitive and requested the simplest internet access. | Approved |
 | DEC_012 | 2026-08-30 | Every principal man is named Shoko on screen. | The five distinct men retain persistent `CHAR_###` IDs and internal Shoko A-E labels, while the shared spoken name supplies the clear `Adon Shoko` homage. The former Yossi, Moti and Avi labels are superseded. | Approved |
+## Audio and performance continuity
+
+The audio bible is part of the production canon and is maintained in \`36_Audio_LipSync_Contract_v0.1.md\`. Each recurring character receives a stable \`speaker_id\` and versioned voice reference. Record or approve the exact Hebrew dialogue before lip-sync; preserve pronunciation, pauses, emphasis, emotional intention and vocal age. Keep dialogue and voice separate from generated visuals so the same character can be redubbed in another language or future film.
+
+The default finishing order is: picture lock → dialogue/voice → ambience and Foley/SFX → music → final mix and subtitles. Background music is not baked into early generation tests and is never used to hide missing dialogue. Visible speech is blocked until the lip-sync QC passes.

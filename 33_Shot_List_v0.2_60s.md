@@ -36,6 +36,10 @@ Total planned duration: **60 seconds**.
 - Maintain forward screen direction through S004-S011.
 - Party haze, colored accents and warm interior light appear only from S013.
 
+## Audio performance plan
+
+S003 is currently an offscreen/post-production line, so the existing visual test is intentionally silent. S005, S006, S010, S014 and S016 contain spoken lines that must be staged as visible speech or explicitly restaged as offscreen/voice-over before generation. If the speaker's mouth is visible, attach a voice asset, timing plan and dedicated lip-sync pass; do not treat subtitles or a dialogue field as a substitute.
+
 ## Readiness gate
 
 No shot is `READY` yet. Supporting close-up identity references, Shoko's canonical face, shot-specific keyframes, exact model price and explicit paid-generation approval are still required.

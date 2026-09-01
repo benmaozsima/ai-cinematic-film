@@ -36,7 +36,7 @@ Validation must reject `dialogue_visibility: visible_speaker` unless `lip_sync_r
 | Speaker visibly talks in frame | `external_voice_lipsync` | Lock the visual first, then drive the mouth from the approved Hebrew recording. |
 | Model-native audio experiment | `native_audio_video` | Allowed only as a labelled comparison; pronunciation and mouth timing still require QC. |
 
-For this project the preferred speaking path is: approved visual clip → approved Hebrew voice recording → dedicated audio-driven lip-sync pass → dialogue/SFX/music mix → QC. This keeps character continuity independent from language, makes redubbing possible, and avoids asking a visual model to invent exact Hebrew.
+For this project the preferred speaking path is: approved visual clip → approved Hebrew voice recording → dedicated audio-driven lip-sync pass → dialogue/ambience/Foley/SFX mix → music last → QC. This keeps character continuity independent from language, makes redubbing possible, and avoids asking a visual model to invent exact Hebrew. Early tests stay free of background music so dialogue intelligibility and performance can be judged honestly.
 
 ## Provider/model policy
 
@@ -61,3 +61,7 @@ The dashboard must show the exact Hebrew transcript, visibility mode, audio mode
 2. A beautiful silent visual is still valid when the line is explicitly offscreen or added in post.
 3. A visible speaking face requires a dedicated mouth-sync deliverable, not subtitles alone.
 4. Separate voice and video assets make future films, language changes and redubs safer.
+
+## Reusable voice-bible template
+
+For every recurring character, store a versioned record with: \`speaker_id\`, character ID, performer or voice-model provider, voice asset SHA-256, language, vocal age, pitch/range, speech rate, emotional baseline, pronunciation exceptions, consent/rights status and replacement/redub notes. A voice may not be silently reassigned between shots.
