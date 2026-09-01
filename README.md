@@ -44,6 +44,7 @@ The Red Alert 2 cinematic credited online to lyxw1327 / Douyin remains a methodo
 - `dashboard/` - static, phone-friendly production dashboard with visuals, all 16 shots, dialogue, status and approval gates.
 - `data/media_registry_v0.1.json` - versioned registry for generated media stored outside Git.
 - `data/sequence_review_v0.1.json` - recorded continuity review of the current assembled opening and its next-action gate.
+- `data/S004_S008_preparation_pack_v0.1.json` - costed, transition-aware preparation pack through shot S008; no paid requests submitted.
 - `assets/review/PRODUCTION_DASHBOARD_v0.1.png` - preserved first dashboard preview.
 - `assets/review/PRODUCTION_DASHBOARD_v0.2.png` - preserved dashboard preview through S005-S008.
 - `assets/review/PRODUCTION_DASHBOARD_v0.3.png` - current full-page dashboard preview including S009-S012.
