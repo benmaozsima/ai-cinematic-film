@@ -1,0 +1,38 @@
+{
+  "shot_id": "S010",
+  "version": "v0.3",
+  "status": "REVISE",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b4f8/LEXIFjNdCmdDlJKMGNEPL_video.mp4",
+  "filename": "S010_seedance_1_5_pro_v0.3.mp4",
+  "sha256": "db7ec15d372640ac81076f9f741b3ee4d54985795eec0569424a1a70cc307eab",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S016_four_shokos_marching_v0.1.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue and lip-sync are a separate approved post stage; no music",
+  "prompt": "Medium vertical walking two-shot within the same four-man male Shoko group. CHAR_003 and CHAR_004 exchange a comic look while walking; bag stays with CHAR_003 and coffee/pastry stays with CHAR_004. Keep all visible people male adults, exactly four total, no duplicates, no women, no children, no text, no subtitles, no audio, no music. Preserve neighborhood grade and screen direction."
+}

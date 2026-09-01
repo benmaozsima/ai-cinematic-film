@@ -16,7 +16,7 @@ const shots=[
  {id:'S015',time:'0:54–0:57',title:'נכנסים',action:'שוקו ג׳ לוקח כוס ונכנס; האחרים אחריו.',dialogue:'אין',sound:'כוס, צחוק'},
  {id:'S016',time:'0:57–1:00',title:'הפאנץ׳',action:'שוקו א׳ מחייך ונכנס. הדלת נסגרת.',dialogue:'קול: „מי הזמין את ועד הבית?”',sound:'הפאנץ׳ מתוך הדירה'}
 ];
-const statusByShot={S001:'APPROVED',S002:'REVIEW',S003:'REVIEW',S004:'APPROVED',S005:'REVISE',S006:'MISSING',S007:'MISSING',S008:'MISSING',S009:'MISSING',S010:'MISSING',S011:'MISSING',S012:'MISSING',S013:'MISSING',S014:'MISSING',S015:'MISSING',S016:'MISSING'};
+const statusByShot={S001:'APPROVED',S002:'REVIEW',S003:'REVIEW',S004:'REVIEW',S005:'REVIEW',S006:'REVIEW',S007:'REVIEW',S008:'REVIEW',S009:'REVISE',S010:'REVISE',S011:'REVISE',S012:'REVISE',S013:'REVISE',S014:'REVISE',S015:'REVISE',S016:'REVISE'};
 const statusLabel={APPROVED:'מאושר בריוויו',REVIEW:'חדש לבדיקה',REVISE:'לתיקון',MISSING:'חסר — עדיין לא נוצר'};
 const grid=document.querySelector('#shotGrid'),dialog=document.querySelector('#shotDialog'),content=document.querySelector('#dialogContent');
 const approvals=JSON.parse(localStorage.getItem('shotApprovals')||'{}');

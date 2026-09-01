@@ -1,0 +1,38 @@
+{
+  "shot_id": "S011",
+  "version": "v0.3",
+  "status": "REVISE",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b518/Fap_Y6E-UIUMVzS8qhtJY_video.mp4",
+  "filename": "S011_seedance_1_5_pro_v0.3.mp4",
+  "sha256": "9a7e21b41fa46619507f99f02139c1810f85cccd5691fc932ec7a27fa239125c",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S023_party_door_reveal_v0.1.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue and lip-sync separate; no music",
+  "prompt": "Exterior of the same quiet apartment building. Four distinct adult male Shokos with established cane, oversized bag, coffee and pastry, and giant key approach and stop at the entrance. Exactly four men, no women or children, no duplicates, no text, no subtitles, no audio, no music, vertical establishing shot."
+}

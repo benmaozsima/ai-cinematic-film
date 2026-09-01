@@ -1,0 +1,38 @@
+{
+  "shot_id": "S012",
+  "version": "v0.3",
+  "status": "REVISE",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b51e/v_Me8e9KzTGn124NIkyTz_video.mp4",
+  "filename": "S012_seedance_1_5_pro_v0.3.mp4",
+  "sha256": "53f9266a02ca3d1ae272232fb0a1d4d55971ac7b68c0e7c32e2bfb6f622695aa",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S023_party_door_reveal_v0.1.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue and lip-sync separate; no music",
+  "prompt": "At the apartment door, four distinct adult male Shokos stop. CHAR_001 raises his cane and knocks once. Preserve every prop assignment, exactly four men, no duplicates, no women or children, no text, no subtitles, no audio, no music, locked vertical camera."
+}

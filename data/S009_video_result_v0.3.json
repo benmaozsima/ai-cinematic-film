@@ -1,0 +1,38 @@
+{
+  "shot_id": "S009",
+  "version": "v0.3",
+  "status": "REVISE",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b504/FEKjWVGh7SnMEJbLevu9f_video.mp4",
+  "filename": "S009_seedance_1_5_pro_v0.3.mp4",
+  "sha256": "a0450fffc981ef14ff9603c3c4f8c5addf64db90e158848719b7a7773b815d3b",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S016_four_shokos_marching_v0.1.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue and lip-sync are a separate approved post stage; no music",
+  "prompt": "Four distinct adult male Shokos march in a single-file formation through the same Israeli neighborhood. CHAR_001 leads with black hat and wooden cane; CHAR_003 carries oversized bag; CHAR_004 carries coffee and pastry; CHAR_005 carries one giant spare key. Exactly four men throughout, stable identities and props, no duplicates, no women or children, no text, no subtitles, no audio, no music. Slow forward tracking, vertical 9:16."
+}
