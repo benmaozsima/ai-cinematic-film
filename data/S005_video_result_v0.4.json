@@ -1,0 +1,38 @@
+{
+  "shot_id": "S005",
+  "version": "v0.4",
+  "status": "REVIEW",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b6d0/dlBa3jMOiWsGy2z-Nq-l8_video.mp4",
+  "filename": "S005_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "f5455ff9a6d97af5702dafd05ca5e21c4cbb855e702774a3f1d3da6a512d2793",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S005_real_v0.3.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue/lip-sync separate; no music",
+  "prompt": "Animate only a restrained doorway conversation. CHAR_001, elderly man in black hat holding cane, remains completely outside on the exterior landing with both feet outside the threshold for the entire clip. CHAR_003 remains inside the open doorway listening; both exchange a brief look and small conversational gesture. End on a stable two-shot hold; do not walk forward and do not enter the home. Preserve exact two male identities, doorway geometry, wardrobe, cane and warm Israeli light. Locked camera. No women, girls, children, extra people, duplicates, prop swaps, threshold crossing, text, subtitles, logos, watermark, audio or music."
+}

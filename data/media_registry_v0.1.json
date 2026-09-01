@@ -80,6 +80,9 @@
       "duration_seconds": 4.041667
     },
     {
+      "media_id": "S003_VIDEO_V0_4", "shot_id": "S003", "kind": "video", "version": "v0.4", "review_status": "REVIEW", "filename": "S003_seedance_1_5_pro_v0.4.mp4", "local_path": "outputs/videos/review/S003_seedance_1_5_pro_v0.4.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b6cb/v0XkOutdx_GyNm83MflH7_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "8b0d5e3eaaaff32aaccb1d37336cc3d0d725efb16c375184c8422c591dc3ec2b", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
       "media_id": "S004_VIDEO_V0_2",
       "shot_id": "S004",
       "kind": "video",
@@ -102,6 +105,9 @@
       "media_id": "S005_VIDEO_V0_2", "shot_id": "S005", "kind": "video", "version": "v0.2", "review_status": "REVISE",
       "filename": "S005_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S005_seedance_1_5_pro_v0.2.mp4",
       "review_url": "https://v3b.fal.media/files/b/0aa8b3c3/oza-Im7nJjb5L80Y0fzo7_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "55337c15bfb2a678d990354f1964cc4eda7f784d03eb878a1fdd9ebf3a51504f", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S005_VIDEO_V0_4", "shot_id": "S005", "kind": "video", "version": "v0.4", "review_status": "REVIEW", "filename": "S005_seedance_1_5_pro_v0.4.mp4", "local_path": "outputs/videos/review/S005_seedance_1_5_pro_v0.4.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b6d0/dlBa3jMOiWsGy2z-Nq-l8_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "f5455ff9a6d97af5702dafd05ca5e21c4cbb855e702774a3f1d3da6a512d2793", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
     },
     {
       "media_id": "S006_VIDEO_V0_2", "shot_id": "S006", "kind": "video", "version": "v0.2", "review_status": "REVIEW",
