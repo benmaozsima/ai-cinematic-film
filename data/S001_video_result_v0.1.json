@@ -1,0 +1,49 @@
+{
+  "shot_id": "S001",
+  "version": "v0.1",
+  "review_status": "REVIEW",
+  "generation": {
+    "provider": "fal",
+    "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "request_id": "01a05d2d-0d89-7963-b612-94257cdd543a",
+    "generation_date": "2026-09-01",
+    "seed": 19001,
+    "estimated_cost_usd": 0.10368,
+    "approved_cost_cap_usd": 0.12,
+    "actual_billed_cost_usd": null
+  },
+  "input": {
+    "filename": "S001_real_v0.1.png",
+    "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S001_real_v0.1.png",
+    "sha256": "2c5775fe411b405d18ca9fd46caeecaf3f051c4ac7ba405892f8c55fd6367291"
+  },
+  "output": {
+    "filename": "S001_seedance_1_5_pro_v0.1.mp4",
+    "repository_path": "assets/videos/review/S001_seedance_1_5_pro_v0.1.mp4",
+    "sha256": "2f15b1195740fb8e4e3c2fdd1eb32569342df01b5e5e6d199cabf5887f76787f",
+    "container": "MP4",
+    "video_codec": "H.264",
+    "pixel_format": "yuv420p",
+    "width": 720,
+    "height": 1280,
+    "fps": 24,
+    "duration_seconds": 4.041667,
+    "file_size_bytes": 3674426,
+    "audio_stream": false
+  },
+  "canonical_ids": ["CHAR_001", "PROP_006_SHOE", "PROP_007_CLOTH"],
+  "technical_qc": {
+    "decodes": true,
+    "vertical_9_16": true,
+    "camera_locked": true,
+    "single_continuous_motion": true,
+    "visible_text_or_watermark": false,
+    "status": "PASS"
+  },
+  "visual_review": {
+    "agent_observation": "The shoe, hand and cloth remain visually coherent across the sampled frames; the polishing motion is continuous and the camera remains locked.",
+    "human_decision": null,
+    "choices": ["APPROVE", "REVISE", "REJECT"]
+  },
+  "post_plan": "If approved, trim to the canonical 3-second edit duration and add controlled cloth texture, faint clock and quiet room tone in post."
+}

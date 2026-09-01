@@ -1,0 +1,35 @@
+{
+  "shot_id": "S001",
+  "scene_id": "SCENE_001_OPENING",
+  "version": "v0.1",
+  "quality_tier": "controlled_first_test",
+  "mode": "image_to_video",
+  "model_key": "seedance_1_5_pro_i2v",
+  "duration_seconds": 4,
+  "aspect_ratio": "9:16",
+  "resolution": "720p",
+  "generate_audio": false,
+  "camera_fixed": true,
+  "seed": 19001,
+  "prompt": "One slow, deliberate polishing pass: the existing hand moves the existing soft cloth across the polished dark-brown men's shoe from heel toward toe while maintaining physically plausible contact. The shoe, hand, cloth, floor, warm restrained morning light, shallow depth of field, framing and composition remain unchanged. Locked tripod camera. No camera movement. No new objects or people. No text, logos, subtitles, watermark, duplicate hands, extra fingers, extra limbs, morphing or identity invention.",
+  "references": {
+    "start_frame_url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S001_real_v0.1.png",
+    "end_frame_url": null,
+    "reference_image_urls": []
+  },
+  "budget": {
+    "max_cost_usd": 0.12,
+    "estimated_cost_usd": 0.10368,
+    "dry_run": false,
+    "approval_status": "GENERATED_AWAITING_HUMAN_REVIEW"
+  },
+  "metadata": {
+    "provider": "fal",
+    "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "pricing_verified_date": "2026-09-01",
+    "start_frame_sha256": "2c5775fe411b405d18ca9fd46caeecaf3f051c4ac7ba405892f8c55fd6367291",
+    "edit_plan": "Generate 4 seconds and trim to the canonical 3-second edit duration after QC.",
+    "audio_plan": "Generate silently; add controlled cloth texture, faint clock and quiet room tone in post.",
+    "purpose": "First paid connectivity and motion-continuity test. Generated successfully after explicit user approval up to $0.12; result is awaiting human review."
+  }
+}

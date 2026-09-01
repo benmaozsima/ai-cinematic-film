@@ -39,7 +39,7 @@ document.querySelector('.dialog-close').onclick=()=>dialog.close();dialog.addEve
 document.querySelectorAll('.shot-filters button').forEach(b=>b.onclick=()=>{document.querySelector('.shot-filters .active').classList.remove('active');b.classList.add('active');render(b.dataset.filter)});
 const note=document.querySelector('#reviewNote'),message=document.querySelector('#reviewMessage');note.value=localStorage.getItem('marchReview')||'';
 document.querySelector('#saveReview').onclick=()=>{localStorage.setItem('marchReview',note.value);message.textContent='נשמר בדפדפן הזה.'};
-document.querySelector('#copyReview').onclick=async()=>{const text=`משוב חבילת צעדה S009–S012:\n${note.value}`;try{await navigator.clipboard.writeText(text);message.textContent='המשוב הועתק. אפשר להדביק בצ׳אט.'}catch{message.textContent='לא ניתן להעתיק אוטומטית; סמן והעתק את הטקסט.'}};
+document.querySelector('#copyReview').onclick=async()=>{const text=`משוב וידאו S001 v0.1:\n${note.value}`;try{await navigator.clipboard.writeText(text);message.textContent='המשוב הועתק. אפשר להדביק בצ׳אט.'}catch{message.textContent='לא ניתן להעתיק אוטומטית; סמן והעתק את הטקסט.'}};
 const charReviewKey='char001ReferenceV02Review';
 const charNote=document.querySelector('#char001Note'),charMessage=document.querySelector('#char001ReviewMessage'),charStatus=document.querySelector('#char001Status');
 const savedCharReview=JSON.parse(localStorage.getItem(charReviewKey)||'{}');
@@ -59,4 +59,23 @@ document.querySelectorAll('[data-char-review]').forEach(button=>button.onclick=(
 });
 charNote.addEventListener('change',()=>{savedCharReview.note=charNote.value;localStorage.setItem(charReviewKey,JSON.stringify(savedCharReview))});
 renderCharReview();
+const videoReviewKey='s001VideoV01Review';
+const videoNote=document.querySelector('#s001VideoNote'),videoMessage=document.querySelector('#s001VideoReviewMessage'),videoStatus=document.querySelector('#s001VideoStatus');
+const savedVideoReview=JSON.parse(localStorage.getItem(videoReviewKey)||'{}');
+videoNote.value=savedVideoReview.note||'';
+function renderVideoReview(){
+ const decision=savedVideoReview.decision;
+ videoStatus.textContent=decision||'REVIEW';
+ videoStatus.className=`tag ${decision==='APPROVE'?'designed':'review'}`;
+ document.querySelectorAll('[data-video-review]').forEach(button=>button.classList.toggle('selected',button.dataset.videoReview===decision));
+}
+document.querySelectorAll('[data-video-review]').forEach(button=>button.onclick=()=>{
+ savedVideoReview.decision=button.dataset.videoReview;
+ savedVideoReview.note=videoNote.value;
+ localStorage.setItem(videoReviewKey,JSON.stringify(savedVideoReview));
+ videoMessage.textContent=`${savedVideoReview.decision} נשמר בדפדפן בלבד. שלח את ההחלטה בצ׳אט כדי שאעדכן את הקאנון.`;
+ renderVideoReview();
+});
+videoNote.addEventListener('change',()=>{savedVideoReview.note=videoNote.value;localStorage.setItem(videoReviewKey,JSON.stringify(savedVideoReview))});
+renderVideoReview();
 render();

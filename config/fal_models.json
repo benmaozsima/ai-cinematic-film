@@ -2,6 +2,30 @@
   "version": 1,
   "notes": "Manual model registry for planning and guardrails. Prices are placeholders until verified against the Fal account/dashboard.",
   "models": {
+    "seedance_1_5_pro_i2v": {
+      "provider": "fal",
+      "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+      "modes": ["image_to_video"],
+      "resolutions": ["480p", "720p"],
+      "durations_seconds": [4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "supports_audio": true,
+      "supports_negative_prompt": false,
+      "supports_seed": true,
+      "estimated_cost_per_second_usd_without_audio": 0.02592,
+      "estimated_cost_per_second_usd_with_audio": 0.05184,
+      "pricing_basis": "Fal published token formula at 720p 9:16: 720x1280x24 frames, $1.20/M tokens without audio or $2.40/M tokens with audio; verified 2026-09-01.",
+      "schema": {
+        "prompt": "prompt",
+        "start_frame_url": "image_url",
+        "end_frame_url": "end_image_url",
+        "aspect_ratio": "aspect_ratio",
+        "resolution": "resolution",
+        "duration": "duration",
+        "generate_audio": "generate_audio",
+        "camera_fixed": "camera_fixed",
+        "seed": "seed"
+      }
+    },
     "seedance_2_5_i2v": {
       "provider": "fal",
       "model_id": "bytedance/seedance-2.5/image-to-video",
