@@ -1,0 +1,15 @@
+{
+  "assembly_id": "S001-S016_REVIEW_V0.1",
+  "version": "v0.1",
+  "filename": "ai_cinematic_film_S001-S016_review.mp4",
+  "local_path": "outputs/assembled/ai_cinematic_film_S001-S016_review.mp4",
+  "duration_seconds": 64.666667,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "H.264",
+  "audio": false,
+  "sha256": "eea8ad8533186acc6a7f9da8df00bc1363bc5d488e0b851672b1765eb7fc74c3",
+  "status": "REVIEW",
+  "sequence": "S001-S016 in storyboard order; S003/S005 use v0.4; S015/S016 use v0.5",
+  "download_policy": "Generated assembly is local and ignored by Git; the dashboard download button points to this file when running locally."
+}
