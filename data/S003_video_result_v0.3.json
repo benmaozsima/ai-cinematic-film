@@ -18,9 +18,9 @@
     "actual_billed_cost_usd": null
   },
   "input": {
-    "filename": "S003_real_v0.2.png",
-    "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S003_real_v0.2.png",
-    "sha256": "ce100e04e34e3121b54bda09c2e06e106b82e575c41529883eaa48e620ee25a2"
+    "filename": "S003_real_v0.3.png",
+    "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S003_real_v0.3.png",
+    "sha256": "f95679be6f65437f22a9c83a9e3cc5a3d469b12b9a1225f5fa5aaeeb7849ebe8"
   },
   "output": {
     "filename": "S003_seedance_1_5_pro_v0.3.mp4",

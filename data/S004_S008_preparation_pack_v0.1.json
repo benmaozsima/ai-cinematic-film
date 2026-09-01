@@ -36,7 +36,7 @@
       "title": "הדלת הראשונה",
       "timecode": "00:14-00:18",
       "canonical_ids": ["CHAR_001", "CHAR_003", "LOC_001", "PROP_001", "PROP_003"],
-      "keyframe": {"filename": "S005_real_v0.2.png", "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S005_real_v0.2.png", "sha256": "0a0044eabd3cd40130316cfc0b98e41b404ad45e26eb8aa89444c71a44656874", "review_status": "REVIEW"},
+      "keyframe": {"filename": "S005_real_v0.3.png", "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S005_real_v0.3.png", "sha256": "55be29677bb24fd83e5cbd6b4a2aa51dcfd1f292c150f09c8e0c1ecf7bfe01ce", "review_status": "REVIEW"},
       "dialogue_visibility": "visible_speaker",
       "audio_mode": "external_voice_lipsync",
       "lip_sync_required": true,
