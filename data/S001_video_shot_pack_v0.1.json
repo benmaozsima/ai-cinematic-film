@@ -1,0 +1,65 @@
+{
+  "shot_id": "S001",
+  "status": "AWAITING_EXPLICIT_PAID_APPROVAL",
+  "creative": {
+    "title": "הטקס",
+    "timecode": "00:00-00:03",
+    "duration_edit_seconds": 3,
+    "action": "A cloth makes one slow, deliberate polishing pass across the already polished dark-brown shoe.",
+    "dialogue_hebrew": "אין",
+    "sound_plan": "cloth texture, faint clock, quiet room"
+  },
+  "canonical_inputs": {
+    "character_ids": ["CHAR_001"],
+    "location_ids": ["LOC_003_INTERIOR_PENDING"],
+    "prop_ids": ["PROP_006_SHOE", "PROP_007_CLOTH"],
+    "start_frame": {
+      "filename": "S001_real_v0.1.png",
+      "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S001_real_v0.1.png",
+      "sha256": "2c5775fe411b405d18ca9fd46caeecaf3f051c4ac7ba405892f8c55fd6367291"
+    },
+    "identity_reference": "https://benmaozsima.github.io/ai-cinematic-film/assets/characters/CHAR_001_reference_sheet_v0.2.png"
+  },
+  "camera_and_motion": {
+    "framing": "extreme close-up, low and locked",
+    "lens_feel": "50mm macro-like compression, shallow depth of field",
+    "camera_motion": "none; locked camera",
+    "subject_motion": "one slow cloth pass from heel toward toe, physically plausible contact"
+  },
+  "model_candidate": {
+    "provider": "Runway",
+    "endpoint": "runwayml/v1/image_to_video",
+    "model": "gen4_turbo",
+    "input_mode": "image-to-video",
+    "requested_output": "720p vertical 720x1280, 5 seconds; trim to 3 seconds in edit",
+    "published_rate": "5 credits/second, 10-credit minimum",
+    "credit_price": "$0.01/credit",
+    "estimated_operation_cost_usd": 0.25,
+    "approval_required": true
+  },
+  "prompt": "Locked extreme close-up of a polished dark-brown men's shoe on a quiet apartment floor. One realistic hand moves a soft cloth in one slow deliberate pass across the shoe from heel toward toe. Warm restrained morning window light, subtle natural film grain, shallow depth of field, physically plausible contact and motion. Preserve the shoe, floor, cloth and composition from the supplied start frame. No face, no extra people, no women, no text, no Hebrew, no logos, no watermark, no duplicate hands, no extra limbs, no object morphing, no camera movement.",
+  "negative_constraints": [
+    "no identity invention",
+    "no women or extra people",
+    "no text or Hebrew rendered in frame",
+    "no logos or watermark",
+    "no camera movement",
+    "no object morphing",
+    "no hand or limb artifacts"
+  ],
+  "dry_run_checks": [
+    "verify start-frame URL returns 200 and decodes as RGB PNG",
+    "verify identity reference URL returns 200",
+    "verify duration, aspect and model input limits",
+    "do not send request before explicit approval",
+    "do not upload any credential or secret"
+  ],
+  "post_generation_qc": [
+    "decode output",
+    "verify duration and FPS",
+    "verify vertical framing and shoe continuity",
+    "verify cloth contact and no morphing",
+    "compute output SHA-256",
+    "review Approve / Revise / Reject"
+  ]
+}
