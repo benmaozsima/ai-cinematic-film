@@ -14,7 +14,7 @@
       <span><strong>מסיבת החיפוש</strong><small>לוח הפקה חי · 60 שניות</small></span>
     </a>
     <nav aria-label="ניווט ראשי">
-      <a href="#overview">סקירה</a><a href="#visuals">ויזואל</a><a href="#canon">קאנון</a><a href="#shots">שוטים</a><a href="#model-pipeline">מודלים</a><a href="#process">תהליך</a>
+      <a href="#overview">סקירה</a><a href="#visuals">ויזואל</a><a href="#canon">קאנון</a><a href="#shots">שוטים</a><a href="#model-pipeline">מודלים</a><a href="#readiness">מוכנות</a><a href="#process">תהליך</a>
     </nav>
     <span class="safety-pill">₪0 הוצאו · Fal כבוי</span>
   </header>
@@ -168,6 +168,20 @@ Avoid: all text, letters, numbers, labels, Hebrew, logos, watermarks, signatures
       </div>
       <div class="payload-contract"><h3>חוזה הנתונים הקבוע לכל שוט</h3><div class="contract-grid"><div><b>Identity</b><span>CHAR IDs + exact approved reference files</span></div><div><b>Scene</b><span>LOC ID, PROP IDs, blocking, screen direction</span></div><div><b>Motion</b><span>camera, lens feel, action beats, duration, FPS</span></div><div><b>Language</b><span>Hebrew dialogue as selectable HTML; never rendered inside image</span></div><div><b>Safety</b><span>no Fal, no secret in repo, no unapproved upload, no duplicate PR</span></div><div><b>Provenance</b><span>provider/model, date, prompt, constraints, output SHA-256</span></div></div></div>
       <div class="model-gate"><strong>שער תשלום ומודל</strong><span>לפני כל מודל וידאו בתשלום אציג כאן את שם הספק, שם המודל, גרסה, עלות משוערת לפעולה אחת, מה נשלח אליו ומה נשמר — ואז אעצור לאישור שלך.</span></div>
+    </section>
+
+    <section id="readiness" class="section-shell block readiness-section">
+      <div class="section-heading"><div><p class="eyebrow">INDUSTRY READINESS REVIEW</p><h2>פאנל תעשייתי — מה עוד חסר</h2></div><p>בדיקת מוכנות מדמה מפיק/ה, במאי/ת, צלם/ת ויזואלי/ת ומפקח/ת פוסט. רק פריטים שחייבים לפני הסצינה הראשונה מסומנים כחוסמים.</p></div>
+      <div class="readiness-table-wrap"><table class="readiness-table"><thead><tr><th>תחום</th><th>חובה לפני S001</th><th>מצב</th><th>מה צריך להשלים</th></tr></thead><tbody>
+        <tr><th>Creative lock</th><td>תסריט, 60s, 9:16, שפה וטון</td><td><span class="legend approved">מוכן</span></td><td>הקאנון נעול; הזכויות וההומאז׳ נשמרים כהגבלה.</td></tr>
+        <tr><th>Identity continuity</th><td>רפרנס מאושר לכל דמות</td><td><span class="legend revise">חלקי</span></td><td>CHAR refs קיימים; צריך לאשר רשמית ולתקן פנים בשוטים.</td></tr>
+        <tr><th>Shot design</th><td>start/end, blocking, מצלמה, משך</td><td><span class="legend revise">חלקי</span></td><td>S001–S004 מתוארים; S002–S016 עדיין לא READY.</td></tr>
+        <tr><th>Model handoff</th><td>provider/model, prompt, input limits, cost</td><td><span class="legend missing">חסר</span></td><td>נבחר רק לאחר אישור מודל ומחיר לפעולה אחת.</td></tr>
+        <tr><th>Audio</th><td>דיאלוג, VO, SFX, music plan</td><td><span class="legend revise">חלקי</span></td><td>הטקסט והסאונד קיימים; צריך להחליט על הקלטה/קריינות וזכויות מוזיקה.</td></tr>
+        <tr><th>Post & delivery</th><td>QC, color, codec, master 1080×1920</td><td><span class="legend revise">חלקי</span></td><td>מפרט המאסטר קיים; טרם נוצר חומר וידאו לבדיקה.</td></tr>
+        <tr><th>Sign-off</th><td>Approve/Revise/Reject מתועד</td><td><span class="legend revise">חלקי</span></td><td>החלטות דפדפן אינן קאנוניות עד commit מפורש.</td></tr>
+      </tbody></table></div>
+      <div class="review-panel-grid"><article><h3>חובה עכשיו</h3><ol><li>לאשר את חמשת גיליונות הדמויות והלוקיישן.</li><li>לתקן/לאשר S001–S004 בלי identity drift.</li><li>להשלים Shot Pack מלא לשוט הראשון.</li><li>לבחור מודל וידאו ולראות מחיר מדויק — לפני תשלום.</li></ol></article><article><h3>אפשר אחרי הסצינה הראשונה</h3><ol><li>אופטימיזציית batch לשוטים הבאים.</li><li>פיין־טיונינג צבע וקצב לכל הסרט.</li><li>מיקס סופי, כתוביות וגרסת הפצה.</li></ol></article></div>
     </section>
 
     <section class="section-shell approval-panel">
