@@ -1,0 +1,78 @@
+{
+  "shot_id": "S003",
+  "version": "v0.2",
+  "status": "AWAITING_KEYFRAME_REVIEW_AND_EXPLICIT_PAID_APPROVAL",
+  "creative": {
+    "title": "שוקו ה׳ לא עונה",
+    "timecode": "00:06-00:10",
+    "duration_edit_seconds": 4,
+    "action": "Shoko A checks the phone's unanswered-call screen, lowers it, takes his black hat and wooden walking stick, and prepares to leave.",
+    "dialogue_hebrew": "שוקו לא עונה. אני הולך לבדוק.",
+    "sound_plan": "phone buzz stops, restrained Hebrew dialogue added in post, cane lifted, clock and room tone resolve"
+  },
+  "canonical_inputs": {
+    "character_ids": ["CHAR_001"],
+    "location_ids": ["LOC_003_INTERIOR_PENDING"],
+    "prop_ids": ["PROP_002_PHONE", "PROP_003_HAT", "PROP_001_WALKING_STICK"],
+    "start_frame": {
+      "filename": "S003_real_v0.2.png",
+      "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S003_real_v0.2.png",
+      "sha256": "ce100e04e34e3121b54bda09c2e06e106b82e575c41529883eaa48e620ee25a2",
+      "width": 941,
+      "height": 1672,
+      "color_mode": "RGB",
+      "format": "PNG"
+    },
+    "identity_reference": "https://benmaozsima.github.io/ai-cinematic-film/assets/characters/CHAR_001_reference_sheet_v0.2.png",
+    "continuity_reference": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S002_real_v0.2.png"
+  },
+  "continuity": {
+    "incoming_from_S002": "Hard cut from the mirror close-up. Preserve the same face, silver hair, cream shirt, brown cardigan, warm morning grade and restrained expression. S002's combing sound resolves as the phone becomes the new focus.",
+    "outgoing_to_S004": "End with CHAR_001 wearing the black hat and holding the wooden walking stick, ready for the vertical rear-follow exterior in S004.",
+    "identity_lock": "Use the S002 face and wardrobe as invariant. Do not introduce beard, moustache, younger features or any second person.",
+    "screen_direction": "Keep the phone and hat/cane action in the central vertical safe area; no axis flip before the exterior cut."
+  },
+  "camera_and_motion": {
+    "framing": "vertical medium close-up with foreground phone insert",
+    "lens_feel": "50mm natural perspective, shallow depth of field",
+    "camera_motion": "minimal straight push-in only; no pan, tilt, roll or handheld shake",
+    "subject_motion": "brief glance at phone, lower phone, one clear reach for hat and cane; no rushed multi-action morphing",
+    "motion_priority": "prop and identity continuity outrank camera motion; revise to locked camera if any drift appears"
+  },
+  "keyframe_generation": {
+    "provider": "OpenAI built-in image_gen",
+    "model": "internal model ID not exposed by the tool",
+    "generation_date": "2026-09-01",
+    "review_status": "REVIEW",
+    "agent_qc": "PASS: same CHAR_001 identity and wardrobe as S002, one phone, one black hat, one wooden walking stick, no facial hair, no additional people, no readable text.",
+    "human_decision": null
+  },
+  "video_model_candidate": {
+    "provider": "Fal",
+    "endpoint": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "model": "Seedance 1.5 Pro image-to-video",
+    "input_mode": "image-to-video",
+    "requested_output": "720p vertical 720x1280, 4 seconds, no generated audio",
+    "estimated_operation_cost_usd": 0.10368,
+    "cost_basis": "$1.20 per million video tokens without audio; 720x1280x24fpsx4s/1024 = 86,400 tokens",
+    "approval_required": true
+  },
+  "prompt": "Continue the exact same elderly Israeli man from the supplied start frame and CHAR_001 reference. He briefly looks at the phone in his hand showing generic unanswered-call indicators, lowers it, then makes one clear controlled reach toward the black hat and wooden walking stick on the table as he prepares to leave. Preserve the exact face, age, silver-gray hair, cream shirt, brown cardigan, apartment, warm restrained morning light, serious composed expression and vertical framing. One minimal straight push-in only, no pan, tilt, roll or handheld shake. Exactly one adult man and no other people. The hat is off his head at the start and ends ready to wear; the wooden walking stick remains one object. No readable phone text, no Hebrew rendered in the image, no subtitles, no logos, no watermark, no women, no girls, no children, no beard, no moustache, no younger face, no wardrobe change, no duplicate phone, hat or cane, no extra fingers or limbs, no morphing.",
+  "negative_constraints": [
+    "no identity drift, facial hair or younger features",
+    "no women, girls, children or additional people",
+    "no readable text, Hebrew, subtitles, logos or watermark",
+    "no duplicate phone, hat or walking stick",
+    "no prop morphing or disappearing objects",
+    "no extra fingers or limbs",
+    "no camera shake, pan, tilt or roll"
+  ],
+  "post_generation_qc": [
+    "decode output and verify 720x1280, H.264, FPS, duration and audio-stream absence",
+    "compare sampled face/wardrobe to S002 and CHAR_001 reference",
+    "verify phone, hat and cane remain singular and physically coherent",
+    "verify hat/cane handoff is complete for S004 and no Hebrew is rendered in frame",
+    "compute SHA-256 and expose through media_registry without tracking MP4 in Git",
+    "record Approve / Revise / Reject before continuing to S004"
+  ]
+}

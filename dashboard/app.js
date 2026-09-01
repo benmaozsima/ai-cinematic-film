@@ -1,7 +1,7 @@
 const shots=[
  {id:'S001',time:'0:00–0:03',title:'הטקס',action:'בד עובר על הנעל השחורה המצוחצחת.',dialogue:'אין',sound:'בד, שעון חלש, חדר שקט',image:'../assets/keyframes/S001_real_v0.1.png'},
  {id:'S002',time:'0:03–0:06',title:'שוקו א׳ מול המראה',action:'שוקו א׳ מסרק פעם אחת את שיערו הכסוף.',dialogue:'אין',sound:'מסרק, המשך השעון',image:'../assets/keyframes/S002_real_v0.2.png'},
- {id:'S003',time:'0:06–0:10',title:'שוקו ה׳ לא עונה',action:'הטלפון מציג שיחות שלא נענו; שוקו א׳ לוקח כובע ומקל.',dialogue:'שוקו א׳: „שוקו לא עונה. אני הולך לבדוק.”',sound:'הרטט נפסק, המקל מורם'},
+ {id:'S003',time:'0:06–0:10',title:'שוקו ה׳ לא עונה',action:'הטלפון מציג שיחות שלא נענו; שוקו א׳ לוקח כובע ומקל.',dialogue:'שוקו א׳: „שוקו לא עונה. אני הולך לבדוק.”',sound:'הרטט נפסק, המקל מורם',image:'../assets/keyframes/S003_real_v0.2.png'},
  {id:'S004',time:'0:10–0:14',title:'המסלול מתחיל',action:'שוקו א׳ יוצא לשכונה והולך לעבר הדלת הראשונה.',dialogue:'אין',sound:'צעדים, מקל, תחילת קצב',image:'../assets/keyframes/S004_real_v0.1.png'},
  {id:'S005',time:'0:14–0:18',title:'הדלת הראשונה',action:'שוקו ב׳ פותח; שוקו א׳ שואל על שוקו ה׳.',dialogue:'שוקו א׳: „ראית את שוקו?”',sound:'רחוב שקט, נקישת מקל'},
  {id:'S006',time:'0:18–0:22',title:'שוקו ב׳ מצטרף',action:'שוקו ב׳ נועל את הדלת ויוצא עם תיק גדול.',dialogue:'שוקו ב׳: „לא. אני בא איתך.”',sound:'מנעול, רצועת תיק'},
@@ -16,7 +16,7 @@ const shots=[
  {id:'S015',time:'0:54–0:57',title:'נכנסים',action:'שוקו ג׳ לוקח כוס ונכנס; האחרים אחריו.',dialogue:'אין',sound:'כוס, צחוק'},
  {id:'S016',time:'0:57–1:00',title:'הפאנץ׳',action:'שוקו א׳ מחייך ונכנס. הדלת נסגרת.',dialogue:'קול: „מי הזמין את ועד הבית?”',sound:'הפאנץ׳ מתוך הדירה'}
 ];
-const statusByShot={S001:'APPROVED',S002:'REVIEW',S003:'REVISE',S004:'APPROVED',S005:'REVISE',S006:'MISSING',S007:'MISSING',S008:'MISSING',S009:'MISSING',S010:'MISSING',S011:'MISSING',S012:'MISSING',S013:'MISSING',S014:'MISSING',S015:'MISSING',S016:'MISSING'};
+const statusByShot={S001:'APPROVED',S002:'REVIEW',S003:'REVIEW',S004:'APPROVED',S005:'REVISE',S006:'MISSING',S007:'MISSING',S008:'MISSING',S009:'MISSING',S010:'MISSING',S011:'MISSING',S012:'MISSING',S013:'MISSING',S014:'MISSING',S015:'MISSING',S016:'MISSING'};
 const statusLabel={APPROVED:'מאושר בריוויו',REVIEW:'חדש לבדיקה',REVISE:'לתיקון',MISSING:'חסר — עדיין לא נוצר'};
 const grid=document.querySelector('#shotGrid'),dialog=document.querySelector('#shotDialog'),content=document.querySelector('#dialogContent');
 const approvals=JSON.parse(localStorage.getItem('shotApprovals')||'{}');
