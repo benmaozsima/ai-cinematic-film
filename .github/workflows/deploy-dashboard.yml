@@ -6,7 +6,9 @@ on:
     paths:
       - "dashboard/**"
       - "assets/review/**"
-      - "assets/characters/CHAR_001_reference_sheet_v0.2.png"
+      - "assets/characters/**"
+      - "assets/environments/**"
+      - "assets/keyframes/**"
       - ".github/workflows/deploy-dashboard.yml"
   workflow_dispatch:
 
@@ -32,8 +34,10 @@ jobs:
           mkdir -p _site/assets
           cp -R dashboard _site/dashboard
           cp -R assets/review _site/assets/review
-          mkdir -p _site/assets/characters
-          cp assets/characters/CHAR_001_reference_sheet_v0.2.png _site/assets/characters/
+          mkdir -p _site/assets/characters _site/assets/environments _site/assets/keyframes
+          cp assets/characters/*reference_sheet_v0.2.png _site/assets/characters/
+          cp assets/environments/*reference_sheet_v0.2.png _site/assets/environments/
+          cp assets/keyframes/S001_real_v0.1.png assets/keyframes/S004_real_v0.1.png _site/assets/keyframes/
           cat > _site/index.html <<'HTML'
           <!doctype html>
           <meta charset="utf-8">
