@@ -78,3 +78,6 @@ Reserved namespaces:
 | ID | Date | Material | Local File | Notes |
 | --- | --- | --- | --- | --- |
 | MAT_001 | 2026-08-28 | iPhone screen recording of Instagram repost | `/workspace/scratch/7650aa1ac0e4/upload/ScreenRecording_08-28-2026 20-51-06_1.mp4` | 2:11 vertical screen recording, 512x1112, 30fps, includes Instagram UI overlay and audio. Good enough for initial shot/method analysis, not final archival source. |
+## Audio and speech continuity
+
+`36_Audio_LipSync_Contract_v0.1.md` is the canonical contract for dialogue visibility, Hebrew voice assets, timing and lip-sync. A line in metadata is not a speaking face: `visible_speaker` shots require a dedicated audio-driven lip-sync pass, while silent/offscreen shots may use post-production audio. The dashboard mirrors this gate for review.

@@ -4,6 +4,12 @@ Purpose: expose one stable API that lets Codex manage AI film shots without cari
 
 The API should be provider-agnostic, cost-aware, and traceable back to the Shot Database.
 
+## Dialogue and lip-sync contract
+
+Each request must include `dialogue_visibility`, `audio_mode`, `lip_sync_required`, `voice_asset_id`, `transcript_hebrew`, `timing_asset`, `speaker_id` and `pronunciation_notes` (or explicit `null` values for silent shots). `visible_speaker` requires `lip_sync_required: true`; the API must reject it without an approved voice asset and timing plan. Exact Hebrew is supplied as data for recording/lip-sync and remains selectable HTML in the dashboard, never text rendered inside a generated frame. See `36_Audio_LipSync_Contract_v0.1.md` for routing and QC rules.
+
+Recommended default for visible speech is a silent visual generation followed by an audio-driven lip-sync pass. Native model audio is an explicitly labelled experiment, not proof of Hebrew pronunciation or mouth synchronization.
+
 ## Core Requirements
 
 - Every generation must have a stable `job_id`.

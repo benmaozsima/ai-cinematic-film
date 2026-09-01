@@ -22,6 +22,10 @@ Not allowed without approval:
 - `fal.subscribe(...)`
 - Any endpoint that creates media or consumes paid credits.
 
+## Speech and lip-sync routing
+
+Seedance 1.5/2.5 expose native-audio options, but `generate_audio: true` is not sufficient evidence of exact Hebrew pronunciation or visible mouth timing. For a visible speaker, keep the visual generation and approved Hebrew voice separate, then use a dedicated audio-to-video lip-sync model and record its exact provider/model, estimate, output hash and QC result. The shot-level fields and current project decisions are canonical in `36_Audio_LipSync_Contract_v0.1.md`.
+
 ## Fal Queue Pattern
 
 Fal recommends asynchronous inference for production model calls:

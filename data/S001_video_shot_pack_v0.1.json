@@ -1,6 +1,14 @@
 {
   "shot_id": "S001",
   "status": "AWAITING_EXPLICIT_PAID_APPROVAL",
+  "dialogue_visibility": "none",
+  "audio_mode": "silent_visual",
+  "lip_sync_required": false,
+  "voice_asset_id": null,
+  "transcript_hebrew": null,
+  "timing_asset": null,
+  "speaker_id": null,
+  "pronunciation_notes": null,
   "creative": {
     "title": "הטקס",
     "timecode": "00:00-00:03",

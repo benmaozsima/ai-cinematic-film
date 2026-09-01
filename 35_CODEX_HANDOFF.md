@@ -1,6 +1,6 @@
 # Codex Handoff — The Search Party
 
-Status: WAITING FOR CHAR_001 v0.2 REVIEW
+Status: S001–S003 video review in progress; audio/lip-sync contract locked
 Date: 2026-08-31  
 Branch: `work`  
 Repository: `benmaozsima/ai-cinematic-film`
@@ -57,15 +57,22 @@ Keep dialogue in Hebrew and verify every line before putting text into a storybo
 
 Do not ask an image model to render Hebrew dialogue inside the cinematic frame. Display dialogue as HTML text in the dashboard beside the image so it remains exact and editable.
 
+## Dialogue visibility and lip-sync lock
+
+Dialogue written in a screenplay or dashboard is not automatically spoken by a generated face. Every shot pack must declare `dialogue_visibility` (`none`, `offscreen`, `visible_speaker`), `audio_mode` (`silent_visual`, `post_production`, `native_audio_video`, `external_voice_lipsync`) and `lip_sync_required`. A visible speaker is blocked until an approved Hebrew voice asset, timing plan and dedicated lip-sync route exist. The canonical routing and storage rules are in `36_Audio_LipSync_Contract_v0.1.md`.
+
+Current shots S001 and S002 are silent visuals. S003's line is explicitly offscreen/post-production, so its current visual pass does not promise mouth movement. Future visible-speaking shots (including S005, S006, S010 and S014) require the external voice → lip-sync → mix → QC path before `READY`.
+
 ## Current production state
 
 - Story, runtime, all-male cast, all-Shoko naming rule, protagonist direction, after-party ending and vertical format are approved.
 - The canonical screenplay and 16-shot list exist.
-- No shot is `READY` for video generation.
-- No Fal execution has been approved and no generative video has been made.
+- S001, S002 and S003 have real Fal review videos; they remain `REVIEW` until explicit human decisions.
+- No later shot is `READY` for video generation.
 - The public dashboard source is in `dashboard/`.
 - GitHub Pages deployment is defined in `.github/workflows/deploy-dashboard.yml`.
 - One valid `CHAR_001` / Shoko A reference sheet now exists at `assets/characters/CHAR_001_reference_sheet_v0.2.png`; it is `REVIEW`, not `APPROVED`.
+- `36_Audio_LipSync_Contract_v0.1.md` now governs speech visibility, Hebrew voice assets and dedicated lip-sync for visible speakers.
 
 ## Critical image-asset problem
 

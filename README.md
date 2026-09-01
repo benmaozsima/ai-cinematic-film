@@ -35,6 +35,7 @@ The Red Alert 2 cinematic credited online to lyxw1327 / Douyin remains a methodo
 - `33_Shot_List_v0.2_60s.md` - active canonical 60-second shot list.
 - `34_Visual_Review_Pack_001.md` - visual review board with a working one-page storyboard and a legacy-raster integrity warning.
 - `35_CODEX_HANDOFF.md` - authoritative continuation brief, next image task, safety gates, and a copy/paste prompt for Codex.
+- `36_Audio_LipSync_Contract_v0.1.md` - canonical dialogue-visibility, voice, lip-sync and audio-routing contract for this and future films.
 - `assets/characters/CHAR_001_reference_sheet_v0.2.png` - first valid generated Shoko A identity/wardrobe reference, currently in `REVIEW`.
 - `assets/review/OPENING_PREVIS_v0.1.png` - directly viewable S001-S004 opening pass with action, dialogue and sound.
 - `assets/review/JOINING_PREVIS_v0.1.png` - directly viewable S005-S008 friends-join pass with dialogue, props and sound.
@@ -44,6 +45,8 @@ The Red Alert 2 cinematic credited online to lyxw1327 / Douyin remains a methodo
 - `assets/review/PRODUCTION_DASHBOARD_v0.1.png` - preserved first dashboard preview.
 - `assets/review/PRODUCTION_DASHBOARD_v0.2.png` - preserved dashboard preview through S005-S008.
 - `assets/review/PRODUCTION_DASHBOARD_v0.3.png` - current full-page dashboard preview including S009-S012.
+
+Dialogue is tracked separately from visuals: exact Hebrew stays selectable in the portal, while visible speaking shots require an approved voice asset and a dedicated lip-sync pass. Silent/offscreen dialogue may use post-production audio. This rule is defined in `36_Audio_LipSync_Contract_v0.1.md` and applies to future projects built from this workspace.
 
 ## Evidence Rules
 

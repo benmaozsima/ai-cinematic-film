@@ -3,6 +3,10 @@
   "version": "v0.3",
   "revision_of": "v0.2",
   "review_status": "REVIEW",
+  "dialogue_visibility": "offscreen",
+  "audio_mode": "post_production",
+  "lip_sync_required": false,
+  "transcript_hebrew": "שוקו לא עונה. אני הולך לבדוק.",
   "generation": {
     "provider": "fal",
     "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
