@@ -14,7 +14,7 @@
       <span><strong>מסיבת החיפוש</strong><small>לוח הפקה חי · 60 שניות</small></span>
     </a>
     <nav aria-label="ניווט ראשי">
-      <a href="#overview">סקירה</a><a href="#visuals">ויזואל</a><a href="#shots">שוטים</a><a href="#process">תהליך</a>
+      <a href="#overview">סקירה</a><a href="#visuals">ויזואל</a><a href="#canon">קאנון</a><a href="#shots">שוטים</a><a href="#process">תהליך</a>
     </nav>
     <span class="safety-pill">₪0 הוצאו · Fal כבוי</span>
   </header>
@@ -39,9 +39,9 @@
 
     <section class="status-strip" aria-label="סטטוסים מרכזיים">
       <div><span class="check">✓</span><p><strong>הסיפור מאושר</strong><small>חשיפת האפטר</small></p></div>
-      <div><span class="wait">○</span><p><strong>שוקו א׳ בבדיקה</strong><small>CHAR_001 · v0.2</small></p></div>
+      <div><span class="wait">○</span><p><strong>רפרנסים בבדיקה</strong><small>5 דמויות + לוקיישן · v0.2</small></p></div>
       <div><span class="check">✓</span><p><strong>60 שניות</strong><small>16 שוטים מתוזמנים</small></p></div>
-      <div><span class="wait">○</span><p><strong>תמונות בבדיקה</strong><small>לפני כל וידאו</small></p></div>
+      <div><span class="wait">○</span><p><strong>2 מאושרים · 3 לתיקון</strong><small>11 שוטים עדיין חסרים</small></p></div>
     </section>
 
     <section id="visuals" class="section-shell block">
@@ -126,6 +126,15 @@ Avoid: all text, letters, numbers, labels, Hebrew, logos, watermarks, signatures
       <div class="notice"><strong>למה לא רואים את התמונות הישנות?</strong><span>18 קובצי PNG ישנים נקטעים באמצע המידע. הם נשמרו בהיסטוריה, אבל לא יוצגו כאילו הם מאושרים. נחליף אותם בשלבים לאחר אישור.</span></div>
     </section>
 
+    <section id="canon" class="section-shell block canon-section">
+      <div class="section-heading"><div><p class="eyebrow">CANONICAL SOURCE OF TRUTH</p><h2>קאנון הפרויקט</h2></div><p>זהו מסך העבודה הנוח למשתמש. כל סטטוס כאן חייב להתאים לקבצי ההפקה בריפו; נכס ללא אישור לא עובר לוידאו.</p></div>
+      <div class="canon-grid">
+        <article class="canon-card"><h3>נעילת דמויות</h3><ul><li><code>CHAR_001</code> · Shoko A — כובע כהה, קרדיגן חום, מקל ביד ימין</li><li><code>CHAR_003</code> · Shoko B — תיק בד גדול</li><li><code>CHAR_004</code> · Shoko C — קפה ומאפה</li><li><code>CHAR_005</code> · Shoko D — מפתח ספייר ענק</li><li><code>CHAR_002</code> · Shoko E — יחף, משקפי שמש, מארח אפטר</li></ul></article>
+        <article class="canon-card"><h3>כללי רציפות שאסור לשבור</h3><ul><li>כל חמשת הגברים נשארים גברים; אין דמויות נשיות בגרסת הסרט.</li><li>פנים, לבוש ואביזר מזהה חייבים להתאים לגיליון ה־CHAR הקנוני.</li><li>עברית היא HTML בר־בחירה ליד התמונה, אף פעם לא טקסט בתוך התמונה.</li><li>כל נכס מקבל גרסה חדשה; אין דריסה של legacy או ניסוי שנדחה.</li></ul></article>
+        <article class="canon-card"><h3>שערי הפקה</h3><ul><li><span class="legend approved">מאושר</span> עבר ריוויו טכני וחזותי.</li><li><span class="legend revise">לתיקון</span> נשמר אך חסום להפקה.</li><li><span class="legend missing">חסר</span> עדיין לא נוצר נכס אמיתי.</li><li>וידאו ותשלום חסומים עד בחירת מודל, מחיר ואישור מפורש.</li></ul></article>
+      </div>
+    </section>
+
     <section id="shots" class="section-shell block">
       <div class="section-heading"><div><p class="eyebrow">THE 60-SECOND CUT</p><h2>16 שוטים, עם כל המלל</h2></div><p>לחיצה על שוט פותחת פעולה, דיאלוג, סאונד ומצב. ניתן לסמן אישור מקומי בדפדפן — ללא שינוי בריפו וללא יצירת וידאו.</p></div>
       <div class="shot-filters" role="group" aria-label="סינון שוטים"><button class="active" data-filter="all">הכול</button><button data-filter="dialogue">עם דיאלוג</button><button data-filter="silent">ללא דיאלוג</button></div>
@@ -150,7 +159,7 @@ Avoid: all text, letters, numbers, labels, Hebrew, logos, watermarks, signatures
     </section>
   </main>
 
-  <footer><span>THE SEARCH PARTY · PRODUCTION DASHBOARD v0.1</span><span>מקור האמת נשאר קובצי ההפקה בריפו</span></footer>
+  <footer><span>THE SEARCH PARTY · PRODUCTION PORTAL v0.2</span><span>הפורטל הוא ממשק הקאנון; הריפו שומר את הנתונים, הגרסאות וההיסטוריה</span></footer>
 
   <dialog id="shotDialog"><button class="dialog-close" aria-label="סגירה">×</button><div id="dialogContent"></div></dialog>
   <script src="app.js"></script>
