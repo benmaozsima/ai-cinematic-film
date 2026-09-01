@@ -66,7 +66,7 @@
       "shot_id": "S003",
       "kind": "video",
       "version": "v0.3",
-      "review_status": "REVIEW",
+      "review_status": "REVISE",
       "filename": "S003_seedance_1_5_pro_v0.3.mp4",
       "local_path": "outputs/videos/review/S003_seedance_1_5_pro_v0.3.mp4",
       "review_url": "https://v3b.fal.media/files/b/0aa8b0bc/SSeqOjp9lRrRkB8Q6wnHO_video.mp4",
@@ -99,7 +99,7 @@
       "audio_mode": "silent_visual_pass"
     },
     {
-      "media_id": "S005_VIDEO_V0_2", "shot_id": "S005", "kind": "video", "version": "v0.2", "review_status": "REVIEW",
+      "media_id": "S005_VIDEO_V0_2", "shot_id": "S005", "kind": "video", "version": "v0.2", "review_status": "REVISE",
       "filename": "S005_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S005_seedance_1_5_pro_v0.2.mp4",
       "review_url": "https://v3b.fal.media/files/b/0aa8b3c3/oza-Im7nJjb5L80Y0fzo7_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "55337c15bfb2a678d990354f1964cc4eda7f784d03eb878a1fdd9ebf3a51504f", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
     },

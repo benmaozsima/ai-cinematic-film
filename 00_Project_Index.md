@@ -83,3 +83,5 @@ Reserved namespaces:
 `36_Audio_LipSync_Contract_v0.1.md` is the canonical contract for dialogue visibility, Hebrew voice assets, timing and lip-sync. A line in metadata is not a speaking face: `visible_speaker` shots require a dedicated audio-driven lip-sync pass, while silent/offscreen shots may use post-production audio. The dashboard mirrors this gate for review.
 
 `37_Transition_Continuity_Contract_v0.1.md` is the canonical handoff map. It makes incoming/outgoing pose, prop, eyeline, screen direction, lighting, audio bridge and transition device explicit so generation carries continuity and editing remains minimal.
+
+`38_AI_Video_QC_and_Prompting_Contract_v0.1.md` is the canonical frame-level quality-control and repair-prompt contract. It was added after S003 phone-face ambiguity and S005 threshold-crossing failures; it requires dense temporal review, not first-frame review alone.

@@ -1,7 +1,7 @@
 {
   "shot_id": "S005",
   "version": "v0.2",
-  "status": "REVIEW",
+  "status": "REVISE",
   "provider": "fal.ai",
   "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
   "generation_date": "2026-09-01",
@@ -37,6 +37,11 @@
     "voice asset and Hebrew timing approved before visible speech",
     "two distinct male faces only",
     "door axis and cane continuity",
-    "lip-sync pass required before READY"
-  ]
+    "lip-sync pass required before READY",
+    "REVISE: late frames move CHAR_001 across the doorway threshold; he must remain outside through the full shot"
+  ],
+  "agent_review": {
+    "decision": "REVISE",
+    "reason": "The doorway conversation begins correctly, but CHAR_001 steps toward/over the threshold in late frames. The story requires him to remain outside, speak briefly, then cut to CHAR_003 exiting in S006."
+  }
 }

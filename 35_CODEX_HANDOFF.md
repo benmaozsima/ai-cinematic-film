@@ -67,12 +67,13 @@ Current shots S001 and S002 are silent visuals. S003's line is explicitly offscr
 
 - Story, runtime, all-male cast, all-Shoko naming rule, protagonist direction, after-party ending and vertical format are approved.
 - The canonical screenplay and 16-shot list exist.
-- S001, S002 and S003 have real Fal review videos; they remain `REVIEW` until explicit human decisions.
+- S001 and S002 have real Fal review videos. S003 v0.3 is now `REVISE`: the phone-face orientation is ambiguous during handling. S005 v0.2 is `REVISE`: CHAR_001 crosses toward the doorway interior in late frames.
 - No later shot is `READY` for video generation.
 - The public dashboard source is in `dashboard/`.
 - GitHub Pages deployment is defined in `.github/workflows/deploy-dashboard.yml`.
 - One valid `CHAR_001` / Shoko A reference sheet now exists at `assets/characters/CHAR_001_reference_sheet_v0.2.png`; it is `REVIEW`, not `APPROVED`.
 - `36_Audio_LipSync_Contract_v0.1.md` now governs speech visibility, Hebrew voice assets and dedicated lip-sync for visible speakers.
+- `38_AI_Video_QC_and_Prompting_Contract_v0.1.md` governs dense frame-level artifact review and repair prompts. A clip cannot be accepted from its first frame alone.
 
 ## Critical image-asset problem
 

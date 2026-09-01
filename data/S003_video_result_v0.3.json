@@ -2,7 +2,7 @@
   "shot_id": "S003",
   "version": "v0.3",
   "revision_of": "v0.2",
-  "review_status": "REVIEW",
+  "review_status": "REVISE",
   "dialogue_visibility": "offscreen",
   "audio_mode": "post_production",
   "lip_sync_required": false,
@@ -56,12 +56,12 @@
     "decodes": true,
     "vertical_9_16": true,
     "face_stable": true,
-    "phone_stable": true,
+    "phone_stable": false,
     "visible_text_or_watermark": false,
-    "status": "PASS"
+    "status": "REVISE"
   },
   "visual_review": {
-    "agent_observation": "The revised contact sheet preserves CHAR_001 identity, wardrobe and warm apartment grade. The phone is set down, the hat is worn, and the walking stick is visibly picked up and held upright in the final two sampled frames. No extra people, text or duplicate props appear.",
+    "agent_observation": "The revised pass preserves CHAR_001, wardrobe, hat and cane handoff. However, frame-level review shows an ambiguous/inconsistent phone face orientation during the handling beat. A phone display must remain visibly on the screen face, never appear on the back or reverse, before this shot can be approved.",
     "human_decision": null,
     "choices": ["APPROVE", "REVISE", "REJECT"]
   },
