@@ -60,7 +60,7 @@ document.querySelectorAll('[data-char-review]').forEach(button=>button.onclick=(
 charNote.addEventListener('change',()=>{savedCharReview.note=charNote.value;localStorage.setItem(charReviewKey,JSON.stringify(savedCharReview))});
 renderCharReview();
 const videoReviewKeys={S001:'s001VideoV01Review',S002:'s002VideoV02Review'};
-const savedVideoReviews=Object.fromEntries(Object.entries(videoReviewKeys).map(([shot,key])=>[shot,JSON.parse(localStorage.getItem(key)||'{}')]));
+const savedVideoReviews={S001:JSON.parse(localStorage.getItem(videoReviewKeys.S001)||'{}'),S002:JSON.parse(localStorage.getItem(videoReviewKeys.S002)||'{}')};
 Object.entries(savedVideoReviews).forEach(([shot,review])=>{const note=document.querySelector(`#${shot.toLowerCase()}VideoNote`);if(note)note.value=review.note||''});
 async function loadReviewMedia(){
  try{
