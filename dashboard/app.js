@@ -78,6 +78,23 @@ async function loadReviewMedia(){
   document.querySelectorAll('.media-message').forEach(message=>{message.textContent='הווידאו אינו זמין כרגע. המטא־דאטה וה־SHA נשמרו; יש לסנכרן את קובץ ה־outputs לאחסון חיצוני.'});
  }
 }
+const sequenceOrder=['S001_VIDEO_V0_1','S002_VIDEO_V0_2','S003_VIDEO_V0_3'];
+let sequenceItems=[],sequenceIndex=0;
+function renderSequenceList(){
+ const list=document.querySelector('#sequenceList'); if(!list)return;
+ list.innerHTML='';
+ sequenceItems.forEach((item,index)=>{const li=document.createElement('li');li.className='sequence-item '+(index===sequenceIndex?'active ':'')+(item.media?'available':'missing');li.innerHTML='<button type="button"><span>'+item.shot_id+'</span><strong>'+item.title+'</strong><small>'+(item.media?(item.version+' · זמין'):'חסר — טרם נוצר')+'</small></button>';li.querySelector('button').onclick=()=>{if(item.media){sequenceIndex=index;setSequenceSource()}else{document.querySelector('#sequenceMessage').textContent=item.shot_id+' עדיין חסר; אי אפשר להוסיף אותו לרצף.';renderSequenceList()}};list.appendChild(li)});
+}
+function setSequenceSource(){
+ const item=sequenceItems[sequenceIndex],video=document.querySelector('#sequenceVideo'); if(!item||!video)return;
+ document.querySelector('#sequenceCurrentLabel').textContent=item.shot_id+' · '+item.title+' · '+item.version;
+ document.querySelector('#sequenceCurrentStatus').textContent=item.media?'זמין לצפייה':'חסר';
+ if(item.media){video.src=item.media.review_url;video.load();document.querySelector('#sequenceMessage').textContent='הקליפ נטען מאחסון חיצוני; לחץ Play כדי להתחיל.'}else{video.removeAttribute('src');video.load();document.querySelector('#sequenceMessage').textContent='השוט הזה עדיין לא נוצר.'}
+ renderSequenceList();
+}
+async function loadSequence(){
+ try{const response=await fetch('../data/media_registry_v0.1.json',{cache:'no-store'});if(!response.ok)throw new Error('registry');const registry=await response.json();const titles={S001:'הטקס',S002:'שוקו א׳ מול המראה',S003:'שוקו ה׳ לא עונה'};sequenceItems=sequenceOrder.map(id=>{const media=registry.media.find(item=>item.media_id===id);return{media,shot_id:media?.shot_id||id.split('_')[0],version:media?.version||'—',title:titles[media?.shot_id]||id}});renderSequenceList();setSequenceSource()}catch{document.querySelector('#sequenceMessage').textContent='לא ניתן לטעון את Media Registry כרגע.'}}
+document.querySelector('#sequenceVideo')?.addEventListener('ended',()=>{let next=sequenceIndex+1;while(next<sequenceItems.length&&!sequenceItems[next].media)next++;if(next<sequenceItems.length){sequenceIndex=next;setSequenceSource();document.querySelector('#sequenceVideo').play().catch(()=>{})}else document.querySelector('#sequenceMessage').textContent='סוף הקליפים הקיימים. השוטים החסרים נשארו מסומנים ברשימה.'});
 function renderVideoReview(shot){
  const decision=savedVideoReviews[shot].decision;
  const displayDecision=decision||'REVIEW';
@@ -97,4 +114,5 @@ document.querySelectorAll('[data-video-review-shot]').forEach(button=>button.onc
 });
 Object.keys(videoReviewKeys).forEach(shot=>{const note=document.querySelector(`#${shot.toLowerCase()}VideoNote`);note?.addEventListener('change',()=>{savedVideoReviews[shot].note=note.value;localStorage.setItem(videoReviewKeys[shot],JSON.stringify(savedVideoReviews[shot]))})});
 loadReviewMedia();
+loadSequence();
 render();
