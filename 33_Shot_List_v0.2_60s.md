@@ -40,6 +40,10 @@ Total planned duration: **60 seconds**.
 
 S003 is currently an offscreen/post-production line, so the existing visual test is intentionally silent. S005, S006, S010, S014 and S016 contain spoken lines that must be staged as visible speech or explicitly restaged as offscreen/voice-over before generation. If the speaker's mouth is visible, attach a voice asset, timing plan and dedicated lip-sync pass; do not treat subtitles or a dialogue field as a substitute.
 
+## Transition performance plan
+
+The sequence is designed as handoffs, not isolated clips. Use the map in 37_Transition_Continuity_Contract_v0.1.md: lock each incoming/outgoing state, screen direction, eyeline, prop position, grade and audio bridge in the shot payload. Generate the final pose needed by the next shot and reject any continuity break instead of hiding it with an edit.
+
 ## Readiness gate
 
 No shot is `READY` yet. Supporting close-up identity references, Shoko's canonical face, shot-specific keyframes, exact model price and explicit paid-generation approval are still required.

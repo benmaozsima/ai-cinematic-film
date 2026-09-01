@@ -10,6 +10,10 @@ Each request must include `dialogue_visibility`, `audio_mode`, `lip_sync_require
 
 Recommended default for visible speech is a silent visual generation followed by an audio-driven lip-sync pass. Native model audio is an explicitly labelled experiment, not proof of Hebrew pronunciation or mouth synchronization.
 
+## Transition handoff contract
+
+Each request must also carry incoming_state, outgoing_state, transition_device, match_priorities, audio_bridge and edit_fallback. The generator must preserve the declared endpoint state; the QC service samples first/last frames and rejects identity drift, prop discontinuity, axis flips or unexplained lighting changes. See 37_Transition_Continuity_Contract_v0.1.md.
+
 ## Core Requirements
 
 - Every generation must have a stable `job_id`.

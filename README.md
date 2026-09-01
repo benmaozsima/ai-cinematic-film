@@ -35,7 +35,8 @@ The Red Alert 2 cinematic credited online to lyxw1327 / Douyin remains a methodo
 - `33_Shot_List_v0.2_60s.md` - active canonical 60-second shot list.
 - `34_Visual_Review_Pack_001.md` - visual review board with a working one-page storyboard and a legacy-raster integrity warning.
 - `35_CODEX_HANDOFF.md` - authoritative continuation brief, next image task, safety gates, and a copy/paste prompt for Codex.
-- `36_Audio_LipSync_Contract_v0.1.md` - canonical dialogue-visibility, voice, lip-sync and audio-routing contract for this and future films.
+ - `36_Audio_LipSync_Contract_v0.1.md` - canonical dialogue-visibility, voice, lip-sync and audio-routing contract for this and future films.
+ - `37_Transition_Continuity_Contract_v0.1.md` - endpoint handoffs, match devices, sound bridges and minimal-edit rules for seamless shot assembly.
 - `assets/characters/CHAR_001_reference_sheet_v0.2.png` - first valid generated Shoko A identity/wardrobe reference, currently in `REVIEW`.
 - `assets/review/OPENING_PREVIS_v0.1.png` - directly viewable S001-S004 opening pass with action, dialogue and sound.
 - `assets/review/JOINING_PREVIS_v0.1.png` - directly viewable S005-S008 friends-join pass with dialogue, props and sound.
