@@ -38,8 +38,8 @@ jobs:
           mkdir -p _site/assets/characters _site/assets/environments _site/assets/keyframes _site/data
           cp assets/characters/*reference_sheet_v0.2.png _site/assets/characters/
           cp assets/environments/*reference_sheet_v0.2.png _site/assets/environments/
-          cp assets/keyframes/S001_real_v0.1.png assets/keyframes/S004_real_v0.1.png _site/assets/keyframes/
-          cp data/S001_fal_request_v0.1.json data/S001_video_result_v0.1.json data/media_registry_v0.1.json _site/data/
+          cp assets/keyframes/*.png _site/assets/keyframes/
+          cp data/*.json _site/data/
           cat > _site/index.html <<'HTML'
           <!doctype html>
           <meta charset="utf-8">
