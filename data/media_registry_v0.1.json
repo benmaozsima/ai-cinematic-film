@@ -78,6 +78,45 @@
       "width": 720,
       "height": 1280,
       "duration_seconds": 4.041667
+    },
+    {
+      "media_id": "S004_VIDEO_V0_2",
+      "shot_id": "S004",
+      "kind": "video",
+      "version": "v0.2",
+      "review_status": "REVIEW",
+      "filename": "S004_seedance_1_5_pro_v0.2.mp4",
+      "local_path": "outputs/videos/review/S004_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b361/4kFlG-XdoP5beot0Ft-8L_video.mp4",
+      "storage_provider": "fal_provider_cdn",
+      "retention": "provider-managed; migrate approved media to durable object storage",
+      "git_tracked": false,
+      "sha256": "f987028927648c6aa8385b8f596906576472f9558dcce72e76ed6e34c88477ba",
+      "content_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "duration_seconds": 4.041667,
+      "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S005_VIDEO_V0_2", "shot_id": "S005", "kind": "video", "version": "v0.2", "review_status": "REVIEW",
+      "filename": "S005_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S005_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b3c3/oza-Im7nJjb5L80Y0fzo7_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "55337c15bfb2a678d990354f1964cc4eda7f784d03eb878a1fdd9ebf3a51504f", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S006_VIDEO_V0_2", "shot_id": "S006", "kind": "video", "version": "v0.2", "review_status": "REVIEW",
+      "filename": "S006_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S006_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b3ca/RRjOKdxCXKsJ_Xwd0f88H_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "8fe6c70c1d37a296e90c4f5e4c912965d0febec5896683e4d6c762b9bb7d0925", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S007_VIDEO_V0_2", "shot_id": "S007", "kind": "video", "version": "v0.2", "review_status": "REVIEW",
+      "filename": "S007_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S007_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b3b9/K1aGjwqhqxo1MtspO4C-M_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "c2cdb5a35cf3f93d998f10ed8fd0a23356b51ef56a2e66f2b05e7c85d435ab99", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S008_VIDEO_V0_2", "shot_id": "S008", "kind": "video", "version": "v0.2", "review_status": "REVISE",
+      "filename": "S008_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S008_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b3bf/ML8W3KehbOrLk8dtQ69Cj_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "ee256b6be8aa2e7fb0f90f1198c086e65d6e4290dee03bf6dedcc5e213d0dbdb", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
     }
   ]
 }

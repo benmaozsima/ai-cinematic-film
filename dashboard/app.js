@@ -78,7 +78,7 @@ async function loadReviewMedia(){
   document.querySelectorAll('.media-message').forEach(message=>{message.textContent='הווידאו אינו זמין כרגע. המטא־דאטה וה־SHA נשמרו; יש לסנכרן את קובץ ה־outputs לאחסון חיצוני.'});
  }
 }
-const sequenceOrder=['S001','S002','S003'];
+const sequenceOrder=['S001','S002','S003','S004','S005','S006','S007','S008'];
 let sequenceItems=[],sequenceIndex=0,sequenceSelections=JSON.parse(localStorage.getItem('sequenceSelections')||'{}'),sequencePlaying=false,sequenceActivePlayer=0;
 function sequencePlayers(){return[document.querySelector('#sequenceVideo'),document.querySelector('#sequenceVideoNext')]}
 function renderSequenceList(){
@@ -95,7 +95,7 @@ function setSequenceSource(keepCurrent=false){
  renderSequenceList();
 }
 async function loadSequence(){
- try{const response=await fetch('../data/media_registry_v0.1.json',{cache:'no-store'});if(!response.ok)throw new Error('registry');const registry=await response.json();const titles={S001:'הטקס',S002:'שוקו א׳ מול המראה',S003:'שוקו ה׳ לא עונה'};sequenceItems=sequenceOrder.map(shot=>{const variants=registry.media.filter(item=>item.shot_id===shot&&item.kind==='video'&&item.review_url);return{shot_id:shot,title:titles[shot]||shot,variants}});renderSequenceList();setSequenceSource()}catch{document.querySelector('#sequenceMessage').textContent='לא ניתן לטעון את Media Registry כרגע.'}}
+ try{const response=await fetch('../data/media_registry_v0.1.json',{cache:'no-store'});if(!response.ok)throw new Error('registry');const registry=await response.json();const titles={S001:'הטקס',S002:'שוקו א׳ מול המראה',S003:'שוקו ה׳ לא עונה',S004:'המסלול מתחיל',S005:'הדלת הראשונה',S006:'החבר מצטרף',S007:'שוקו ג׳ בבית הקפה',S008:'שוקו ד׳ והמפתח'};sequenceItems=sequenceOrder.map(shot=>{const variants=registry.media.filter(item=>item.shot_id===shot&&item.kind==='video'&&item.review_url);return{shot_id:shot,title:titles[shot]||shot,variants}});renderSequenceList();setSequenceSource()}catch{document.querySelector('#sequenceMessage').textContent='לא ניתן לטעון את Media Registry כרגע.'}}
 function advanceSequence(){if(!sequencePlaying)return;let next=sequenceIndex+1;while(next<sequenceItems.length&&!sequenceItems[next].variants.length)next++;if(next<sequenceItems.length){sequenceIndex=next;sequenceActivePlayer=1-sequenceActivePlayer;const players=sequencePlayers(),nextVideo=players[sequenceActivePlayer];setSequenceSource(true);nextVideo.play().catch(()=>{sequencePlaying=false;document.querySelector('#sequenceMessage').textContent='הדפדפן עצר את המעבר האוטומטי; לחץ שוב על “נגן את כל הרצף”.'})}else{sequencePlaying=false;document.querySelector('#sequenceMessage').textContent='סוף הקליפים הקיימים. השוטים החסרים נשארו מסומנים ברשימה.'}}
 sequencePlayers().forEach(video=>video?.addEventListener('ended',advanceSequence));
 document.querySelector('#playAllSequence')?.addEventListener('click',()=>{const first=sequenceItems.findIndex(item=>item.variants.length);if(first<0){document.querySelector('#sequenceMessage').textContent='אין עדיין קליפים זמינים לנגינה.';return}sequenceIndex=first;sequenceActivePlayer=0;sequencePlaying=true;const players=sequencePlayers();players.forEach(video=>{video.pause();video.classList.remove('sequence-playing')});setSequenceSource();players[0].classList.add('sequence-playing');players[0].play().catch(()=>{sequencePlaying=false;document.querySelector('#sequenceMessage').textContent='לחץ שוב על כפתור הנגינה כדי לאשר הפעלה בדפדפן.'})});
