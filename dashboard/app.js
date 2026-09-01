@@ -80,7 +80,7 @@ async function loadReviewMedia(){
 }
 function renderVideoReview(shot){
  const decision=savedVideoReviews[shot].decision;
- const displayDecision=decision||(shot==='S003'?'REVISE':'REVIEW');
+ const displayDecision=decision||'REVIEW';
  const status=document.querySelector(`#${shot.toLowerCase()}VideoStatus`);
  if(status){status.textContent=displayDecision;status.className=`tag ${displayDecision==='APPROVE'?'designed':'review'}`}
  document.querySelectorAll(`[data-video-review-shot="${shot}"]`).forEach(button=>button.classList.toggle('selected',button.dataset.videoReview===decision));

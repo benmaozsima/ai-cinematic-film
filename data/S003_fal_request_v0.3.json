@@ -1,0 +1,38 @@
+{
+  "shot_id": "S003",
+  "scene_id": "SCENE_001_OPENING",
+  "version": "v0.3",
+  "revision_of": "v0.2",
+  "quality_tier": "controlled_continuity_revision",
+  "mode": "image_to_video",
+  "model_key": "seedance_1_5_pro_i2v",
+  "duration_seconds": 4,
+  "aspect_ratio": "9:16",
+  "resolution": "720p",
+  "generate_audio": false,
+  "camera_fixed": true,
+  "seed": 19004,
+  "prompt": "Continue the exact same elderly Israeli man from the supplied start frame. He briefly looks at the phone in his hand showing generic unanswered-call indicators, lowers it onto the table, then picks up the black hat and the wooden walking stick. The required ending state is unambiguous: in the final second he is wearing the black hat and visibly holding the wooden walking stick upright in his right hand, with the cane tip and hand fully inside frame, ready to leave for S004. Preserve the exact face, age, silver-gray hair, cream shirt, brown cardigan, apartment, warm restrained morning light, serious composed expression and vertical framing. Locked camera, no push-in, no pan, tilt, roll or handheld shake. Exactly one adult man and no other people. No readable phone text, no Hebrew rendered in the image, no subtitles, no logos, no watermark, no women, no girls, no children, no beard, no moustache, no younger face, no wardrobe change, no duplicate phone, hat or cane, no extra fingers or limbs, no morphing. Prioritize the final cane-in-hand state over any other motion.",
+  "references": {
+    "start_frame_url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S003_real_v0.2.png",
+    "end_frame_url": null,
+    "reference_image_urls": []
+  },
+  "budget": {
+    "max_cost_usd": 0.12,
+    "estimated_cost_usd": 0.10368,
+    "dry_run": false,
+    "require_approval_before_execute": true,
+    "approval_status": "EXPLICIT_USER_APPROVED_REVISION_UP_TO_0.12_USD"
+  },
+  "metadata": {
+    "provider": "fal",
+    "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "pricing_verified_date": "2026-09-01",
+    "start_frame_sha256": "ce100e04e34e3121b54bda09c2e06e106b82e575c41529883eaa48e620ee25a2",
+    "revision_reason": "v0.2 put on the hat but left the walking stick on the table.",
+    "edit_plan": "Use the full 4-second canonical edit duration after QC.",
+    "audio_plan": "Generate silently; add exact Hebrew dialogue, phone buzz stop and cane lift in post.",
+    "acceptance_gate": "Final sampled frame must show CHAR_001 wearing the hat and holding the walking stick. Otherwise mark REVISE again and do not continue to S004."
+  }
+}
