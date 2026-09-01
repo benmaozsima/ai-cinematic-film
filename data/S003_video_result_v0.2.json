@@ -1,0 +1,66 @@
+{
+  "shot_id": "S003",
+  "version": "v0.2",
+  "review_status": "REVISE",
+  "generation": {
+    "provider": "fal",
+    "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "request_id": "01a05d68-662d-7753-add8-c3046cafd367",
+    "generation_date": "2026-09-01",
+    "seed": 19003,
+    "estimated_cost_usd": 0.10368,
+    "approved_cost_cap_usd": 0.12,
+    "actual_billed_cost_usd": null
+  },
+  "input": {
+    "filename": "S003_real_v0.2.png",
+    "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S003_real_v0.2.png",
+    "sha256": "ce100e04e34e3121b54bda09c2e06e106b82e575c41529883eaa48e620ee25a2",
+    "width": 941,
+    "height": 1672,
+    "color_mode": "RGB"
+  },
+  "output": {
+    "filename": "S003_seedance_1_5_pro_v0.2.mp4",
+    "git_tracked": false,
+    "local_path": "outputs/videos/review/S003_seedance_1_5_pro_v0.2.mp4",
+    "review_url": "https://v3b.fal.media/files/b/0aa8b066/Ej2hF4gnLligcl877uAON_video.mp4",
+    "storage_class": "provider_cdn_temporary_review",
+    "sha256": "c99f62579fa131e333e5298f1bb197f6b27b8547ef318ac588c4c3c9845aca39",
+    "container": "MP4",
+    "video_codec": "H.264",
+    "pixel_format": "yuv420p",
+    "width": 720,
+    "height": 1280,
+    "fps": 24,
+    "duration_seconds": 4.041667,
+    "file_size_bytes": 5158570,
+    "audio_stream": false
+  },
+  "canonical_ids": ["CHAR_001", "PROP_002_PHONE", "PROP_003_HAT", "PROP_001_WALKING_STICK"],
+  "continuity_qc": {
+    "incoming_shot": "S002",
+    "outgoing_shot": "S004",
+    "grade_and_wardrobe_match": true,
+    "identity_stable": true,
+    "phone_singular": true,
+    "hat_handoff_complete": true,
+    "cane_handoff_complete": false,
+    "hard_cut_ready": false,
+    "reason_for_revision": "The walking stick remains on the table through the end of the clip; S004 requires CHAR_001 to leave holding it."
+  },
+  "technical_qc": {
+    "decodes": true,
+    "vertical_9_16": true,
+    "face_stable": true,
+    "phone_stable": true,
+    "visible_text_or_watermark": false,
+    "status": "PASS"
+  },
+  "visual_review": {
+    "agent_observation": "S003 preserves CHAR_001 identity, wardrobe, apartment grade and a single phone. He sets the phone down and puts on the hat cleanly. However, the cane stays on the table and is never picked up, so the required S003→S004 prop handoff is missing.",
+    "human_decision": null,
+    "choices": ["APPROVE", "REVISE", "REJECT"]
+  },
+  "revision_plan": "Regenerate one S003 variant with the same start frame, explicitly requiring the wooden walking stick to be picked up and held in the final second. Keep the phone set-down and hat handoff unchanged. Requires a new explicit paid approval up to the same $0.12 cap."
+}

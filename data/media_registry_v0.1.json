@@ -42,6 +42,24 @@
       "width": 720,
       "height": 1280,
       "duration_seconds": 4.041667
+    },
+    {
+      "media_id": "S003_VIDEO_V0_2",
+      "shot_id": "S003",
+      "kind": "video",
+      "version": "v0.2",
+      "review_status": "REVISE",
+      "filename": "S003_seedance_1_5_pro_v0.2.mp4",
+      "local_path": "outputs/videos/review/S003_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b066/Ej2hF4gnLligcl877uAON_video.mp4",
+      "storage_provider": "fal_provider_cdn",
+      "retention": "provider-managed; migrate approved media to durable object storage",
+      "git_tracked": false,
+      "sha256": "c99f62579fa131e333e5298f1bb197f6b27b8547ef318ac588c4c3c9845aca39",
+      "content_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "duration_seconds": 4.041667
     }
   ]
 }
