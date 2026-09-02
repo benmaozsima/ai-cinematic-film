@@ -85,3 +85,5 @@ Reserved namespaces:
 `37_Transition_Continuity_Contract_v0.1.md` is the canonical handoff map. It makes incoming/outgoing pose, prop, eyeline, screen direction, lighting, audio bridge and transition device explicit so generation carries continuity and editing remains minimal.
 
 `38_AI_Video_QC_and_Prompting_Contract_v0.1.md` is the canonical frame-level quality-control and repair-prompt contract. It was added after S003 phone-face ambiguity and S005 threshold-crossing failures; it requires dense temporal review, not first-frame review alone.
+
+`39_Portal_Orchestration_Architecture_v0.1.md` defines the reusable portal architecture: provider adapters, manual/automatic model selection, cost approval, parallel job queue, QC gates, secure credentials and versioned assembly.
