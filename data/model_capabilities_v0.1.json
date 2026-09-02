@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "providers": [
+    {
+      "provider": "fal.ai",
+      "models": [
+        {
+          "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+          "display_name": "Seedance 1.5 Pro — image to video",
+          "modes": ["image-to-video"],
+          "durations_seconds": [5, 10],
+          "aspect_ratios": ["9:16", "16:9", "1:1"],
+          "audio": false,
+          "lip_sync": false,
+          "price_usd_per_second": 0.02592,
+          "requires_approval": true,
+          "credential_env": "FAL_KEY"
+        }
+      ]
+    },
+    {
+      "provider": "local",
+      "models": [
+        {
+          "model": "ffmpeg/assembly",
+          "display_name": "Local assembly (no generation)",
+          "modes": ["assembly"],
+          "durations_seconds": [],
+          "aspect_ratios": ["any"],
+          "audio": true,
+          "lip_sync": false,
+          "price_usd_per_second": 0,
+          "requires_approval": false,
+          "credential_env": null
+        }
+      ]
+    }
+  ]
+}
