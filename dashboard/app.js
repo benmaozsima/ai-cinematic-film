@@ -121,3 +121,4 @@ Object.keys(videoReviewKeys).forEach(shot=>{const note=document.querySelector(`#
 loadReviewMedia();
 loadSequence();
 render();
+if(location.protocol==='http:'&&location.hostname==='127.0.0.1'){document.querySelectorAll('a[download][href*="ai_cinematic_film_S001-S016_review.mp4"]').forEach(a=>a.href='/api/download/assembly')}
