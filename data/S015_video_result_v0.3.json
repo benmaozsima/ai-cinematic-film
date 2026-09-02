@@ -1,0 +1,38 @@
+{
+  "shot_id": "S015",
+  "version": "v0.3",
+  "status": "REVISE",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b52c/P-HCUHpzxE-TST6xgFe7n_video.mp4",
+  "filename": "S015_seedance_1_5_pro_v0.3.mp4",
+  "sha256": "233bcbf09529a26e426e255ebe1e82b15bb5cdfebc6d87c645d2f71b9e0e96d9",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S023_party_door_reveal_v0.1.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue and lip-sync separate; no music",
+  "prompt": "CHAR_004, adult male Shoko carrying coffee and pastry, takes one cup and enters the warm apartment; the other male Shokos follow. Preserve props, exactly five adult men, no women or children, no duplicates, no text, no subtitles, no audio, no music, vertical match-action."
+}

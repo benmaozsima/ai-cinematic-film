@@ -40,8 +40,13 @@ def require(condition: bool, message: str) -> None:
         raise RunnerError(message)
 
 
-def estimate_cost(model: dict[str, Any], duration_seconds: int) -> float | None:
-    cost_per_second = model.get("estimated_cost_per_second_usd")
+def estimate_cost(model: dict[str, Any], shot: dict[str, Any], duration_seconds: int) -> float | None:
+    audio_key = (
+        "estimated_cost_per_second_usd_with_audio"
+        if bool(shot.get("generate_audio", False))
+        else "estimated_cost_per_second_usd_without_audio"
+    )
+    cost_per_second = model.get(audio_key, model.get("estimated_cost_per_second_usd"))
     if cost_per_second is None:
         return None
     return round(float(cost_per_second) * duration_seconds, 4)
@@ -73,7 +78,7 @@ def plan_request(models_config: dict[str, Any], shot: dict[str, Any]) -> Planned
 
     budget = shot.get("budget", {})
     max_cost = budget.get("max_cost_usd")
-    estimated_cost = estimate_cost(model, duration_seconds)
+    estimated_cost = estimate_cost(model, shot, duration_seconds)
 
     warnings: list[str] = []
     if estimated_cost is None:
@@ -105,6 +110,9 @@ def plan_request(models_config: dict[str, Any], shot: dict[str, Any]) -> Planned
 
     if "seed" in schema and shot.get("seed") is not None:
         fal_input[schema["seed"]] = int(shot["seed"])
+
+    if "camera_fixed" in schema and shot.get("camera_fixed") is not None:
+        fal_input[schema["camera_fixed"]] = bool(shot["camera_fixed"])
 
     if "auto_fix" in schema and shot.get("auto_fix") is not None:
         fal_input[schema["auto_fix"]] = bool(shot["auto_fix"])

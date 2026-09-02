@@ -1,0 +1,42 @@
+{
+  "shot_id": "S007",
+  "version": "v0.2",
+  "status": "REVIEW",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b3b9/K1aGjwqhqxo1MtspO4C-M_video.mp4",
+  "filename": "S007_seedance_1_5_pro_v0.2.mp4",
+  "sha256": "c2cdb5a35cf3f93d998f10ed8fd0a23356b51ef56a2e66f2b05e7c85d435ab99",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; add approved Hebrew voice/dialogue and lip-sync in post; no music",
+  "continuity_qc": [
+    "three distinct male identities",
+    "coffee/pastry stay with CHAR_004",
+    "bag and cane remain assigned",
+    "clean exit toward S008"
+  ]
+}

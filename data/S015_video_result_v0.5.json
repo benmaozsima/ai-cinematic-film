@@ -1,0 +1,26 @@
+{
+  "shot_id": "S015",
+  "version": "v0.5",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "At the same apartment doorway, CHAR_004 alone walks one careful step over the threshold while continuously holding the coffee cup in one hand and pastry plate in the other. He keeps both props securely in his hands for the entire shot; never drops or sets them down. CHAR_001 with cane, CHAR_003 with oversized bag and CHAR_005 with giant key remain outside, stationary. CHAR_002 host welcomes from inside. Exactly five older male Shokos, no extras, no text, clear feet and hands.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bcb0/6xhrpFIYAytwlwDBbvPml_S015_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bcb0/6xhrpFIYAytwlwDBbvPml_S015_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bcd0/a-VsYsIyHd0-V5c4y_tdp_video.mp4",
+  "filename": "S015_seedance_1_5_pro_v0.5.mp4",
+  "local_path": "outputs/videos/review/S015_seedance_1_5_pro_v0.5.mp4",
+  "sha256": "3b22c992b38a0f9d6cda135f6409e518f91ccfbeda96f4400af38f31899b7450",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED",
+  "supersedes": "S015_seedance_1_5_pro_v0.4.mp4"
+}

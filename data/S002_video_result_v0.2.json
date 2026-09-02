@@ -1,0 +1,64 @@
+{
+  "shot_id": "S002",
+  "version": "v0.2",
+  "review_status": "REVIEW",
+  "generation": {
+    "provider": "fal",
+    "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "request_id": "01a05d4f-61b5-7ae0-81ae-e6b2f5ebd199",
+    "generation_date": "2026-09-01",
+    "seed": 19002,
+    "estimated_cost_usd": 0.10368,
+    "approved_cost_cap_usd": 0.12,
+    "actual_billed_cost_usd": null
+  },
+  "input": {
+    "filename": "S002_real_v0.2.png",
+    "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S002_real_v0.2.png",
+    "sha256": "f8063f0df95691bdabe2d1f7f0617b9e8f813b12668da92e0ec3c8e38b6ed5da",
+    "width": 941,
+    "height": 1672,
+    "color_mode": "RGB"
+  },
+  "output": {
+    "filename": "S002_seedance_1_5_pro_v0.2.mp4",
+    "git_tracked": false,
+    "local_path": "outputs/videos/review/S002_seedance_1_5_pro_v0.2.mp4",
+    "review_url": "https://v3b.fal.media/files/b/0aa8afbb/f3cJtPlZ8d2AXTgik-wQH_video.mp4",
+    "storage_class": "provider_cdn_temporary_review",
+    "sha256": "5265bf9e73f7f0b729c575b2640e7caa421eee200caab71c23c6b765b04f36e3",
+    "container": "MP4",
+    "video_codec": "H.264",
+    "pixel_format": "yuv420p",
+    "width": 720,
+    "height": 1280,
+    "fps": 24,
+    "duration_seconds": 4.041667,
+    "file_size_bytes": 5265529,
+    "audio_stream": false
+  },
+  "canonical_ids": ["CHAR_001", "PROP_008_COMB", "PROP_003_HAT", "PROP_001_WALKING_STICK"],
+  "continuity_qc": {
+    "incoming_shot": "S001",
+    "outgoing_shot": "S003",
+    "grade_and_wardrobe_match": true,
+    "hard_cut_ready": true,
+    "audio_bridge_plan": "faint clock continues from S001; comb and room tone are added in post",
+    "hat_and_cane_deferred_to_S003": true
+  },
+  "technical_qc": {
+    "decodes": true,
+    "vertical_9_16": true,
+    "face_stable": true,
+    "reflection_stable": true,
+    "single_combing_pass": true,
+    "visible_text_or_watermark": false,
+    "status": "PASS"
+  },
+  "visual_review": {
+    "agent_observation": "Sampled contact sheet shows one continuous combing action, stable CHAR_001 face and wardrobe, physically coherent mirror reflection, single comb and no additional people or text.",
+    "human_decision": null,
+    "choices": ["APPROVE", "REVISE", "REJECT"]
+  },
+  "post_plan": "If approved, trim to the canonical 3-second edit duration and add the clock bridge, comb texture and room tone in post."
+}

@@ -1,0 +1,25 @@
+{
+  "shot_id": "S016",
+  "version": "v0.4",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "Final doorway beat: the four arriving older male Shokos gather inside with CHAR_002 host as the black front door gently closes. CHAR_001 is visibly last and still holds his wooden cane; CHAR_003 has the oversized bag; CHAR_004 has coffee and pastry; CHAR_005 has the giant spare key. Exactly five men, preserve faces and props, no extras, no text.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bc8e/QuZncKCwNcoPQ2lmoTPxP_S016_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bc8e/QuZncKCwNcoPQ2lmoTPxP_S016_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bc96/ukNUMeICpjFEy-jBYOS67_video.mp4",
+  "filename": "S016_seedance_1_5_pro_v0.4.mp4",
+  "local_path": "outputs/videos/review/S016_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "4550fc18d6a9692ba2bf83f142dc739103f270d66b50710f6bbcaab18ab7c604",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED"
+}

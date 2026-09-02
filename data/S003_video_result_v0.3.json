@@ -1,0 +1,69 @@
+{
+  "shot_id": "S003",
+  "version": "v0.3",
+  "revision_of": "v0.2",
+  "review_status": "REVISE",
+  "dialogue_visibility": "offscreen",
+  "audio_mode": "post_production",
+  "lip_sync_required": false,
+  "transcript_hebrew": "שוקו לא עונה. אני הולך לבדוק.",
+  "generation": {
+    "provider": "fal",
+    "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "request_id": "01a05d76-2871-70c3-bd19-c2aef33bd15f",
+    "generation_date": "2026-09-01",
+    "seed": 19004,
+    "estimated_cost_usd": 0.10368,
+    "approved_cost_cap_usd": 0.12,
+    "actual_billed_cost_usd": null
+  },
+  "input": {
+    "filename": "S003_real_v0.3.png",
+    "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S003_real_v0.3.png",
+    "sha256": "f95679be6f65437f22a9c83a9e3cc5a3d469b12b9a1225f5fa5aaeeb7849ebe8"
+  },
+  "output": {
+    "filename": "S003_seedance_1_5_pro_v0.3.mp4",
+    "git_tracked": false,
+    "local_path": "outputs/videos/review/S003_seedance_1_5_pro_v0.3.mp4",
+    "review_url": "https://v3b.fal.media/files/b/0aa8b0bc/SSeqOjp9lRrRkB8Q6wnHO_video.mp4",
+    "storage_class": "provider_cdn_temporary_review",
+    "sha256": "686c8c9e439bc97a7fde51fcc33c8ca1b097fd30a18295c67d9545004ba97898",
+    "container": "MP4",
+    "video_codec": "H.264",
+    "pixel_format": "yuv420p",
+    "width": 720,
+    "height": 1280,
+    "fps": 24,
+    "duration_seconds": 4.041667,
+    "file_size_bytes": 4193470,
+    "audio_stream": false
+  },
+  "canonical_ids": ["CHAR_001", "PROP_002_PHONE", "PROP_003_HAT", "PROP_001_WALKING_STICK"],
+  "continuity_qc": {
+    "incoming_shot": "S002",
+    "outgoing_shot": "S004",
+    "grade_and_wardrobe_match": true,
+    "identity_stable": true,
+    "phone_singular": true,
+    "hat_handoff_complete": true,
+    "cane_handoff_complete": true,
+    "final_state_ready_for_S004": true,
+    "hard_cut_ready": true,
+    "note": "The cane briefly overlaps the torso during pickup but remains a single coherent prop; final frames show it held upright."
+  },
+  "technical_qc": {
+    "decodes": true,
+    "vertical_9_16": true,
+    "face_stable": true,
+    "phone_stable": false,
+    "visible_text_or_watermark": false,
+    "status": "REVISE"
+  },
+  "visual_review": {
+    "agent_observation": "The revised pass preserves CHAR_001, wardrobe, hat and cane handoff. However, frame-level review shows an ambiguous/inconsistent phone face orientation during the handling beat. A phone display must remain visibly on the screen face, never appear on the back or reverse, before this shot can be approved.",
+    "human_decision": null,
+    "choices": ["APPROVE", "REVISE", "REJECT"]
+  },
+  "post_plan": "If approved, add the exact Hebrew dialogue and phone/cane sound in post, then cut directly to S004 exterior rear-follow."
+}

@@ -1,0 +1,43 @@
+{
+  "shot_id": "S004",
+  "version": "v0.2",
+  "status": "REVIEW",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b361/4kFlG-XdoP5beot0Ft-8L_video.mp4",
+  "filename": "S004_seedance_1_5_pro_v0.2.mp4",
+  "sha256": "f987028927648c6aa8385b8f596906576472f9558dcce72e76ed6e34c88477ba",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; add approved Hebrew voice/dialogue and lip-sync in post for visible speakers; no music at this stage",
+  "continuity_qc": [
+    "first frame matches S003 exit state",
+    "cane remains in right hand",
+    "forward direction holds",
+    "no new people or text",
+    "end frame leaves clean doorway handoff to S005"
+  ]
+}

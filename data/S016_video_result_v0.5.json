@@ -1,0 +1,26 @@
+{
+  "shot_id": "S016",
+  "version": "v0.5",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "Final shot from inside the foyer: the black front door starts open and then closes smoothly toward the camera, ending fully closed. Exactly five older male Shokos remain visible inside until the door closes: CHAR_001 last with black fedora and wooden cane, CHAR_003 with oversized bag, CHAR_004 holding coffee and pastry, CHAR_005 holding giant spare key, and CHAR_002 silver-haired host with dark sunglasses and blue patterned shirt. No person disappears before the closing door; no sixth person, no duplicates, no women or extras, no text.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bcba/FgtyFnLt-jKU-8_I-4jV5_S016_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bcba/FgtyFnLt-jKU-8_I-4jV5_S016_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bcbf/YVP6kHa5wW14vwawjz06R_video.mp4",
+  "filename": "S016_seedance_1_5_pro_v0.5.mp4",
+  "local_path": "outputs/videos/review/S016_seedance_1_5_pro_v0.5.mp4",
+  "sha256": "f7561371793ded3e4aeccd83ac9c3428c830f1676cc37a7bb129317183cc7064",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED",
+  "supersedes": "S016_seedance_1_5_pro_v0.4.mp4"
+}

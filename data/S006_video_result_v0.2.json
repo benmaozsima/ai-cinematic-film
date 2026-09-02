@@ -1,0 +1,43 @@
+{
+  "shot_id": "S006",
+  "version": "v0.2",
+  "status": "REVIEW",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b3ca/RRjOKdxCXKsJ_Xwd0f88H_video.mp4",
+  "filename": "S006_seedance_1_5_pro_v0.2.mp4",
+  "sha256": "8fe6c70c1d37a296e90c4f5e4c912965d0febec5896683e4d6c762b9bb7d0925",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; add approved Hebrew voice/dialogue and lip-sync in post; no music",
+  "continuity_qc": [
+    "voice asset and Hebrew timing approved",
+    "lip-sync pass required",
+    "bag remains with CHAR_003",
+    "lock click lands on action",
+    "handoff exits in same direction toward S007"
+  ]
+}

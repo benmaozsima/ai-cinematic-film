@@ -1,0 +1,38 @@
+{
+  "shot_id": "S014",
+  "version": "v0.3",
+  "status": "REVISE",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b51a/nlKyZxtEsyOgjiW9Bw6Lw_video.mp4",
+  "filename": "S014_seedance_1_5_pro_v0.3.mp4",
+  "sha256": "4bf0278f8a99db64d212cc93cc16e1e85bddaa73ae9b4f4b5a95e4ff917ea931",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S023_party_door_reveal_v0.1.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue and lip-sync separate; no music",
+  "prompt": "Comedic vertical doorway two-shot: CHAR_001 with black hat and cane faces CHAR_002, barefoot male host with sunglasses. Other male Shokos stay behind. Exactly five adult men, no women or children, no duplicates, no text, no subtitles, no audio, no music, hold eyelines."
+}

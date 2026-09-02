@@ -1,8 +1,10 @@
 # Shot List v0.1 - The Search Party
 
-Status: DESIGNED
+Status: SUPERSEDED DEVELOPMENT SHOT LIST
 Target runtime: 90 seconds
 Generation gate: No paid generation yet
+
+Superseded by the canonical 60-second shot list in `33_Shot_List_v0.2_60s.md`. Preserve this file as development history; no shot in this version is production-authorized.
 
 | ID | Time | Duration | Purpose | Camera / Composition | Action | Characters / Location | Audio | Status |
 |---|---:|---:|---|---|---|---|---|---|

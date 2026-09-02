@@ -1,0 +1,25 @@
+{
+  "shot_id": "S015",
+  "version": "v0.4",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "At the same doorway, CHAR_004 alone takes one careful step across the threshold carrying the coffee cup and pastry plate toward CHAR_002 host. CHAR_001 with cane, CHAR_003 with oversized bag and CHAR_005 with giant key remain outside. Clear foot placement, slow welcoming movement, exactly five older male Shokos, no extras or text.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bc85/DeLFEz_HPzjjJuumolqXP_S015_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bc85/DeLFEz_HPzjjJuumolqXP_S015_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bc8e/a4FJDRwF4ao6zB9Z5M3T7_video.mp4",
+  "filename": "S015_seedance_1_5_pro_v0.4.mp4",
+  "local_path": "outputs/videos/review/S015_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "d07c6589c97a2b903879039502d973edf920dc337a202b11f1d779f5cf9f0720",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED"
+}

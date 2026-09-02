@@ -1,0 +1,165 @@
+{
+  "schema_version": "0.1",
+  "storage_policy": {
+    "git_tracks_generated_media": false,
+    "local_output_root": "outputs/",
+    "shared_media_requirement": "External object storage or provider CDN",
+    "portable_contract": "Consumers resolve a stable media_id through this registry instead of assuming a repository file path."
+  },
+  "media": [
+    {
+      "media_id": "S001_VIDEO_V0_1",
+      "shot_id": "S001",
+      "kind": "video",
+      "version": "v0.1",
+      "review_status": "REVIEW",
+      "filename": "S001_seedance_1_5_pro_v0.1.mp4",
+      "local_path": "outputs/videos/review/S001_seedance_1_5_pro_v0.1.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8aedb/XcLiWF54k6t_2aA7o88pA_video.mp4",
+      "storage_provider": "fal_provider_cdn",
+      "retention": "provider-managed; migrate approved media to durable object storage",
+      "git_tracked": false,
+      "sha256": "2f15b1195740fb8e4e3c2fdd1eb32569342df01b5e5e6d199cabf5887f76787f",
+      "content_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "duration_seconds": 4.041667
+    },
+    {
+      "media_id": "S002_VIDEO_V0_2",
+      "shot_id": "S002",
+      "kind": "video",
+      "version": "v0.2",
+      "review_status": "REVIEW",
+      "filename": "S002_seedance_1_5_pro_v0.2.mp4",
+      "local_path": "outputs/videos/review/S002_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8afbb/f3cJtPlZ8d2AXTgik-wQH_video.mp4",
+      "storage_provider": "fal_provider_cdn",
+      "retention": "provider-managed; migrate approved media to durable object storage",
+      "git_tracked": false,
+      "sha256": "5265bf9e73f7f0b729c575b2640e7caa421eee200caab71c23c6b765b04f36e3",
+      "content_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "duration_seconds": 4.041667
+    },
+    {
+      "media_id": "S003_VIDEO_V0_2",
+      "shot_id": "S003",
+      "kind": "video",
+      "version": "v0.2",
+      "review_status": "REVISE",
+      "filename": "S003_seedance_1_5_pro_v0.2.mp4",
+      "local_path": "outputs/videos/review/S003_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b066/Ej2hF4gnLligcl877uAON_video.mp4",
+      "storage_provider": "fal_provider_cdn",
+      "retention": "provider-managed; migrate approved media to durable object storage",
+      "git_tracked": false,
+      "sha256": "c99f62579fa131e333e5298f1bb197f6b27b8547ef318ac588c4c3c9845aca39",
+      "content_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "duration_seconds": 4.041667
+    },
+    {
+      "media_id": "S003_VIDEO_V0_3",
+      "shot_id": "S003",
+      "kind": "video",
+      "version": "v0.3",
+      "review_status": "REVISE",
+      "filename": "S003_seedance_1_5_pro_v0.3.mp4",
+      "local_path": "outputs/videos/review/S003_seedance_1_5_pro_v0.3.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b0bc/SSeqOjp9lRrRkB8Q6wnHO_video.mp4",
+      "storage_provider": "fal_provider_cdn",
+      "retention": "provider-managed; migrate approved media to durable object storage",
+      "git_tracked": false,
+      "sha256": "686c8c9e439bc97a7fde51fcc33c8ca1b097fd30a18295c67d9545004ba97898",
+      "content_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "duration_seconds": 4.041667
+    },
+    {
+      "media_id": "S003_VIDEO_V0_4", "shot_id": "S003", "kind": "video", "version": "v0.4", "review_status": "REVIEW", "filename": "S003_seedance_1_5_pro_v0.4.mp4", "local_path": "outputs/videos/review/S003_seedance_1_5_pro_v0.4.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b6cb/v0XkOutdx_GyNm83MflH7_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "8b0d5e3eaaaff32aaccb1d37336cc3d0d725efb16c375184c8422c591dc3ec2b", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S004_VIDEO_V0_2",
+      "shot_id": "S004",
+      "kind": "video",
+      "version": "v0.2",
+      "review_status": "REVIEW",
+      "filename": "S004_seedance_1_5_pro_v0.2.mp4",
+      "local_path": "outputs/videos/review/S004_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b361/4kFlG-XdoP5beot0Ft-8L_video.mp4",
+      "storage_provider": "fal_provider_cdn",
+      "retention": "provider-managed; migrate approved media to durable object storage",
+      "git_tracked": false,
+      "sha256": "f987028927648c6aa8385b8f596906576472f9558dcce72e76ed6e34c88477ba",
+      "content_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "duration_seconds": 4.041667,
+      "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S005_VIDEO_V0_2", "shot_id": "S005", "kind": "video", "version": "v0.2", "review_status": "REVISE",
+      "filename": "S005_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S005_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b3c3/oza-Im7nJjb5L80Y0fzo7_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "55337c15bfb2a678d990354f1964cc4eda7f784d03eb878a1fdd9ebf3a51504f", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S005_VIDEO_V0_4", "shot_id": "S005", "kind": "video", "version": "v0.4", "review_status": "REVIEW", "filename": "S005_seedance_1_5_pro_v0.4.mp4", "local_path": "outputs/videos/review/S005_seedance_1_5_pro_v0.4.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b6d0/dlBa3jMOiWsGy2z-Nq-l8_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "f5455ff9a6d97af5702dafd05ca5e21c4cbb855e702774a3f1d3da6a512d2793", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S006_VIDEO_V0_2", "shot_id": "S006", "kind": "video", "version": "v0.2", "review_status": "REVIEW",
+      "filename": "S006_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S006_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b3ca/RRjOKdxCXKsJ_Xwd0f88H_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "8fe6c70c1d37a296e90c4f5e4c912965d0febec5896683e4d6c762b9bb7d0925", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S007_VIDEO_V0_2", "shot_id": "S007", "kind": "video", "version": "v0.2", "review_status": "REVIEW",
+      "filename": "S007_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S007_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b3b9/K1aGjwqhqxo1MtspO4C-M_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "c2cdb5a35cf3f93d998f10ed8fd0a23356b51ef56a2e66f2b05e7c85d435ab99", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S008_VIDEO_V0_2", "shot_id": "S008", "kind": "video", "version": "v0.2", "review_status": "REVISE",
+      "filename": "S008_seedance_1_5_pro_v0.2.mp4", "local_path": "outputs/videos/review/S008_seedance_1_5_pro_v0.2.mp4",
+      "review_url": "https://v3b.fal.media/files/b/0aa8b3bf/ML8W3KehbOrLk8dtQ69Cj_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "ee256b6be8aa2e7fb0f90f1198c086e65d6e4290dee03bf6dedcc5e213d0dbdb", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S008_VIDEO_V0_3", "shot_id": "S008", "kind": "video", "version": "v0.3", "review_status": "REVIEW", "filename": "S008_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S008_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b4f7/7BbULzx81Gkkm0tKiahk6_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed; migrate approved media to durable object storage", "git_tracked": false, "sha256": "377b61df748daae0c2e8662d8459974ea051aa344a837cd37170c451878138c3", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S009_VIDEO_V0_3", "shot_id": "S009", "kind": "video", "version": "v0.3", "review_status": "REVISE", "filename": "S009_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S009_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b504/FEKjWVGh7SnMEJbLevu9f_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "a0450fffc981ef14ff9603c3c4f8c5addf64db90e158848719b7a7773b815d3b", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S010_VIDEO_V0_3", "shot_id": "S010", "kind": "video", "version": "v0.3", "review_status": "REVISE", "filename": "S010_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S010_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b4f8/LEXIFjNdCmdDlJKMGNEPL_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "db7ec15d372640ac81076f9f741b3ee4d54985795eec0569424a1a70cc307eab", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S011_VIDEO_V0_3", "shot_id": "S011", "kind": "video", "version": "v0.3", "review_status": "REVISE", "filename": "S011_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S011_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b518/Fap_Y6E-UIUMVzS8qhtJY_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "9a7e21b41fa46619507f99f02139c1810f85cccd5691fc932ec7a27fa239125c", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S012_VIDEO_V0_3", "shot_id": "S012", "kind": "video", "version": "v0.3", "review_status": "REVISE", "filename": "S012_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S012_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b51e/v_Me8e9KzTGn124NIkyTz_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "53f9266a02ca3d1ae272232fb0a1d4d55971ac7b68c0e7c32e2bfb6f622695aa", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S013_VIDEO_V0_3", "shot_id": "S013", "kind": "video", "version": "v0.3", "review_status": "REVISE", "filename": "S013_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S013_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b514/oQ8j3YTafKrAlnfC8maox_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "e359df267d324affc51b65d3fa1f5ff62f725b820a17d32e01601a77d603f84f", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S014_VIDEO_V0_3", "shot_id": "S014", "kind": "video", "version": "v0.3", "review_status": "REVISE", "filename": "S014_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S014_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b51a/nlKyZxtEsyOgjiW9Bw6Lw_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "4bf0278f8a99db64d212cc93cc16e1e85bddaa73ae9b4f4b5a95e4ff917ea931", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S015_VIDEO_V0_3", "shot_id": "S015", "kind": "video", "version": "v0.3", "review_status": "REVISE", "filename": "S015_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S015_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b52c/P-HCUHpzxE-TST6xgFe7n_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "233bcbf09529a26e426e255ebe1e82b15bb5cdfebc6d87c645d2f71b9e0e96d9", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {
+      "media_id": "S016_VIDEO_V0_3", "shot_id": "S016", "kind": "video", "version": "v0.3", "review_status": "REVISE", "filename": "S016_seedance_1_5_pro_v0.3.mp4", "local_path": "outputs/videos/review/S016_seedance_1_5_pro_v0.3.mp4", "review_url": "https://v3b.fal.media/files/b/0aa8b536/Awevjy1TjcPG1jCOurha9_video.mp4", "storage_provider": "fal_provider_cdn", "retention": "provider-managed", "git_tracked": false, "sha256": "f7ca42598aade7794aff5c56ac86f453794a3290f33e6eedfe96220a36520232", "content_type": "video/mp4", "width": 720, "height": 1280, "duration_seconds": 4.041667, "audio_mode": "silent_visual_pass"
+    },
+    {"media_id":"S009_VIDEO_V0_4","shot_id":"S009","kind":"video","version":"v0.4","review_status":"REVIEW","filename":"S009_seedance_1_5_pro_v0.4.mp4","local_path":"outputs/videos/review/S009_seedance_1_5_pro_v0.4.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bc55/MZBD7KJ4KNzP8POhvEyyp_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"6bc95e147cbd1965b3a9d1a8971c9a9a54b3411bd3f5cc36beac0ac14acf5b5e","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S010_VIDEO_V0_4","shot_id":"S010","kind":"video","version":"v0.4","review_status":"REVIEW","filename":"S010_seedance_1_5_pro_v0.4.mp4","local_path":"outputs/videos/review/S010_seedance_1_5_pro_v0.4.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bc69/YQZWCw0zuxytRuYncKtTO_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"23b28fbdc2861caa28d613d94188d228606137c0246fa39da4dcd473850eb330","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S011_VIDEO_V0_4","shot_id":"S011","kind":"video","version":"v0.4","review_status":"REVIEW","filename":"S011_seedance_1_5_pro_v0.4.mp4","local_path":"outputs/videos/review/S011_seedance_1_5_pro_v0.4.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bc6f/DDkbHvOV7Shzy_Y8Mlrcf_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"81ba9030a8cb451bef9340f2740228f12e6711bfc77ba11dbc1247dfeb83356d","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S012_VIDEO_V0_4","shot_id":"S012","kind":"video","version":"v0.4","review_status":"REVIEW","filename":"S012_seedance_1_5_pro_v0.4.mp4","local_path":"outputs/videos/review/S012_seedance_1_5_pro_v0.4.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bc8e/t3ASD-6FmRBoAPoXsj45J_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"f40684f248861fb80b24c75ec24d79abd08cce57bcdc004780d92e4d40bd8e48","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S013_VIDEO_V0_4","shot_id":"S013","kind":"video","version":"v0.4","review_status":"REVIEW","filename":"S013_seedance_1_5_pro_v0.4.mp4","local_path":"outputs/videos/review/S013_seedance_1_5_pro_v0.4.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bc7e/B3KECeIwcBKlhCpW6FT4E_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"de1ffdd971a399de7f4d3eec10eb2d67a409ca4a8c3d209b7011c3b2076ee485","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S014_VIDEO_V0_4","shot_id":"S014","kind":"video","version":"v0.4","review_status":"REVIEW","filename":"S014_seedance_1_5_pro_v0.4.mp4","local_path":"outputs/videos/review/S014_seedance_1_5_pro_v0.4.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bc9a/AUcg6FZyonMioz3mivVE1_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"d1e29da0a21caa478ac7173007703a7c9885d8605f70ccf0b7ee9d350b937e65","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S015_VIDEO_V0_4","shot_id":"S015","kind":"video","version":"v0.4","review_status":"REVISE","filename":"S015_seedance_1_5_pro_v0.4.mp4","local_path":"outputs/videos/review/S015_seedance_1_5_pro_v0.4.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bc8e/a4FJDRwF4ao6zB9Z5M3T7_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"d07c6589c97a2b903879039502d973edf920dc337a202b11f1d779f5cf9f0720","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S015_VIDEO_V0_5","shot_id":"S015","kind":"video","version":"v0.5","review_status":"REVIEW","filename":"S015_seedance_1_5_pro_v0.5.mp4","local_path":"outputs/videos/review/S015_seedance_1_5_pro_v0.5.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bcd0/a-VsYsIyHd0-V5c4y_tdp_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"3b22c992b38a0f9d6cda135f6409e518f91ccfbeda96f4400af38f31899b7450","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S016_VIDEO_V0_4","shot_id":"S016","kind":"video","version":"v0.4","review_status":"REVISE","filename":"S016_seedance_1_5_pro_v0.4.mp4","local_path":"outputs/videos/review/S016_seedance_1_5_pro_v0.4.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bc96/ukNUMeICpjFEy-jBYOS67_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"4550fc18d6a9692ba2bf83f142dc739103f270d66b50710f6bbcaab18ab7c604","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"},
+    {"media_id":"S016_VIDEO_V0_5","shot_id":"S016","kind":"video","version":"v0.5","review_status":"REVIEW","filename":"S016_seedance_1_5_pro_v0.5.mp4","local_path":"outputs/videos/review/S016_seedance_1_5_pro_v0.5.mp4","review_url":"https://v3b.fal.media/files/b/0aa8bcbf/YVP6kHa5wW14vwawjz06R_video.mp4","storage_provider":"fal_provider_cdn","retention":"provider-managed","git_tracked":false,"sha256":"f7561371793ded3e4aeccd83ac9c3428c830f1676cc37a7bb129317183cc7064","content_type":"video/mp4","width":720,"height":1280,"duration_seconds":4.041667,"audio_mode":"silent_visual_pass"}
+  ]
+}

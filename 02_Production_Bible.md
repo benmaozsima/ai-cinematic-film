@@ -1,6 +1,6 @@
 # Production Bible
 
-This file becomes active in Phase 3. Do not invent original-film content during Phase 1.
+This file is active for the approved 60-second original short. Phase 1 methodology records remain preserved in their original files.
 
 ## Rule
 
@@ -10,15 +10,17 @@ Approved designs are stable. Once an element is approved, preserve its descripti
 
 | ID | Name | Status | Description | Continuity Rules | References | Version |
 | --- | --- | --- | --- | --- | --- | --- |
-| STYLE_001 | TBD | IDEA | Reserved for master visual style | TBD | TBD | v0 |
+| STYLE_001 | Israeli neighborhood comedy realism | APPROVED | Naturalistic phone-first cinema in a modest, aging Israeli neighborhood; serious visual treatment supports warm absurdist comedy. | 9:16 master; 35mm environment/group feel, 50mm faces; warm pale morning exterior, cool hallway and warm party reveal; restrained contrast; natural skin; no logos or random readable text. | `assets/environments/LOC_001_reference_sheet_v0.1.png`, `assets/environments/LOC_002_party_apartment_sheet_v0.1.png` | v0.1 |
 
 ## Character Registry
 
 | ID | Role | Status | Description | Face/Hair/Body | Wardrobe | Palette | Continuity Rules | References | Version |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| CHAR_001 | Protagonist | DESIGNED | Older Israeli man, approximately 65-75, who leaves home every morning for a ritual visit to an absent friend. Quiet, precise and outwardly composed. | Natural, recognizable face; lean-to-average build; deliberate posture; neatly combed silver-gray hair; restrained expression that gradually reveals grief. Exact facial reference pending. | Dark wool trousers, pale button shirt, brown cardigan or jacket, polished black or dark-brown shoes, simple hat. Walking stick is a separate prop. | Charcoal, faded cream, dark brown, muted olive. No bright modern branding. | Wardrobe remains unchanged through the pilot; hat, shoes and stick must retain shape and materials; performance is economical and observant; no exaggerated expressions; face must remain natural and recognizable. | TBD | v0.1 |
-| CHAR_002 | Absent friend | DESIGNED | The friend CHAR_001 visits. He is absent in the present but appears through photographs, remembered gestures, handwriting and other people's conflicting memories. | Exact face not needed for the pilot; if shown, younger-looking than CHAR_001, warm eyes, expressive hands, slightly untidy dark hair. | Light work jacket, faded blue shirt, practical shoes; wardrobe should contrast with CHAR_001's careful formality. | Faded blue, rust, cream and warm wood. | Do not show CHAR_002 clearly until the story decision requires it. His presence is built from traces, not repeated full-body generations. Memories must remain visually distinct from present time. | TBD | v0.1 |
-| CHAR_003 | Search-party friend | DESIGNED | One of several adult friends who resemble the same ritual silhouette as CHAR_001 but have a different face and one comic personal prop. Male, ordinary, warm and overconfident. | Distinct face from CHAR_001; slightly rounder build; short gray-brown hair; expressive eyebrows. | Same base family as CHAR_001: pale shirt, dark brown cardigan, charcoal trousers and polished dark shoes. Optional small variation in collar or cardigan texture. Oversized everyday bag is the comic prop. | Cream, brown, charcoal and muted olive; no bright colors. | Group members share the wardrobe silhouette but must not become identical people. Face, height, posture and prop distinguish each member. The previous female portrait is exploratory/rejected, not a continuity reference. | TBD | v0.1 |
+| CHAR_001 | Shoko A / protagonist | APPROVED DIRECTION / IMAGE REVIEW | The first Shoko: an older Israeli man, approximately 65-75, who responds to another Shoko's silence by turning a simple check-in into a formal search. Quiet, precise, caring and comically serious. | Candidate natural face and silver-gray hair in valid reference sheet v0.2; lean-to-average build; deliberate posture. Exact v0.2 identity remains pending review. | Dark wool trousers, pale button shirt, brown cardigan or jacket, polished dark shoes, dark hat outdoors, wooden walking stick. | Charcoal, faded cream, dark brown, muted olive. No bright modern branding. | Identity, age, hair, wardrobe, hat, right-hand cane grip and measured performance remain stable if v0.2 is approved. `Shoko A` is an internal label; on screen he is simply Shoko. | `assets/characters/CHAR_001_reference_sheet_v0.2.png` (`REVIEW`); corrupt v0.1 assets preserved as history | v0.4 |
+| CHAR_002 | Shoko E / party host | APPROVED CONCEPT | The fifth Shoko, found alive at the final door hosting an after-party after leaving his phone on silent. Warm, socially effortless and genuinely surprised by the search. | Older Israeli man distinct from all searchers; exact canonical face reference still required before a close-up can be READY. | Yesterday's shirt, barefoot, sunglasses indoors for the reveal. | Faded blue, warm cream, party amber. | Must read immediately as male and as a distinct person; never reuse another searcher's face. Sunglasses appear only in the reveal. `Shoko E` is an internal label. | Party reference pending | v0.3 |
+| CHAR_003 | Shoko B / bag searcher | APPROVED CONCEPT | Male Shoko who joins immediately at the first door with an oversized everyday bag. Ordinary, warm and ready to treat the search as an official mission. | Distinct male face; slightly rounder build; short gray-brown hair; expressive eyebrows. | Shared pale shirt, brown cardigan, charcoal trousers, polished shoes and related dark hat. | Cream, brown, charcoal, muted olive. | Male. Oversized bag is his unique prop. The previous female portrait remains REJECTED and must never be used. `Shoko B` is an internal label. | `assets/characters/GROUP_SHOKO_v0.2.png`; individual reference pending | v0.3 |
+| CHAR_004 | Shoko C / coffee searcher | APPROVED CONCEPT | Male Shoko who joins from the cafe carrying coffee and a pastry and supplies the confident Eilat theory. | Distinct male face and slightly rumpled silhouette; individual reference pending. | Shared wardrobe family with a slightly rumpled cardigan and related dark hat. | Cream, brown, charcoal. | Coffee and pastry remain his unique props; no walking stick. `Shoko C` is an internal label. | `assets/characters/GROUP_SHOKO_v0.2.png`; individual reference pending | v0.2 |
+| CHAR_005 | Shoko D / key searcher | APPROVED CONCEPT | Male Shoko who joins with an absurdly large spare key and practical certainty. | Distinct narrow male face; individual reference pending. | Shared wardrobe family with the neatest practical fit and related dark hat. | Cream, brown, charcoal. | Giant key remains his unique prop; no walking stick. `Shoko D` is an internal label. | `assets/characters/GROUP_SHOKO_v0.2.png`; individual reference pending | v0.2 |
 
 ## Location Registry
 
@@ -26,6 +28,7 @@ Approved designs are stable. Once an element is approved, preserve its descripti
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | LOC_001 | The old neighborhood | DESIGNED | A modest Israeli neighborhood of aging apartment blocks, narrow sidewalks, low trees, small storefronts and shaded entrances. Familiar, lived-in and slightly worn. | The route loops through five connected spaces: CHAR_001's apartment entrance, a quiet sidewalk, a cafe frontage, a stairwell/courtyard and the green house. | Morning begins warm and pale; the final approach is cooler with longer shadows. | Concrete gray, faded cream, dusty green, muted red, dark brown and pale blue. | Architecture, street signs and major door colors remain fixed. Keep background extras sparse and non-distinct. | TBD | v0.1 |
 | LOC_002 | The green house | DESIGNED | A low, older house at the edge of the neighborhood, painted faded green with one red front door and a shaded entry. | Narrow path from sidewalk to door; one visible window; small front step; interior hall aligned with the door. | Exterior is cool late afternoon; interior is dim with one warm source deeper inside. | Faded green, oxidized red, dark wood, dusty glass and warm amber. | Green facade, red door, handle height, window count and entry step remain stable. | TBD | v0.1 |
+| LOC_003 | Shoko's party apartment | APPROVED | An ordinary older apartment transformed by a small after-party: cool hallway outside, warm crowded interior, haze, cups and one small speaker. | Tall apartment facade; hallway and closed door; doorway reveal; compact interior visible from the threshold. | Cool neutral hallway against warm amber party interior with restrained colored accents. | Concrete gray, warm amber, faded cream, muted red/blue accents. | Preserve door, handle, hallway and doorway geography. Party atmosphere begins only when the door opens. | `assets/environments/LOC_002_party_apartment_sheet_v0.1.png` (legacy filename; canonical ID is LOC_003) | v0.1 |
 
 ## Vehicle Registry
 
@@ -37,10 +40,28 @@ Approved designs are stable. Once an element is approved, preserve its descripti
 
 | ID | Name | Status | Description | Materials | Scale | Continuity Rules | References | Version |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| PROP_001 | TBD | IDEA | TBD | TBD | TBD | TBD | TBD | v0 |
+| PROP_001 | Shoko A's walking stick | APPROVED | Plain wooden walking stick with dark handle. | Dark wood | Adult cane | Shoko A only; preserve hand, handle and length. | `assets/props/PROP_reference_sheet_v0.1.png` | v0.2 |
+| PROP_002 | Shoko A's dark formal hat | APPROVED DIRECTION / IMAGE REVIEW | Restrained, slightly old-fashioned dark hat. | Dark felt | Adult | Same brim and crown in all exterior shots; Shoko A only. | `assets/characters/CHAR_001_reference_sheet_v0.2.png` (`REVIEW`) | v0.3 |
+| PROP_003 | Oversized everyday bag | DESIGNED | Comic but believable bag carried by CHAR_003. | Worn fabric/leather | Oversized | CHAR_003 only. | `assets/props/PROP_reference_sheet_v0.1.png` | v0.1 |
+| PROP_004 | Coffee and pastry | DESIGNED | Takeaway coffee and small pastry carried by Shoko C. | Paper cup, pastry bag | Handheld | CHAR_004 only; maintain hand continuity. | `assets/props/PROP_reference_sheet_v0.1.png` | v0.2 |
+| PROP_005 | Giant spare key | DESIGNED | Plausible but comically oversized old spare key carried by Shoko D. | Aged metal | Oversized hand prop | CHAR_005 only. | `assets/props/PROP_reference_sheet_v0.1.png` | v0.2 |
 
 ## Decision Log
 
 | ID | Date | Decision | Reason | Status |
 | --- | --- | --- | --- | --- |
 | DEC_001 | 2026-08-28 | Do not develop original story until Phase 1 methodology work is complete enough. | Prevents copying the reference and keeps production method separate from creative design. | Approved |
+| DEC_004 | 2026-08-29 | Use `The Search Party` Israeli-comedy direction as the active concept. | Ben selected the comedy direction; the earlier serious treatment remains preserved as a prior branch. | Approved |
+| DEC_005 | 2026-08-29 | Produce a 60-second finished short. | Ben selected a fixed 60-second target rather than the existing longer versions. | Approved |
+| DEC_006 | 2026-08-29 | Shoko and the search-party characters are male. | The group should retain the male `Adon Shoko` recognition signal. The rejected female exploration remains noncanonical. | Approved |
+| DEC_007 | 2026-08-29 | Use a clear structural homage to `Adon Shoko`. | Recognition should come from preparation, visits, doors and the growing group, while all protected creative expression remains original. | Approved |
+| DEC_008 | 2026-08-29 | Approve the after-party story and four-searcher group. | Ben approved the proposed plot and cast structure. | Approved |
+| DEC_009 | 2026-08-29 | Approve Yossi and the existing visual direction. | Ben approved Yossi and authorized pre-production to begin. | Approved |
+| DEC_010 | 2026-08-29 | Start with a 60-second conform and dry-run preparation only. | The production can begin, but no exact paid Fal operation or cost has yet been approved. | Approved |
+| DEC_011 | 2026-08-29 | Publish the production dashboard publicly without authentication. | Ben confirmed that the dashboard is not sensitive and requested the simplest internet access. | Approved |
+| DEC_012 | 2026-08-30 | Every principal man is named Shoko on screen. | The five distinct men retain persistent `CHAR_###` IDs and internal Shoko A-E labels, while the shared spoken name supplies the clear `Adon Shoko` homage. The former Yossi, Moti and Avi labels are superseded. | Approved |
+## Audio and performance continuity
+
+The audio bible is part of the production canon and is maintained in \`36_Audio_LipSync_Contract_v0.1.md\`. Each recurring character receives a stable \`speaker_id\` and versioned voice reference. Record or approve the exact Hebrew dialogue before lip-sync; preserve pronunciation, pauses, emphasis, emotional intention and vocal age. Keep dialogue and voice separate from generated visuals so the same character can be redubbed in another language or future film.
+
+The default finishing order is: picture lock → dialogue/voice → ambience and Foley/SFX → music → final mix and subtitles. Background music is not baked into early generation tests and is never used to hide missing dialogue. Visible speech is blocked until the lip-sync QC passes.

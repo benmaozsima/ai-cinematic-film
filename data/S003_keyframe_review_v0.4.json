@@ -1,0 +1,20 @@
+{
+  "shot_id": "S003",
+  "asset_type": "keyframe",
+  "version": "v0.4",
+  "status": "REVIEW",
+  "filename": "S003_real_v0.4.png",
+  "local_path": "assets/keyframes/S003_real_v0.4.png",
+  "sha256": "e1f1230d7fd59cba659d0898eb5e6a553ff992853720add812ec55d7428fda6a",
+  "dimensions": "941x1672",
+  "color_mode": "RGB",
+  "generation_method": "OpenAI built-in image_gen edit using S003_real_v0.2 as identity/composition reference",
+  "review_findings": {
+    "phone_front_display": true,
+    "full_face_visible": true,
+    "hat_and_cane_visible_on_table": true,
+    "crop_or_reframe": false,
+    "hebrew_or_rendered_subtitles": false
+  },
+  "constraints": "Preserve original full framing and CHAR_001 identity; edit only phone orientation; no crop, zoom, reframe, extra props or people."
+}

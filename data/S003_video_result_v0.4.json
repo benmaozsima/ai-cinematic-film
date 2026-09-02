@@ -1,0 +1,38 @@
+{
+  "shot_id": "S003",
+  "version": "v0.4",
+  "status": "REVIEW",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b6cb/v0XkOutdx_GyNm83MflH7_video.mp4",
+  "filename": "S003_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "8b0d5e3eaaaff32aaccb1d37336cc3d0d725efb16c375184c8422c591dc3ec2b",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S003_real_v0.4.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue/lip-sync separate; no music",
+  "prompt": "Animate only one controlled beat: CHAR_001 looks at the phone whose front glass display clearly faces camera, then places the phone screen-up on the table. Keep the full original framing with his entire face and upper body visible, black hat and wooden walking stick on table. After placing the phone, he puts on the hat and lifts the cane, ending seated/standing in the same room without leaving. Preserve exact identity, wardrobe, apartment and warm light. Locked camera. No phone back shown, no reversed display, no crop, no zoom, no extra people, no duplicate props, no extra fingers, no text, no Hebrew, no subtitles, no logos, no watermark, no audio, no music."
+}

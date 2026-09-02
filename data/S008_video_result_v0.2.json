@@ -1,0 +1,46 @@
+{
+  "shot_id": "S008",
+  "version": "v0.2",
+  "status": "REVISE",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b3bf/ML8W3KehbOrLk8dtQ69Cj_video.mp4",
+  "filename": "S008_seedance_1_5_pro_v0.2.mp4",
+  "sha256": "ee256b6be8aa2e7fb0f90f1198c086e65d6e4290dee03bf6dedcc5e213d0dbdb",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; add approved Hebrew voice/dialogue and lip-sync in post; no music",
+  "continuity_qc": [
+    "four distinct male identities",
+    "each unique prop stays assigned",
+    "formation matches S009 entrance",
+    "no visible dialogue; key jingle reserved for post"
+  ],
+  "agent_review": {
+    "decision": "REVISE",
+    "reason": "Late sampled frames introduce duplicate/extra male figures and weaken the required four-person formation. Do not use as canonical S008 until regenerated with a stricter four-person count gate."
+  }
+}

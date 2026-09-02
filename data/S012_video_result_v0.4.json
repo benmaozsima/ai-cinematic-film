@@ -1,0 +1,25 @@
+{
+  "shot_id": "S012",
+  "version": "v0.4",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "CHAR_001, older man in black fedora, raises his wooden cane and knocks once on the closed black apartment door. CHAR_003, CHAR_004 and CHAR_005 wait behind him with oversized bag, coffee and pastry, and giant key. Camera holds; all four remain outside. Preserve identity and realistic hands. No extras or text.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bc6f/xceBacwzYRLdHNdb0Xru5_S012_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bc6f/xceBacwzYRLdHNdb0Xru5_S012_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bc8e/t3ASD-6FmRBoAPoXsj45J_video.mp4",
+  "filename": "S012_seedance_1_5_pro_v0.4.mp4",
+  "local_path": "outputs/videos/review/S012_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "f40684f248861fb80b24c75ec24d79abd08cce57bcdc004780d92e4d40bd8e48",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED"
+}

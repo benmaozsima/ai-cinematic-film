@@ -382,3 +382,6 @@ Next immediate work:
 1. Finish technical consistency/control research.
 2. Build Fal dry-run/cost-control runner.
 3. Then begin original concept development.
+# Speech visibility gate
+
+Before video generation, classify every dialogue beat as `none`, `offscreen` or `visible_speaker`. Offscreen lines can be recorded and mixed in post. A visible speaker requires an approved voice recording, timing data and a dedicated audio-driven lip-sync pass after the visual clip is locked; subtitles or dialogue metadata alone do not satisfy the gate. See `36_Audio_LipSync_Contract_v0.1.md`.

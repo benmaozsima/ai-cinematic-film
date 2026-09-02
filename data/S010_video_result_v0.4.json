@@ -1,0 +1,25 @@
+{
+  "shot_id": "S010",
+  "version": "v0.4",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "request": {
+    "prompt": "The same four older male Shokos walk together and exchange a knowing look, subtle natural head turns and steps. Preserve CHAR_001 black fedora and cane, CHAR_003 oversized bag, CHAR_004 coffee and pastry, CHAR_005 giant spare key. Locked medium tracking shot, no identity drift, no women or extras, no text.",
+    "image_url": "https://v3b.fal.media/files/b/0aa8bc5d/RkW2w7jaoN-Q-xwW3tAWd_S010_real_v0.1.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "9:16",
+    "generate_audio": false,
+    "camera_fixed": false
+  },
+  "uploaded_reference_url": "https://v3b.fal.media/files/b/0aa8bc5d/RkW2w7jaoN-Q-xwW3tAWd_S010_real_v0.1.png",
+  "review_url": "https://v3b.fal.media/files/b/0aa8bc69/YQZWCw0zuxytRuYncKtTO_video.mp4",
+  "filename": "S010_seedance_1_5_pro_v0.4.mp4",
+  "local_path": "outputs/videos/review/S010_seedance_1_5_pro_v0.4.mp4",
+  "sha256": "23b28fbdc2861caa28d613d94188d228606137c0246fa39da4dcd473850eb330",
+  "width": 720,
+  "height": 1280,
+  "duration_seconds": 4.041667,
+  "audio_mode": "silent_visual_pass",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_REQUIRED"
+}

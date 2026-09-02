@@ -1,0 +1,36 @@
+{
+  "shot_id": "S003",
+  "scene_id": "SCENE_001_OPENING",
+  "version": "v0.2",
+  "quality_tier": "controlled_continuity_test",
+  "mode": "image_to_video",
+  "model_key": "seedance_1_5_pro_i2v",
+  "duration_seconds": 4,
+  "aspect_ratio": "9:16",
+  "resolution": "720p",
+  "generate_audio": false,
+  "camera_fixed": false,
+  "seed": 19003,
+  "prompt": "Continue the exact same elderly Israeli man from the supplied start frame and CHAR_001 reference. He briefly looks at the phone in his hand showing generic unanswered-call indicators, lowers it, then makes one clear controlled reach toward the black hat and wooden walking stick on the table as he prepares to leave. Preserve the exact face, age, silver-gray hair, cream shirt, brown cardigan, apartment, warm restrained morning light, serious composed expression and vertical framing. One minimal straight push-in only, no pan, tilt, roll or handheld shake. Exactly one adult man and no other people. The hat is off his head at the start and ends ready to wear; the wooden walking stick remains one object. No readable phone text, no Hebrew rendered in the image, no subtitles, no logos, no watermark, no women, no girls, no children, no beard, no moustache, no younger face, no wardrobe change, no duplicate phone, hat or cane, no extra fingers or limbs, no morphing.",
+  "references": {
+    "start_frame_url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S003_real_v0.2.png",
+    "end_frame_url": null,
+    "reference_image_urls": []
+  },
+  "budget": {
+    "max_cost_usd": 0.12,
+    "estimated_cost_usd": 0.10368,
+    "dry_run": false,
+    "require_approval_before_execute": true,
+    "approval_status": "EXPLICIT_USER_APPROVED_UP_TO_0.12_USD"
+  },
+  "metadata": {
+    "provider": "fal",
+    "model_id": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+    "pricing_verified_date": "2026-09-01",
+    "start_frame_sha256": "ce100e04e34e3121b54bda09c2e06e106b82e575c41529883eaa48e620ee25a2",
+    "edit_plan": "Generate 4 seconds and use the full canonical 4-second edit duration after QC.",
+    "audio_plan": "Generate silently; add the exact Hebrew dialogue in post/HTML transcript, plus phone buzz stop, cane lift and room tone.",
+    "continuity_plan": "Hard cut from S002 mirror to phone/medium. End with hat and cane ready for S004 exterior rear-follow."
+  }
+}

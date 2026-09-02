@@ -1,0 +1,38 @@
+{
+  "shot_id": "S013",
+  "version": "v0.3",
+  "status": "REVISE",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b514/oQ8j3YTafKrAlnfC8maox_video.mp4",
+  "filename": "S013_seedance_1_5_pro_v0.3.mp4",
+  "sha256": "e359df267d324affc51b65d3fa1f5ff62f725b820a17d32e01601a77d603f84f",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S023_party_door_reveal_v0.1.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue and lip-sync separate; no music",
+  "prompt": "The door opens to reveal CHAR_002, an adult male Shoko host, barefoot with sunglasses, inside a warm after-party apartment. Four arriving male Shokos remain outside. Exactly five adult men total, no women or children, no duplicates, no prop swaps, no text, no subtitles, no audio, vertical doorway reveal."
+}

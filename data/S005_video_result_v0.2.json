@@ -1,0 +1,48 @@
+{
+  "shot_id": "S005",
+  "version": "v0.2",
+  "status": "REVISE",
+  "repair_keyframe": {"filename": "S005_real_v0.3.png", "url": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S005_real_v0.3.png", "sha256": "55be29677bb24fd83e5cbd6b4a2aa51dcfd1f292c150f09c8e0c1ecf7bfe01ce"},
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b3c3/oza-Im7nJjb5L80Y0fzo7_video.mp4",
+  "filename": "S005_seedance_1_5_pro_v0.2.mp4",
+  "sha256": "55337c15bfb2a678d990354f1964cc4eda7f784d03eb878a1fdd9ebf3a51504f",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; add approved Hebrew voice/dialogue and lip-sync in post; no music",
+  "continuity_qc": [
+    "voice asset and Hebrew timing approved before visible speech",
+    "two distinct male faces only",
+    "door axis and cane continuity",
+    "lip-sync pass required before READY",
+    "REVISE: late frames move CHAR_001 across the doorway threshold; he must remain outside through the full shot"
+  ],
+  "agent_review": {
+    "decision": "REVISE",
+    "reason": "The doorway conversation begins correctly, but CHAR_001 steps toward/over the threshold in late frames. The story requires him to remain outside, speak briefly, then cut to CHAR_003 exiting in S006."
+  }
+}

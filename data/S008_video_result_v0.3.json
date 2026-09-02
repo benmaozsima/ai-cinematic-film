@@ -1,0 +1,38 @@
+{
+  "shot_id": "S008",
+  "version": "v0.3",
+  "status": "REVIEW",
+  "provider": "fal.ai",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "generation_date": "2026-09-01",
+  "review_url": "https://v3b.fal.media/files/b/0aa8b4f7/7BbULzx81Gkkm0tKiahk6_video.mp4",
+  "filename": "S008_seedance_1_5_pro_v0.3.mp4",
+  "sha256": "377b61df748daae0c2e8662d8459974ea051aa344a837cd37170c451878138c3",
+  "source_keyframe": "https://benmaozsima.github.io/ai-cinematic-film/assets/keyframes/S008_real_v0.2.png",
+  "request_parameters": {
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "generate_audio": false,
+    "aspect_ratio": "9:16",
+    "camera_fixed": true
+  },
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "24/1"
+      }
+    ],
+    "format": {
+      "duration": "4.041667"
+    }
+  },
+  "audio_policy": "silent visual pass; dialogue and lip-sync are a separate approved post stage; no music",
+  "prompt": "Four distinct adult male Shokos only. Preserve CHAR_001 hat and cane, CHAR_003 oversized bag, CHAR_004 coffee and pastry, and CHAR_005 one giant spare key. Keep exactly four men throughout; hold a clean four-person formation at the doorway, no duplicates, no extra people, no women or children, no prop swaps, no text, no subtitles, no music, no audio. Locked vertical camera."
+}

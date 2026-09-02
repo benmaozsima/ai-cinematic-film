@@ -6,11 +6,22 @@ Goal: reverse-engineer high-quality cinematic AI film methodology, then use the 
 
 Core principle: consistency matters more than impressive isolated shots.
 
+The public production portal is the user-facing canonical review interface: [open the portal](https://benmaozsima.github.io/ai-cinematic-film/dashboard/). It exposes the same character locks, shot statuses, prompts, review gates, and rejected-history policy as the repository; Git remains the immutable backing history.
+
+## Media Storage Policy
+
+Git stores code, prompts, shot packs, manifests, hashes, review decisions and lightweight production references. Generated video, audio, frame sequences, edit caches and delivery masters are never tracked in Git.
+
+- Local generated media lives under the ignored `outputs/` directory.
+- Shared review media lives in external object storage or the provider CDN.
+- `data/media_registry_v0.1.json` maps stable media IDs to local paths, external review URLs, hashes and retention status.
+- The dashboard resolves review media through the registry. A storage provider can change without changing the shot IDs or production data.
+
 ## Current Phase
 
-Phase 1: Reverse Engineering
+Original short pre-production: screenplay and shot lock for the approved 60-second, 9:16 Israeli comedy `The Search Party`.
 
-Initial reference: AI-generated Red Alert 2 cinematic credited online to lyxw1327 / Douyin, often reshared as a cinematic AI film or "22 Minutes".
+The Red Alert 2 cinematic credited online to lyxw1327 / Douyin remains a methodology reference only. Its Phase 1 analysis is preserved; its creative content is not a source for the original short.
 
 ## Workspace Files
 
@@ -20,6 +31,25 @@ Initial reference: AI-generated Red Alert 2 cinematic credited online to lyxw132
 - `03_Shot_Database.md` - structured shot database template.
 - `04_Research_Log.md` - source log with confirmed / inferred / speculative findings.
 - `05_Experiment_Log.md` - generation experiment tracking template.
+- `32_Short_Film_Screenplay_v0.3_60s.md` - active canonical 60-second screenplay.
+- `33_Shot_List_v0.2_60s.md` - active canonical 60-second shot list.
+- `34_Visual_Review_Pack_001.md` - visual review board with a working one-page storyboard and a legacy-raster integrity warning.
+- `35_CODEX_HANDOFF.md` - authoritative continuation brief, next image task, safety gates, and a copy/paste prompt for Codex.
+ - `36_Audio_LipSync_Contract_v0.1.md` - canonical dialogue-visibility, voice, lip-sync and audio-routing contract for this and future films.
+ - `37_Transition_Continuity_Contract_v0.1.md` - endpoint handoffs, match devices, sound bridges and minimal-edit rules for seamless shot assembly.
+- `assets/characters/CHAR_001_reference_sheet_v0.2.png` - first valid generated Shoko A identity/wardrobe reference, currently in `REVIEW`.
+- `assets/review/OPENING_PREVIS_v0.1.png` - directly viewable S001-S004 opening pass with action, dialogue and sound.
+- `assets/review/JOINING_PREVIS_v0.1.png` - directly viewable S005-S008 friends-join pass with dialogue, props and sound.
+- `assets/review/MARCH_PREVIS_v0.1.png` - directly viewable S009-S012 march-to-door pass with dialogue and suspense sound.
+- `dashboard/` - static, phone-friendly production dashboard with visuals, all 16 shots, dialogue, status and approval gates.
+- `data/media_registry_v0.1.json` - versioned registry for generated media stored outside Git.
+- `data/sequence_review_v0.1.json` - recorded continuity review of the current assembled opening and its next-action gate.
+- `data/S004_S008_preparation_pack_v0.1.json` - costed, transition-aware preparation pack through shot S008; no paid requests submitted.
+- `assets/review/PRODUCTION_DASHBOARD_v0.1.png` - preserved first dashboard preview.
+- `assets/review/PRODUCTION_DASHBOARD_v0.2.png` - preserved dashboard preview through S005-S008.
+- `assets/review/PRODUCTION_DASHBOARD_v0.3.png` - current full-page dashboard preview including S009-S012.
+
+Dialogue is tracked separately from visuals: exact Hebrew stays selectable in the portal, while visible speaking shots require an approved voice asset and a dedicated lip-sync pass. Silent/offscreen dialogue may use post-production audio. This rule is defined in `36_Audio_LipSync_Contract_v0.1.md` and applies to future projects built from this workspace.
 
 ## Evidence Rules
 
