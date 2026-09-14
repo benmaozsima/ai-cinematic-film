@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788375092705,
+      "tag": "0000_zippy_mother_askani",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788508800000,
+      "tag": "0001_film_os_durable_platform",
+      "breakpoints": true
+    }
+  ]
+}

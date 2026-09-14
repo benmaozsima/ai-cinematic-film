@@ -3,3 +3,14 @@ __pycache__/
 *.pyc
 outputs/
 .portal/
+
+# Local Frameforge Studio runtime data and dependencies
+frameforge-studio/node_modules/
+frameforge-studio/studio-data/
+frameforge-studio/.env
+frameforge-studio/.env.*
+!frameforge-studio/.env.example
+frameforge-studio/backups/
+frameforge-studio/public/*.mp4
+production-portal/node_modules/
+frameforge-screening/node_modules/

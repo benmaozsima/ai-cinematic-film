@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Frameforge — הקרנת סרטים</title>
+    <meta name="description" content="הקרנת סרטים קצרים שנוצרו ב־Frameforge." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="login" id="login" aria-labelledby="login-title">
+      <div class="login-card">
+        <p class="eyebrow">FRAMEFORGE · SCREENING ACCESS</p>
+        <h1 id="login-title">כניסה להקרנה</h1>
+        <p>הכניסו את פרטי הצפייה שקיבלתם.</p>
+        <form id="login-form">
+          <label for="username">משתמש</label>
+          <input id="username" name="username" autocomplete="username" required />
+          <label for="password">סיסמה</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+          <button type="submit">כניסה</button>
+          <p id="login-error" class="login-error" role="alert" hidden>פרטי הכניסה אינם נכונים.</p>
+        </form>
+      </div>
+    </section>
+    <main><a class="download" href="https://cruz-off-sport-asked.trycloudflare.com/">חזרה לפורטל הראשי</a>
+      <p class="eyebrow">FRAMEFORGE · FILM SCREENING</p>
+      <h1>הקרנת סרטים</h1>
+      <p class="lede">סרטים קצרים שנוצרו בשלבים, עם גרסה נבחרת וקישור הורדה ברור.</p>
+      <section class="film-block" aria-labelledby="noa-title">
+        <h2 id="noa-title">ניסוי — סרט קצר</h2>
+        <p>נועה חוזרת לדירת ילדותה ומגלה הקלטה שמשנה את זיכרונה האחרון מאמה.</p>
+        <div class="screening" aria-label="נגן סרט הניסוי">
+        <video controls preload="metadata" poster="assets/poster.jpg">
+          <source src="assets/noa-remembers.mp4" type="video/mp4" />
+          <track kind="subtitles" srclang="he" label="עברית" src="assets/noa-remembers.he.srt" default />
+          הדפדפן שלך אינו תומך בהפעלת וידאו.
+        </video>
+        </div>
+        <div class="details">
+        <p><strong>15 שניות</strong><span> · </span>16:9<span> · </span>24fps<span> · </span>עברית</p>
+          <a class="download" href="assets/noa-remembers.mp4" download>הורדת הסרט MP4</a>
+        </div>
+      </section>
+      <section class="film-block" aria-labelledby="hero-title">
+        <h2 id="hero-title">פעימה אחרונה — גיבורי־על</h2>
+        <p>קרב קצר בעיר רטובה: פעימת כוח לבנה־סגולה מוחקת את העיר, ואז את העולם.</p>
+        <div class="screening" aria-label="נגן סרט גיבורי־העל">
+          <video controls preload="metadata">
+            <source src="assets/superhero-pulse.mp4" type="video/mp4" />
+            הדפדפן שלך אינו תומך בהפעלת וידאו.
+          </video>
+        </div>
+        <div class="details">
+          <p><strong>15 שניות</strong><span> · </span>16:9<span> · </span>24fps<span> · </span>סאונד מובנה</p>
+          <a class="download" href="assets/superhero-pulse.mp4" download>הורדת הסרט MP4</a>
+        </div>
+      </section>
+      <p class="note">כל סרט נשמר כגרסה נפרדת, עם היסטוריית הפקה וקובץ MP4 להורדה.</p>
+    </main>
+    <script>
+      (() => {
+        const gate = document.getElementById('login');
+        const form = document.getElementById('login-form');
+        const error = document.getElementById('login-error');
+        const unlock = () => { gate.hidden = true; document.querySelector('main').hidden = false; };
+        if (sessionStorage.getItem('frameforge-screening-auth') === 'Ben') unlock();
+        else document.querySelector('main').hidden = true;
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const data = new FormData(form);
+          if (data.get('username') === 'Ben' && data.get('password') === 'ben') {
+            sessionStorage.setItem('frameforge-screening-auth', 'Ben');
+            error.hidden = true;
+            unlock();
+          } else error.hidden = false;
+        });
+      })();
+    </script>
+  </body>
+</html>
