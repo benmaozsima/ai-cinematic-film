@@ -10,7 +10,8 @@ const S = await import('../server/store.mjs'),
   M = await import('../server/models.mjs'),
   media = await import('../server/media.mjs'),
   G = await import('../server/generation.mjs'),
-  E = await import('../server/export.mjs');
+  E = await import('../server/export.mjs'),
+  audio = await import('../shared/audio-role.mjs');
 after(() => {
   S.db.close();
   rmSync(tmp, { recursive: true, force: true });
@@ -36,6 +37,21 @@ void test('separate films never share scenes, shots, or references', () => {
     () => S.addShot(other.id, { title: 'Invalid', sceneId: film.scenes[0].id }),
     /not found/,
   );
+});
+void test('audio cut mapping preserves dialogue/music/sfx roles and gains', () => {
+  assert.deepEqual(audio.audioTrackSettings({ audioRole: 'dialogue' }), {
+    role: 'dialogue',
+    gain: 1,
+  });
+  assert.deepEqual(audio.audioTrackSettings({ audioRole: 'music' }), {
+    role: 'music',
+    gain: 0.25,
+  });
+  assert.deepEqual(audio.audioTrackSettings({ audioRole: 'sfx' }), {
+    role: 'sfx',
+    gain: 1,
+  });
+  assert.deepEqual(audio.audioTrackSettings({}), { role: 'sfx', gain: 1 });
 });
 void test('shot reorder rejects missing and duplicate ids without changing state', () => {
   const revision = S.getFilm(film.id).revision;
@@ -189,7 +205,7 @@ void test('FAL adapters map speech, native sound, music and lipsync with verifie
     video_url: 'asset:v',
     audio_url: 'asset:a',
   });
-  assert.equal(sync.sync_mode, 'cut_off');
+  assert.equal(sync.sync_mode, 'silence');
 });
 void test('generation never submits without a key and explicit cost confirmation', () => {
   const key = process.env.FAL_KEY;
@@ -259,6 +275,73 @@ void test('replacement preserves trim, order, and earlier versions; final gate d
   film = S.editShot(film.id, shot.id, { duration: 2 });
   assert.throws(() => E.startExport(film.id, { final: true }), /exceeds/);
   film = S.editShot(film.id, shot.id, { duration: 1 });
+});
+void test('muting a shot original audio keeps the video but excludes its sound from export', async () => {
+  let film = S.createFilm({ title: 'Muted audio test' });
+  film = S.addScene(film.id, { title: 'Studio' });
+  film = S.addShot(film.id, { title: 'Muted shot', sceneId: film.scenes[0].id, duration: 1 });
+  const shot = film.shots[0];
+  const p = resolve(tmp, 'native-audio.mp4');
+  await media.run('ffmpeg', [
+    '-v',
+    'error',
+    '-y',
+    '-f',
+    'lavfi',
+    '-i',
+    'color=c=black:s=160x90:d=1',
+    '-f',
+    'lavfi',
+    '-i',
+    'sine=frequency=1000:sample_rate=48000:duration=1',
+    '-shortest',
+    '-c:v',
+    'libx264',
+    '-c:a',
+    'aac',
+    p,
+  ]);
+  film = await media.importAsset(
+    film.id,
+    shot.id,
+    Readable.from(readFileSync(p)),
+    'native-audio.mp4',
+  );
+  const native = film.versions.at(-1);
+  assert.equal(native.hasAudio, true);
+  film = approve(film, native);
+  film = S.selectVersion(film.id, shot.id, native.id);
+  film = S.editShot(film.id, shot.id, { originalAudioMuted: true });
+  assert.equal(film.shots[0].originalAudioMuted, true);
+  const job = E.startExport(film.id, { final: false });
+  let out;
+  for (let i = 0; i < 100; i++) {
+    out = E.listExports(film.id).find((e) => e.id === job.id);
+    if (out.status !== 'rendering') break;
+    await new Promise((r) => setTimeout(r, 100));
+  }
+  assert.equal(out.status, 'complete', out.error);
+  const wav = resolve(tmp, 'muted-export.pcm');
+  await media.run('ffmpeg', [
+    '-v',
+    'error',
+    '-y',
+    '-i',
+    resolve(E.EXPORTS, job.id, 'film.mp4'),
+    '-vn',
+    '-ac',
+    '1',
+    '-ar',
+    '8000',
+    '-f',
+    's16le',
+    wav,
+  ]);
+  const samples = readFileSync(wav);
+  let peak = 0;
+  for (let i = 0; i + 1 < samples.length; i += 2)
+    peak = Math.max(peak, Math.abs(samples.readInt16LE(i)));
+  assert.ok(peak < 64, `muted export retained audible samples (peak ${peak})`);
 });
 void test('production archive includes immutable prompts, decisions, source hashes, and version history', () => {
   const archive = E.manifest(film.id);

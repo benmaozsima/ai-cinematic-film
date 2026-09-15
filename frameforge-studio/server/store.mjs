@@ -56,7 +56,7 @@ export function mutate(id, action, fn) {
       for (const shot of f.shots) {
         const before = beforeCut.find(s => s.id === shot.id);
         if (!before) continue;
-        for (const key of ['selectedVersionId','order','trimIn','duration']) {
+        for (const key of ['selectedVersionId','order','trimIn','duration','originalAudioMuted']) {
           const previous = before[key] ?? null, next = shot[key] ?? null;
           if (previous !== next) changes.push({shotId:shot.id,key,before:previous,after:next});
         }
@@ -353,6 +353,7 @@ export function addShot(id, b) {
       continuity: b.continuity || '',
       duration: number(b.duration || 5, 0.1, 600, 'Duration'),
       trimIn: 0,
+      originalAudioMuted: false,
       entityIds: [],
       selectedVersionId: null,
       order: f.shots.length,
@@ -386,6 +387,11 @@ export function editShot(id, sid, b) {
       s.duration = number(b.duration, 0.1, 600, 'Duration');
     if (b.trimIn !== undefined)
       s.trimIn = number(b.trimIn, 0, 36000, 'Trim in');
+    if (b.originalAudioMuted !== undefined) {
+      if (typeof b.originalAudioMuted !== 'boolean')
+        fail('Original audio mute must be true or false.');
+      s.originalAudioMuted = b.originalAudioMuted;
+    }
     if (b.captions !== undefined) {
       if (!Array.isArray(b.captions) || b.captions.length > 100)
         fail('Invalid caption list.');

@@ -94,7 +94,7 @@ export function startExport(id, b) {
   writeFileSync(
     resolve(dir, 'cut.csv'),
     [
-      'shot,version,source,in_seconds,duration_seconds',
+      'shot,version,source,in_seconds,duration_seconds,original_audio_muted',
       ...shots.map((s) =>
         [
           s.code,
@@ -102,6 +102,7 @@ export function startExport(id, b) {
           f.versions.find((v) => v.id === s.selectedVersionId).localPath,
           s.trimIn,
           s.duration,
+          Boolean(s.originalAudioMuted),
         ].join(','),
       ),
     ].join('\n'),
@@ -131,7 +132,9 @@ async function render(f, shots, rec, dir) {
         v.kind === 'image'
           ? ['-loop', '1', '-i', file]
           : ['-ss', String(s.trimIn), '-i', file];
-      if (!v.hasAudio || v.kind === 'image')
+      const includeOriginalAudio =
+        v.hasAudio && v.kind !== 'image' && !s.originalAudioMuted;
+      if (!includeOriginalAudio)
         inputs.push('-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=stereo');
       const out = resolve(dir, `part-${index++}.mp4`);
       await run(
@@ -145,7 +148,7 @@ async function render(f, shots, rec, dir) {
           '-map',
           '0:v:0',
           '-map',
-          v.hasAudio && v.kind !== 'image' ? '0:a:0' : '1:a:0',
+          includeOriginalAudio ? '0:a:0' : '1:a:0',
           '-t',
           String(s.duration),
           '-vf',

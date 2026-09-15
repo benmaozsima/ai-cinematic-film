@@ -117,7 +117,9 @@ export const MODELS = [
     'Lip-sync',
     'video',
     'Combine a silent picture version with a separately approved dialogue recording.',
-    { model: 'lipsync-2', sync_mode: 'cut_off' },
+    // Dialogue clips are commonly shorter than their picture edit. Keep the
+    // approved picture duration and pad the remaining audio with silence.
+    { model: 'lipsync-2', sync_mode: 'silence' },
     ['video_url', 'audio_url'],
     null,
   ),

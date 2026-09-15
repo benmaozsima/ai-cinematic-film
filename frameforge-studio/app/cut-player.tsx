@@ -23,7 +23,7 @@ export function CutPlayer({ film }: { film: Film }) {
   const editSignature = film.shots
     .map(
       (s) =>
-        `${s.id}:${s.selectedVersionId}:${s.duration}:${s.trimIn}:${s.order}`,
+        `${s.id}:${s.selectedVersionId}:${s.duration}:${s.trimIn}:${s.order}:${Boolean(s.originalAudioMuted)}`,
     )
     .join('|');
   const clip =
@@ -119,6 +119,7 @@ export function CutPlayer({ film }: { film: Film }) {
               key={clipKey}
               ref={video}
               src={media(clip.version)}
+              muted={Boolean(clip.originalAudioMuted)}
               playsInline
               preload="auto"
               onWaiting={() => setBuffering(true)}

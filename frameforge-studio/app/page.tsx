@@ -1,6 +1,7 @@
 'use client';
 import { AssetViewBuilder } from './asset-view-builder';
 import { ASSET_VIEWS } from '../shared/asset-views.mjs';
+import { audioTrackSettings } from '../shared/audio-role.mjs';
 import { VersionLibrary } from './version-library';
 import {
   useState,
@@ -1155,8 +1156,8 @@ export default function Home() {
                   <h2>{t('Edit sequence', 'עריכת הרצף')}</h2>
                   <p>
                     {t(
-                      'Adjust source in-points and duration. Replacing a selected version keeps this edit intact.',
-                      'התאימו נקודת כניסה ומשך. החלפת גרסה נבחרת שומרת על העריכה הזאת.',
+                      'Adjust source in-points, duration, and original video audio. Replacing a selected version keeps this edit intact.',
+                      'התאימו נקודת כניסה, משך וסאונד וידאו מקורי. החלפת גרסה נבחרת שומרת על העריכה הזאת.',
                     )}
                   </p>
                   {[...film.shots]
@@ -1207,6 +1208,18 @@ export default function Home() {
                             }
                           />
                         </Field>
+                        <Toggle
+                          checked={Boolean(s.originalAudioMuted)}
+                          onChange={(originalAudioMuted) =>
+                            act(
+                              `${base}/shots/${s.id}`,
+                              { originalAudioMuted },
+                              'PATCH',
+                            )
+                          }
+                        >
+                          {t('Mute original audio', 'השתקת הסאונד המקורי')}
+                        </Toggle>
                         <div>
                           <Button
                             variant="ghost"
@@ -1465,15 +1478,15 @@ export default function Home() {
                           </Button>
                           <Button
                             disabled={!v.localPath || v.status === 'rejected'}
-                            onClick={() =>
-                              act(`${base}/tracks`, {
+                            onClick={() => {
+                              const settings = audioTrackSettings(v);
+                              return act(`${base}/tracks`, {
                                 versionId: v.id,
                                 label: v.label,
                                 start: 0,
-                                gain: 1,
-                                role: 'music',
-                              })
-                            }
+                                ...settings,
+                              });
+                            }}
                           >
                             <Plus /> {t('Add to cut', 'הוספה לעריכה')}
                           </Button>
@@ -2794,10 +2807,15 @@ function Generator({
   onSubmit: (b: Row) => Promise<unknown>;
 }) {
   const assetBase = revision?.assetBaseVersionId || preset?.assetBaseVersionId;
+  const revisionModelTask = models.find((candidate) => candidate.id === revision?.model)?.task;
   const initialWorkflowTask =
     preset?.workflowTask ||
     revision?.workflowTask ||
-    (revision?.kind === 'video'
+    (revisionModelTask === 'Lip-sync'
+      ? 'lipsync'
+      : revisionModelTask === 'Dialogue / voice'
+        ? 'dialogue'
+        : revision?.kind === 'video'
       ? 'video'
       : revision?.kind === 'audio'
         ? 'sfx'
@@ -2897,8 +2915,12 @@ function Generator({
           (model.fields.includes('image_urls') ||
             model.fields.includes('image_url') ||
             model.fields.includes('start_image_url'))) ||
-          (v.kind === 'video' && model.fields.includes('video_urls')) ||
-          (v.kind === 'audio' && model.fields.includes('audio_urls'))),
+          (v.kind === 'video' &&
+            (model.fields.includes('video_urls') ||
+              model.fields.includes('video_url'))) ||
+          (v.kind === 'audio' &&
+            (model.fields.includes('audio_urls') ||
+              model.fields.includes('audio_url')))),
     );
   const incompatibleReferences = refs.some(
     (id) => !supportsReference(film.versions.find((v) => v.id === id) || {}),
@@ -2943,7 +2965,7 @@ function Generator({
     references: refs,
     options,
     parentVersionId: revision?.id || null,
-    workflowTask: preset?.workflowTask || revision?.workflowTask || null,
+    workflowTask: initialWorkflowTask || null,
     dialogueLineId: preset?.dialogueLineId || revision?.dialogueLineId || null,
     audioRole: preset?.audioRole || revision?.audioRole || null,
   };
