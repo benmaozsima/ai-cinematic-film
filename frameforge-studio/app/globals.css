@@ -1620,6 +1620,10 @@ p {
   font-size: 13px !important;
   line-height: 1.6;
 }
+.contract-list { display: grid; gap: .55rem; }
+.contract-list details { border: 1px solid var(--border); border-radius: .65rem; padding: .75rem 1rem; }
+.contract-list summary { cursor: pointer; font-weight: 600; }
+.contract-list p { margin: .75rem 0; line-height: 1.55; }
 .export-row {
   padding: 18px 0;
   border-top: 1px solid var(--border);

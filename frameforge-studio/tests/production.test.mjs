@@ -97,6 +97,32 @@ void test('approval requires explicit complete checks; approval never selects au
   film = S.selectVersion(film.id, shot.id, source.id);
   assert.equal(film.shots[0].selectedVersionId, source.id);
 });
+void test('screenplay contract rejects old speech, wrong lip-sync sources, and unverified action', () => {
+  const shot = { id: 'shot-1', dialogue: 'דבש: נו... איך אני נראית?', continuityRevision: 1 };
+  const base = {
+    source: 'generation', shotId: shot.id, status: 'review',
+    reviewBibleRevision: 1, reviewShotRevision: 1, notes: [],
+  };
+  const audio = {
+    ...base, id: 'speech', kind: 'audio', workflowTask: 'dialogue',
+    input: { text: 'נו... יפה לי?' },
+    checks: Object.fromEntries(S.CHECKS.audio.map((key) => [key, 'pass'])),
+  };
+  const lipsync = {
+    ...base, id: 'sync', kind: 'video', workflowTask: 'lipsync',
+    references: [audio.id],
+    checks: Object.fromEntries(S.CHECKS.video.map((key) => [key, 'pass'])),
+  };
+  const current = { bibleRevision: 1, shots: [shot], versions: [audio, lipsync] };
+  assert.match(S.scriptContractIssue(current, audio), /differs/);
+  assert.match(S.scriptContractIssue(current, lipsync), /approved dialogue recording/);
+  assert.equal(S.qcComplete(current, lipsync), false);
+  audio.input.text = 'נו... איך אני נראית?';
+  assert.equal(S.scriptContractIssue(current, audio), null);
+  assert.equal(S.scriptContractIssue(current, lipsync), null);
+  lipsync.checks['Scripted action is visible'] = 'na';
+  assert.match(S.scriptContractIssue(current, lipsync), /action is visible/);
+});
 void test('rejecting selected media removes it from the cut without deleting it', () => {
   film = S.reviewVersion(film.id, source.id, { status: 'rejected' });
   assert.equal(film.shots[0].selectedVersionId, null);

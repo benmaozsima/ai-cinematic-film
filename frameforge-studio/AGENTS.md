@@ -10,4 +10,5 @@
 - Continue the production loop through a verified downloadable MP4. Validate duration, orientation, video stream, audio stream, continuity, and representative frames.
 - Keep the human workflow clear and reversible, with the same actions available to an agent. Prefer explicit labels, previews, progress, undo/redo, and recoverable failures.
 - Do not use Sites for this project.
-
+- Follow [the production playbook](docs/AGENT_PRODUCTION_PLAYBOOK.md) for every film. A successful provider job is not evidence that the screenplay action or spoken words appear in the result.
+- Before approving a speaking shot, compare the actual audio to the exact approved screenplay line and verify mouth movement against the audio onset. Before approving any video, identify the visible time span of the action promised by the script. If either is absent or uncertain, leave the version in review and revise that asset only.

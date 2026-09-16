@@ -2,6 +2,7 @@
 import { AssetViewBuilder } from './asset-view-builder';
 import { ASSET_VIEWS } from '../shared/asset-views.mjs';
 import { audioTrackSettings } from '../shared/audio-role.mjs';
+import { matchesApprovedDialogue, spokenDialogue } from '../shared/script-contract.mjs';
 import { VersionLibrary } from './version-library';
 import {
   useState,
@@ -1151,6 +1152,23 @@ export default function Home() {
                 <small>{t('Shot selection, order and timing. Generated media stays saved.', 'בחירת גרסה, סדר ותזמון השוטים. המדיה שנוצרה נשארת שמורה.')}</small>
               </div>
               <CutPlayer film={film} />
+              <section className="panel mt" aria-label={t('Screenplay-to-cut check', 'בדיקת תסריט מול עריכה')}>
+                <h2>{t('Screenplay-to-cut check', 'בדיקת תסריט מול עריכה')}</h2>
+                <p>{t('Watch the cut and verify each action and spoken line. The selected take and its review are shown beside the script.', 'צפו בעריכה ובדקו שכל פעולה ומשפט אכן מופיעים. הגרסה שנבחרה ומצב הביקורת שלה מוצגים לצד התסריט.')}</p>
+                <div className="contract-list">
+                  {[...film.shots].sort((a, b) => a.order - b.order).map((s) => {
+                    const selectedTake = film.versions.find((v) => v.id === s.selectedVersionId);
+                    return (
+                      <details key={s.id}>
+                        <summary>{s.code} · {s.title} · {selectedTake ? `${selectedTake.label} v${selectedTake.number} · ${selectedTake.status}` : t('No take selected', 'לא נבחרה גרסה')}</summary>
+                        <p><strong>{t('Required action', 'הפעולה הנדרשת')}:</strong> {s.action || s.prompt || t('Not specified', 'לא הוגדרה')}</p>
+                        <p><strong>{t('Exact spoken line', 'משפט הדיבור המדויק')}:</strong> {s.dialogue ? spokenDialogue(s.dialogue) : t('No dialogue', 'ללא דיבור')}</p>
+                        <Button variant="outline" onClick={() => openShot(s)}>{t('Open shot and versions', 'פתיחת השוט והגרסאות')}</Button>
+                      </details>
+                    );
+                  })}
+                </div>
+              </section>
               <div className="two-column mt">
                 <section className="panel">
                   <h2>{t('Edit sequence', 'עריכת הרצף')}</h2>
@@ -2822,6 +2840,7 @@ function Generator({
           : revision?.kind === 'image'
             ? 'keyframe'
             : undefined);
+  const approvedWords = shot.dialogue ? spokenDialogue(shot.dialogue) : '';
   const initialReferences = [
     ...new Set<string>([
       ...(revision
@@ -2881,7 +2900,9 @@ function Generator({
         '',
     ),
     [prompt, setPrompt] = useState(
-      revision?.prompt ?? preset?.prompt ?? shot.prompt ?? '',
+      initialWorkflowTask === 'dialogue' && approvedWords
+        ? approvedWords
+        : revision?.prompt ?? preset?.prompt ?? shot.prompt ?? '',
     ),
     [correction, setCorrection] = useState(
       revision?.notes
@@ -3029,7 +3050,7 @@ function Generator({
               models.find((m) => m.id === v)?.task === 'Dialogue / voice' &&
               shot.dialogue
             )
-              setPrompt(shot.dialogueLines?.[0]?.text || shot.dialogue);
+              setPrompt(approvedWords);
           }}
           label="Generation model"
           items={recommended
@@ -3084,6 +3105,20 @@ function Generator({
           onChange={(e) => setPrompt(e.target.value)}
         />
       </Field>
+      {workflowTask === 'dialogue' && approvedWords && (
+        <div className="notice" role="status">
+          <strong>{t('Approved spoken line', 'משפט הדיבור המאושר')}</strong>
+          <p dir="auto">{approvedWords}</p>
+          {!matchesApprovedDialogue(prompt, shot.dialogue) && (
+            <p className="error">
+              {t('This recording differs from the approved script. Restore the line or edit the script first.', 'ההקלטה שונה מהתסריט המאושר. שחזרו את המשפט או ערכו קודם את התסריט.')}
+            </p>
+          )}
+          <Button variant="outline" onClick={() => setPrompt(approvedWords)}>
+            {t('Restore approved line', 'שחזור המשפט המאושר')}
+          </Button>
+        </div>
+      )}
       <Field
         label={t('Correction notes for this version', 'הערות תיקון לגרסה הזו')}
       >
@@ -3314,7 +3349,8 @@ function Generator({
       <Button
         variant="outline"
         onClick={() => void stage()}
-        disabled={busy || !prompt.trim() || incompatibleReferences}
+        disabled={busy || !prompt.trim() || incompatibleReferences ||
+          (workflowTask === 'dialogue' && !!approvedWords && !matchesApprovedDialogue(prompt, shot.dialogue))}
       >
         {busy ? <LoaderCircle className="spin" /> : <Settings2 />}{' '}
         {t('Preview request & cost', 'בדיקת הבקשה והעלות')}

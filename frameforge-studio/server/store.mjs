@@ -2,6 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { matchesApprovedDialogue } from '../shared/script-contract.mjs';
 export const uid = () => randomUUID(),
   now = () => new Date().toISOString();
 export const DATA = resolve(process.env.FRAMEFORGE_DATA_DIR || 'studio-data');
@@ -202,8 +203,33 @@ export const CHECKS = {
     'Music / sound creative fit',
   ],
 };
+export function scriptContractIssue(f, v) {
+  const shot = v.shotId && f.shots.find((s) => s.id === v.shotId);
+  if (!shot || v.source !== 'generation') return null;
+  if (v.kind === 'video' && v.checks?.['Scripted action is visible'] !== 'pass')
+    return 'Confirm that the required screenplay action is visible before approval.';
+  const dialogue = shot.dialogue;
+  if (!dialogue) return null;
+  if (v.workflowTask === 'dialogue' || v.model?.includes('elevenlabs/tts')) {
+    if (!matchesApprovedDialogue(v.input?.text, dialogue))
+      return 'The generated speech text differs from the approved screenplay dialogue.';
+    if (v.checks?.['Spoken words match approved dialogue'] !== 'pass')
+      return 'Confirm that the spoken words match the approved screenplay dialogue.';
+  }
+  if (v.workflowTask === 'lipsync' || v.model?.includes('sync-lipsync')) {
+    const audio = (v.references || [])
+      .map((id) => f.versions.find((candidate) => candidate.id === id))
+      .find((candidate) => candidate?.kind === 'audio');
+    if (!audio || scriptContractIssue(f, audio))
+      return 'Lip-sync must use an approved dialogue recording that matches the screenplay.';
+    if (v.checks?.['Spoken words match approved dialogue'] !== 'pass')
+      return 'Confirm that the lip-synced words match the approved screenplay dialogue.';
+  }
+  return null;
+}
 export function qcComplete(f, v) {
   return (
+    !scriptContractIssue(f, v) &&
     (CHECKS[v.kind] || []).every((k) =>
       ['pass', 'na'].includes(v.checks?.[k]),
     ) &&
@@ -241,7 +267,7 @@ export function issues(f) {
         out.push({
           shotId: s.id,
           severity: 'warning',
-          text: `${s.code}: review incomplete or production bible / shot direction changed.`,
+          text: `${s.code}: ${scriptContractIssue(f, v) || 'review incomplete or production bible / shot direction changed.'}`,
         });
       if (v.kind === 'image')
         out.push({
@@ -516,9 +542,8 @@ export function reviewVersion(id, vid, b) {
       if (!['review', 'rejected', 'approved'].includes(b.status))
         fail('Invalid review state.');
       if (b.status === 'approved' && !qcComplete(f, v))
-        fail(
-          'Complete all review checks and resolve correction notes before approval. Recheck after bible changes.',
-        );
+        fail(scriptContractIssue(f, v) ||
+          'Complete all review checks and resolve correction notes before approval. Recheck after bible changes.');
       v.status = b.status;
       if (b.status === 'approved' && v.entityId) {
         const entity = find(f, 'entities', v.entityId);

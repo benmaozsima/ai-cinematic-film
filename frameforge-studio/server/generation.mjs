@@ -17,6 +17,7 @@ import { readFile } from 'node:fs/promises';
 import { extname } from 'node:path';
 import { absolute } from './media.mjs';
 import { secret } from './secrets.mjs';
+import { matchesApprovedDialogue, spokenDialogue } from '../shared/script-contract.mjs';
 export const providerFactories = {
   fal: () => createFalClient({ credentials: secret('FAL_KEY') }),
 };
@@ -30,17 +31,6 @@ async function localDataUri(version) {
   return `data:${type};base64,${bytes.toString('base64')}`;
 }
 const client = () => providerFactories.fal();
-function spokenDialogue(dialogue = '') {
-  const value = String(dialogue).trim();
-  const spoken = value.includes(':') ? value.slice(value.lastIndexOf(':') + 1) : value;
-  return spoken.replace(/[״“”"']/g, '').trim();
-}
-function normalizedSpeech(value = '') {
-  return String(value)
-    .replace(/[״“”"'.,!?…:;־-]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
 export function providerError(error) {
   if (['UNABLE_TO_GET_ISSUER_CERT_LOCALLY', 'SELF_SIGNED_CERT_IN_CHAIN'].includes(error?.cause?.code))
     return 'Secure provider connection failed: configure NODE_EXTRA_CA_CERTS with the trusted certificate bundle and restart the server.';
@@ -92,7 +82,7 @@ export function prepare(id, b) {
     fail('Choose a model for this workflow task.');
   if (b.workflowTask === 'dialogue' && s.dialogue) {
     const expected = spokenDialogue(s.dialogue);
-    if (normalizedSpeech(b.prompt) !== normalizedSpeech(expected))
+    if (!matchesApprovedDialogue(b.prompt, s.dialogue))
       fail(`Spoken text must match the approved dialogue exactly: ${expected}`, 409);
   }
   const refs = (b.references || []).map((id) => find(f, 'versions', id));
