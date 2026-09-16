@@ -24,12 +24,23 @@ export function ProductionBoard({film, sceneId, shotId, onOpen, onAssets, hebrew
             const waiting = versions.filter(v=>['queued','running','submission_unknown'].includes(v.status));
             const ready = (v?: Row) => v?.status==='approved' && v.reviewBibleRevision===film.bibleRevision;
             const stage = !ready(image) ? 'keyframe' : !ready(video) ? 'video' : 'cut';
+            const nextLabel = !ready(image)
+              ? t('1. Create & approve keyframe', '1. יצירת ואישור תמונת מפתח')
+              : !ready(video)
+                ? t('2. Create & approve video', '2. יצירת ואישור וידאו')
+                : t('3. Review in connected cut', '3. בדיקה בעריכה המחוברת');
+            const nextHint = !ready(image)
+              ? t('Start with a visual plan for this exact shot.', 'מתחילים בתמונה שמגדירה בדיוק את השוט.')
+              : !ready(video)
+                ? t('The approved keyframe is ready to animate.', 'תמונת המפתח המאושרת מוכנה להנפשה.')
+                : t('This shot is ready to watch in the film sequence.', 'השוט מוכן לצפייה בתוך רצף הסרט.');
             return <article key={shot.id} className={shot.id===shotId ? 'active' : ''}>
               <div className="production-thumb"><Media version={image} /></div>
               <strong>{shot.code} · {shot.title}</strong>
               <small>{shot.duration}s · {waiting.length ? t('Generation in progress', 'יצירה בתהליך') : video ? t('Video available', 'יש סרטון') : image ? t('Image available', 'יש תמונה') : t('Planned', 'מתוכנן')}</small>
+              <p className="production-next"><b>{t('Next:', 'הפעולה הבאה:')} {nextLabel}</b><br />{nextHint}</p>
               <div className="row-actions">
-                <Button size="sm" onClick={()=>onOpen(scene.id,shot.id,stage)}>{t('Continue this shot', 'המשך העבודה על השוט')}</Button>
+                <Button size="sm" onClick={()=>onOpen(scene.id,shot.id,stage)}>{nextLabel}</Button>
                 {(['keyframe','video','sound'] as const).map((s,i)=><Button key={s} size="sm" variant="outline" onClick={()=>onOpen(scene.id,shot.id,s)}>{t(['Images','Video','Sound'][i],['תמונות','וידאו','סאונד'][i])}</Button>)}
               </div>
             </article>;
