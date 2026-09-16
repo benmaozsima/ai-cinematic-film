@@ -3401,6 +3401,7 @@ function Review({
   onRevise: () => void;
 }) {
   const t = (en: string, he: string) => (isHebrew ? he : en);
+  const shot = film.shots.find((candidate) => candidate.id === version.shotId);
   const [note, setNote] = useState(''),
     [time, setTime] = useState(''),
     [point, setPoint] = useState<Row | null>(null),
@@ -3453,6 +3454,19 @@ function Review({
             </span>
           )}
         </div>
+        {shot && (version.kind === 'video' || version.kind === 'audio') && (
+          <div className="notice" aria-label={t('Approved script target', 'יעד התסריט המאושר')}>
+            <strong>{t('Compare against the approved script', 'השוואה לתסריט המאושר')}</strong>
+            <p>
+              <b>{t('Required action:', 'הפעולה שחייבת להופיע:')}</b>{' '}
+              {shot.prompt || shot.action || t('No action recorded', 'לא הוגדרה פעולה')}
+            </p>
+            <p>
+              <b>{t('Exact spoken words:', 'המילים המדויקות שחייבות להישמע:')}</b>{' '}
+              {shot.dialogue || t('No dialogue', 'ללא דיאלוג')}
+            </p>
+          </div>
+        )}
         <div className="review-meta">
           <Status value={version.status} />
           <span>

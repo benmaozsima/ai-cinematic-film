@@ -322,6 +322,10 @@ void test('Hebrew TTS receives only spoken text and language; sound correction r
   assert.equal(p.input.text, 'שלום');
   assert.equal(p.input.language_code, 'he');
   assert.equal(p.input.timestamps, true);
+  assert.throws(
+    () => G.preview(f.id, { ...request, workflowTask: 'dialogue', prompt: 'יפה לי?' }),
+    /Spoken text must match the approved dialogue exactly: שלום/,
+  );
   const sound = G.preview(f.id, {
     ...request,
     model: 'fal-ai/stable-audio-25/text-to-audio',
