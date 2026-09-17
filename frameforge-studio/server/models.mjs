@@ -307,6 +307,10 @@ export function buildInput(m, prompt, options = {}) {
   const input = { ...m.defaults };
   if (m.task === 'Lip-sync') {
     for (const k of ['video_url', 'audio_url']) input[k] = options[k];
+    const leadIn = Number(options.speech_start_seconds || 0);
+    if (!Number.isFinite(leadIn) || leadIn < 0 || leadIn > 30)
+      fail('Speech start must be between 0 and 30 seconds.');
+    input.speech_start_seconds = leadIn;
   } else if (m.task === 'Dialogue / voice') {
     input.text = prompt;
     if (options.voice) input.voice = String(options.voice);

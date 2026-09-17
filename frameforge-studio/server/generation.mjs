@@ -12,7 +12,7 @@ import {
   qcComplete,
 } from './store.mjs';
 import { getModel, buildInput, estimate } from './models.mjs';
-import { providerFile, downloadAsset } from './media.mjs';
+import { providerFile, providerPaddedAudio, downloadAsset } from './media.mjs';
 import { readFile } from 'node:fs/promises';
 import { extname } from 'node:path';
 import { absolute } from './media.mjs';
@@ -358,12 +358,16 @@ async function submit(id, vid) {
         const convert = async (s) => {
           if (!String(s).startsWith('asset:'))
             fail('Reference must be a local production asset.');
-          return providerFile(find(f, 'versions', s.slice(6)), fal);
+          const asset = find(f, 'versions', s.slice(6));
+          return key === 'audio_url' && Number(input.speech_start_seconds) > 0
+            ? providerPaddedAudio(asset, input.speech_start_seconds, fal)
+            : providerFile(asset, fal);
         };
         input[key] = Array.isArray(input[key])
           ? await Promise.all(input[key].map(convert))
           : await convert(input[key]);
       }
+    delete input.speech_start_seconds;
     if (v.provider === 'runway') {
       const images = (v.references || []).map((rid) => find(f, 'versions', rid)).filter((x) => x.kind === 'image');
       const videos = (v.references || []).map((rid) => find(f, 'versions', rid)).filter((x) => x.kind === 'video');

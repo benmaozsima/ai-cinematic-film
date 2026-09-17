@@ -1284,6 +1284,7 @@ function MediaStage({
     [videoId, setVideoId] = useState(videos.at(-1)?.id || ''),
     [audioId, setAudioId] = useState(audios.at(-1)?.id || ''),
     [native, setNative] = useState(false),
+    [speechStart, setSpeechStart] = useState(0),
     [error, setError] = useState('');
   const connectionImage = images.find(v=>v.id===shot.connection?.frameVersionId)?.id;
   useEffect(()=>{ if(connectionImage) setImageId(connectionImage); }, [connectionImage]);
@@ -1550,9 +1551,30 @@ function MediaStage({
                 setAudioId,
                 audios,
               )}
+              <Field label={t('Speech begins at (seconds into this shot)', 'תחילת הדיבור בתוך השוט (שניות)')}>
+                <Input
+                  type="number"
+                  min={0}
+                  max={Math.min(30, shot.duration)}
+                  step="0.1"
+                  value={speechStart}
+                  onChange={(event) => setSpeechStart(Math.max(0, Math.min(30, Number(event.target.value) || 0)))}
+                />
+              </Field>
+              <p className="small">
+                {speechStart > 0
+                  ? t(
+                      `Frameforge will add ${speechStart.toFixed(1)} seconds of silence to the approved dialogue before lip-sync, so the mouth waits for the visual beat.`,
+                      `Frameforge יוסיף ${speechStart.toFixed(1)} שניות שקט לפני ההקלטה המאושרת, כדי שהפה יחכה לרגע המשחק.`,
+                    )
+                  : t(
+                      'The approved dialogue starts at frame one. This is the safest default for a separate dialogue + lip-sync workflow.',
+                      'הדיבור המאושר מתחיל בפריים הראשון. זו ברירת המחדל הבטוחה ביותר לדיבור נפרד וסנכרון שפתיים.',
+                    )}
+              </p>
               <Button
                 variant="outline"
-                disabled={!effectiveVideo || !effectiveAudio}
+                disabled={!effectiveVideo || !effectiveAudio || speechStart >= shot.duration}
                 onClick={() =>
                   create({
                     model: 'fal-ai/sync-lipsync/v2',
@@ -1560,6 +1582,7 @@ function MediaStage({
                       shot.dialogue ||
                       'Synchronize the approved dialogue to this shot.',
                     references: [effectiveVideo, effectiveAudio],
+                    options: { speech_start_seconds: speechStart },
                     workflowTask: 'lipsync',
                   })
                 }
@@ -1568,8 +1591,8 @@ function MediaStage({
               </Button>
               <p className="small">
                 {t(
-                  'Use one visible speaker per shot. Check recording length before syncing; the current model cuts to the shorter input.',
-                  'עבדו עם דובר נראה אחד בכל שוט. בדקו אורכי וידאו והקלטה; המודל הנוכחי חותך לאורך הקצר ביניהם.',
+                  'Use one visible speaker per shot. The selected lip-sync video already owns its dialogue audio, so do not add the same recording again in the sound mix.',
+                  'עבדו עם דובר נראה אחד בכל שוט. סרטון הסנכרון שנבחר כבר כולל את הדיבור, לכן לא מוסיפים שוב את אותה הקלטה למיקס הסאונד.',
                 )}
               </p>
             </div>

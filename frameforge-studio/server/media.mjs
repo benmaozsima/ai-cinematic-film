@@ -142,6 +142,26 @@ export async function importAsset(filmId, shotId, req, name) {
     return v;
   });
 }
+export async function providerPaddedAudio(v, seconds, fal) {
+  const leadIn = Number(seconds || 0);
+  if (!Number.isFinite(leadIn) || leadIn <= 0) return providerFile(v, fal);
+  if (leadIn > 30) fail('Lip-sync lead-in cannot exceed 30 seconds.');
+  const target = absolute(`${uid()}.wav`);
+  try {
+    await run('ffmpeg', [
+      '-hide_banner', '-loglevel', 'error', '-y',
+      '-f', 'lavfi', '-t', String(leadIn), '-i', 'anullsrc=r=48000:cl=mono',
+      '-i', absolute(v.localPath),
+      '-filter_complex', '[0:a][1:a]concat=n=2:v=0:a=1[a]',
+      '-map', '[a]', '-ar', '48000', '-ac', '1', target,
+    ], { timeout: 60000, maxBuffer: 1024 * 1024 });
+    const bytes = await readFile(target);
+    return fal.storage.upload(new File([bytes], 'dialogue-with-lead-in.wav', { type: 'audio/wav' }));
+  } finally {
+    await unlink(target).catch(() => {});
+  }
+}
+
 export async function providerFile(v, fal) {
   const bytes = await readFile(absolute(v.localPath));
   return fal.storage.upload(
