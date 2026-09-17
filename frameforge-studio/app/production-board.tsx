@@ -19,10 +19,13 @@ export function ProductionBoard({film, sceneId, shotId, onOpen, onAssets, hebrew
         <div className="production-shots">
           {film.shots.filter(s => s.sceneId === scene.id).sort((a,b)=>a.order-b.order).map(shot => {
             const versions = film.versions.filter(v => v.shotId === shot.id);
-            const image = [...versions].reverse().find(v=>v.kind==='image' && v.localPath && v.status!=='rejected');
-            const video = [...versions].reverse().find(v=>v.kind==='video' && v.localPath && v.status!=='rejected');
             const waiting = versions.filter(v=>['queued','running','submission_unknown'].includes(v.status));
-            const ready = (v?: Row) => v?.status==='approved' && v.reviewBibleRevision===film.bibleRevision;
+            const ready = (v?: Row) => v?.localPath && v.status==='approved' &&
+              v.reviewBibleRevision===film.bibleRevision &&
+              (v.reviewShotRevision || 0) === (shot.continuityRevision || 0);
+            const image = [...versions].reverse().find(v=>v.kind==='image' && ready(v));
+            const video = [...versions].reverse().find(v=>v.kind==='video' && ready(v));
+            const pendingReview = versions.some(v => v.localPath && v.status === 'review');
             const stage = !ready(image) ? 'keyframe' : !ready(video) ? 'video' : 'cut';
             const nextLabel = !ready(image)
               ? t('1. Create & approve keyframe', '1. יצירת ואישור תמונת מפתח')
@@ -37,12 +40,17 @@ export function ProductionBoard({film, sceneId, shotId, onOpen, onAssets, hebrew
             return <article key={shot.id} className={shot.id===shotId ? 'active' : ''}>
               <div className="production-thumb"><Media version={image} /></div>
               <strong>{shot.code} · {shot.title}</strong>
-              <small>{shot.duration}s · {waiting.length ? t('Generation in progress', 'יצירה בתהליך') : video ? t('Video available', 'יש סרטון') : image ? t('Image available', 'יש תמונה') : t('Planned', 'מתוכנן')}</small>
+              <small>{shot.duration}s · {waiting.length ? t('Generation in progress', 'יצירה בתהליך') : pendingReview ? t('Review required', 'נדרשת בדיקה') : video ? t('Approved video', 'וידאו מאושר') : image ? t('Approved keyframe', 'תמונת מפתח מאושרת') : t('Planned', 'מתוכנן')}</small>
               <p className="production-next"><b>{t('Next:', 'הפעולה הבאה:')} {nextLabel}</b><br />{nextHint}</p>
               <div className="row-actions">
                 <Button size="sm" onClick={()=>onOpen(scene.id,shot.id,stage)}>{nextLabel}</Button>
-                {(['keyframe','video','sound'] as const).map((s,i)=><Button key={s} size="sm" variant="outline" onClick={()=>onOpen(scene.id,shot.id,s)}>{t(['Images','Video','Sound'][i],['תמונות','וידאו','סאונד'][i])}</Button>)}
               </div>
+              <details className="production-stage-jumps">
+                <summary>{t('Open a different stage', 'פתיחת שלב אחר')}</summary>
+                <div className="row-actions">
+                  {(['keyframe','video','sound'] as const).map((s,i)=><Button key={s} size="sm" variant="outline" onClick={()=>onOpen(scene.id,shot.id,s)}>{t(['Keyframe','Video','Sound'][i],['תמונת מפתח','וידאו','סאונד'][i])}</Button>)}
+                </div>
+              </details>
             </article>;
           })}
           <Button variant="outline" onClick={()=>onOpen(scene.id,'','shots')}>{t('Plan / edit this scene', 'תכנון / עריכת הסצנה הזאת')}</Button>

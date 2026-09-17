@@ -654,11 +654,20 @@ export function addTrack(id, b) {
     const v = find(f, 'versions', b.versionId);
     if (v.kind !== 'audio' || !v.localPath || v.status === 'rejected')
       fail('Choose a ready audio version.');
+    const role = ['dialogue', 'music', 'sfx'].includes(b.role) ? b.role : 'music';
+    const embeddedInSelectedLipSync = f.shots.some((shot) => {
+      const picture = f.versions.find((version) => version.id === shot.selectedVersionId);
+      return picture?.kind === 'video' &&
+        (picture.workflowTask === 'lipsync' || picture.model?.includes('sync-lipsync')) &&
+        (picture.references || []).includes(v.id);
+    });
+    if (role === 'dialogue' && embeddedInSelectedLipSync)
+      fail('This dialogue is already embedded in the selected lip-sync video. Do not add it to the sound mix again.');
     const t = {
       id: uid(),
       versionId: v.id,
       label: b.label || 'Audio track',
-      role: ['dialogue', 'music', 'sfx'].includes(b.role) ? b.role : 'music',
+      role,
       start: number(b.start || 0, 0, 36000, 'Start'),
       gain: number(b.gain ?? 1, 0, 3, 'Gain'),
       muted: false,
