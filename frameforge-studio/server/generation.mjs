@@ -359,9 +359,15 @@ async function submit(id, vid) {
           if (!String(s).startsWith('asset:'))
             fail('Reference must be a local production asset.');
           const asset = find(f, 'versions', s.slice(6));
-          return key === 'audio_url' && Number(input.speech_start_seconds) > 0
-            ? providerPaddedAudio(asset, input.speech_start_seconds, fal)
-            : providerFile(asset, fal);
+          if (key === 'audio_url' && v.workflowTask === 'lipsync') {
+            // Sync Lip-sync 2 retains about half a second of transport lead-in
+            // after its audio input.  Compensate here while retaining the
+            // filmmaker's requested, traceable target in `input`.
+            const target = Number(input.speech_start_seconds || 0);
+            const providerLeadIn = v.model === 'fal-ai/sync-lipsync/v2' ? 0.55 : 0;
+            return providerPaddedAudio(asset, Math.max(0, target - providerLeadIn), fal);
+          }
+          return providerFile(asset, fal);
         };
         input[key] = Array.isArray(input[key])
           ? await Promise.all(input[key].map(convert))

@@ -144,17 +144,25 @@ export async function importAsset(filmId, shotId, req, name) {
 }
 export async function providerPaddedAudio(v, seconds, fal) {
   const leadIn = Number(seconds || 0);
-  if (!Number.isFinite(leadIn) || leadIn <= 0) return providerFile(v, fal);
+  if (!Number.isFinite(leadIn) || leadIn < 0) fail('Lip-sync lead-in cannot be negative.');
   if (leadIn > 30) fail('Lip-sync lead-in cannot exceed 30 seconds.');
   const target = absolute(`${uid()}.wav`);
   try {
-    await run('ffmpeg', [
-      '-hide_banner', '-loglevel', 'error', '-y',
-      '-f', 'lavfi', '-t', String(leadIn), '-i', 'anullsrc=r=48000:cl=mono',
-      '-i', absolute(v.localPath),
-      '-filter_complex', '[0:a][1:a]concat=n=2:v=0:a=1[a]',
-      '-map', '[a]', '-ar', '48000', '-ac', '1', target,
-    ], { timeout: 60000, maxBuffer: 1024 * 1024 });
+    // TTS files often include their own encoder/voice lead-in.  Concatenating
+    // more silence to that file made a requested 0.8s mouth hold become 1.4s
+    // in the final clip.  Remove only leading quiet audio, then add the exact
+    // creative hold requested by the filmmaker.
+    const input = ['-hide_banner', '-loglevel', 'error', '-y'];
+    if (leadIn > 0) {
+      input.push('-f', 'lavfi', '-t', String(leadIn), '-i', 'anullsrc=r=48000:cl=mono');
+      input.push('-i', absolute(v.localPath));
+      input.push('-filter_complex', '[1:a]silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0[spoken];[0:a][spoken]concat=n=2:v=0:a=1[a]', '-map', '[a]');
+    } else {
+      input.push('-i', absolute(v.localPath));
+      input.push('-filter_complex', '[0:a]silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0[spoken]', '-map', '[spoken]');
+    }
+    input.push('-ar', '48000', '-ac', '1', target);
+    await run('ffmpeg', input, { timeout: 60000, maxBuffer: 1024 * 1024 });
     const bytes = await readFile(target);
     return fal.storage.upload(new File([bytes], 'dialogue-with-lead-in.wav', { type: 'audio/wav' }));
   } finally {
