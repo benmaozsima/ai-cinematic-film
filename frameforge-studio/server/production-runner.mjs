@@ -253,7 +253,8 @@ export function tickProductionRuns() {
         if (state.ready) void launchMedia(f.id, ready.id);
         else void launchContinuityAssets(f.id, ready.id);
       }
-      if (['awaiting_qc', 'generating', 'needs_attention'].includes(ready?.status)) refreshRunProgress(f.id, ready.id);
+      if (['awaiting_qc', 'generating', 'needs_attention'].includes(ready?.status)
+        || (ready?.status === 'failed' && ready.error === 'Only a reserved task can be committed.')) refreshRunProgress(f.id, ready.id);
     }
   }
 }
