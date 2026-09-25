@@ -140,6 +140,10 @@ export function prepare(id, b) {
       v.status === 'approved' &&
       qcComplete(f, v),
   );
+  const approvedContinuityReference =
+    b.workflowTask === 'video' &&
+    m.fields.some((field) => ['image_urls', 'reference_image_urls'].includes(field)) &&
+    refs.some((v) => v.kind === 'image' && v.status === 'approved' && qcComplete(f, v));
   const importedImageReference = refs.some(
     (v) => v.kind === 'image' && v.source === 'import' && Boolean(v.localPath),
   );
@@ -147,6 +151,7 @@ export function prepare(id, b) {
     b.workflowTask === 'video' &&
     !textOnlyVideo &&
     !approvedShotKeyframe &&
+    !approvedContinuityReference &&
     !importedImageReference
   )
     fail('Approve a keyframe before animating this shot.', 409);
