@@ -41,11 +41,15 @@ export function shotDurations(durationSec, maxShots = 12) {
 }
 
 export function proposalShotPlan(brief) {
+  const sequenceText = brief.source.match(/(?:^|\n)\s*(?:sequence|סיקוונס|רצף)\s*:\s*([\s\S]*?)(?=\n\s*(?:end text|important details|style|audio|final on-screen text)\s*:|$)/i)?.[1] || '';
+  const sequenceStepCount = [...sequenceText.matchAll(/(?:^|\n)\s*\d{1,2}[.)]\s+/g)].length;
   const requestedCount = Number(
     brief.source.match(/(?:^|\b)(\d+)\s*(?:connected\s+)?(?:cinematic\s+)?(?:shots?|שוטים|סצנות)/iu)?.[1],
   );
   const count = Number.isInteger(requestedCount) && requestedCount >= 1 && requestedCount <= 12
     ? requestedCount
+    : sequenceStepCount >= 2
+    ? Math.min(12, sequenceStepCount)
     : Math.max(1, Math.min(12, Math.ceil(brief.durationSec / 5)));
   const base = Math.floor(brief.durationSec / count);
   const remainder = brief.durationSec - base * count;
@@ -56,6 +60,20 @@ export function proposalShotPlan(brief) {
     .split(/;\s*(?=(?:בסצנה|סצנה|scene)\s*(?:השני(?:יה|ה)|השלישי(?:ת)?|\d+|two|three))/i)
     .map((part) => part.trim())
     .filter(Boolean);
+  // Many real briefs use a screenplay-style numbered Sequence instead of
+  // explicit SHOT blocks. Split those numbered beats before falling back to
+  // the whole brief; otherwise every generated shot repeats the entire film
+  // and headings such as "Style" can be mistaken for dialogue.
+  const sequenceSteps = [...sequenceText.matchAll(/(?:^|\n)\s*(\d{1,2})[.)]\s+([\s\S]*?)(?=\n\s*\d{1,2}[.)]\s+|$)/g)]
+    .map((match) => match[2].trim())
+    .filter(Boolean);
+  const actions = shotBlocks.length === durations.length
+    ? shotBlocks
+    : explicitScenes.length === durations.length
+    ? explicitScenes
+    : sequenceSteps.length >= 2
+    ? sequenceSteps
+    : null;
   return durations.map((durationSec, index, all) => ({
     id: `beat-${index + 1}`,
     order: index,
@@ -63,10 +81,8 @@ export function proposalShotPlan(brief) {
     purpose: index === 0 ? 'Set the situation' : index === all.length - 1 ? 'Deliver the ending' : 'Advance the visible action',
     // This gets replaced by the LLM planner when it is available. It is still
     // an explicit contract, so no generation runs from an invisible implicit beat.
-    visibleAction: shotBlocks.length === all.length
-      ? shotBlocks[index]
-      : explicitScenes.length === all.length
-      ? explicitScenes[index]
+    visibleAction: actions?.[index]
+      ? actions[index]
       : index === 0 ? brief.source : `Continue the central action from the brief: ${brief.source}`,
     transition: index === 0 ? 'cut' : 'motivated cut',
   }));

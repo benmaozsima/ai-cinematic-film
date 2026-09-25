@@ -52,3 +52,19 @@ SHOT 2 — 5–10 seconds
 They enter it.`);
   assert.equal(brief.durationSec, 20);
 });
+
+test('numbered Sequence briefs become isolated visible actions', () => {
+  const brief = normalizeBrief(`Create a 20-second vertical film.
+Sequence:
+1. Opening: a bartender places the tools on the bar.
+2. He salts the rim of the glass.
+3. He pours tequila into a jigger.
+4. He serves the finished margarita.
+End text: MARGARITA.`);
+  const shots = proposalShotPlan(brief);
+  assert.equal(shots.length, 4);
+  assert.deepEqual(shots.map((shot) => shot.durationSec), [5, 5, 5, 5]);
+  assert.match(shots[0].visibleAction, /places the tools/i);
+  assert.doesNotMatch(shots[0].visibleAction, /salts the rim/i);
+  assert.match(shots[3].visibleAction, /finished margarita/i);
+});
