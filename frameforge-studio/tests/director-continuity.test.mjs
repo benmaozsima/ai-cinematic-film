@@ -39,3 +39,11 @@ test('a recurring bartender gets one identity master even without dialogue or an
   assert.ok(generated.find((asset) => asset.type === 'set')?.canonicalDescription.includes('dark cocktail bar'));
   assert.equal(schema.shots.every((shot) => shot.assetIds.some((id) => id.startsWith('character-'))), true);
 });
+
+test('screen text labels are not mistaken for speaking characters', () => {
+  const schema = buildContinuitySchema({
+    brief: { source: 'End text: “MARGARITA.” then “DRINK IT.”' },
+    shots: [{ id: 'beat-1', visibleAction: 'End text: MARGARITA.' }, { id: 'beat-2', visibleAction: 'Final text: DRINK IT.' }],
+  });
+  assert.equal(schema.assets.some((asset) => asset.name.toLowerCase().includes('text')), false);
+});
