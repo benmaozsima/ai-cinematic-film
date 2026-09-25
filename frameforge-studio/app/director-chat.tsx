@@ -53,6 +53,7 @@ export function DirectorChat({ film, isHebrew, onChanged, onOpenAdvanced }: Prop
   const safeRetry = runVersions.some((version: any) => version.status === 'failed' && !version.requestId);
   const proposalRun = proposalId ? [...(film.concierge?.runs || [])].reverse().find((run: any) => run.proposalId === proposalId) : undefined;
   const planAuthorized = !!proposalRun && proposalRun.status !== 'cancelled';
+  const speechNeedsGuidedWorkflow = plan?.audioRoute === 'separate_speech_lipsync';
   const rehearsal = (film.concierge?.rehearsal as Rehearsal | undefined) || localRehearsal;
   const rehearsalActive = rehearsal?.status === 'preparing' || rehearsal?.status === 'rendering';
   const rehearsalStatus: Record<string, string> = {
@@ -185,6 +186,7 @@ export function DirectorChat({ film, isHebrew, onChanged, onOpenAdvanced }: Prop
           </div>}
           {rehearsalError && <p className="error" role="alert">{rehearsalError}</p>}
         </div>}
+        {speechNeedsGuidedWorkflow && !planAuthorized && <p className="director-run-guidance" role="note">{he ? 'המסלול כולל דיבור: לפני יצירה בתשלום צריך לעבור במסלול המודרך כדי ליצור קול, לבדוק את הטקסט ולחבר lip-sync בלי כפילות.' : 'This plan includes speech. Use the guided workflow first to create speech, verify the text, and connect lip-sync without duplicated audio.'}</p>}
         {latestRun && <div className="director-run-status" aria-live="polite"><b>{he ? 'מצב ריצה:' : 'Run status:'}</b> {statusLabel[latestRun.status] || latestRun.status} · {latestRun.progress ? `${latestRun.progress.completed}/${latestRun.progress.total}` : ''}<br />{latestRun.status === 'failed' && latestRun.error && <span className="director-run-error">{he && /likenesses of real people|private information/i.test(latestRun.error) ? 'המודל שנבחר דחה את תמונות האנשים. התוצרים לא נוצרו; יש לבנות תוכנית חלופית עם מודל שתומך ברפרנס כזה.' : latestRun.error}<br /></span>}<span>{latestRun.nextAction || ''}</span>
           {latestRun.status === 'completed' && latestRun.result?.exportId && <div className="director-rehearsal-output"><video controls playsInline src={`/api/exports/${latestRun.result.exportId}/film.mp4?inline=1`} /><a className="button-link" href={`/api/exports/${latestRun.result.exportId}/film.mp4`} download="frameforge-film.mp4">{he ? 'הורדת הסרט הסופי' : 'Download final film'}</a></div>}
           {latestRun.status === 'failed' && safeRetry && <div className="director-run-controls"><Button variant="outline" onClick={() => void controlRun('retry')} disabled={busy}>{he ? 'נסה שוב בבטחה' : 'Retry safely'}</Button></div>}
@@ -213,8 +215,9 @@ export function DirectorChat({ film, isHebrew, onChanged, onOpenAdvanced }: Prop
       </div> : <div className="director-chat-actions">
         <Button variant="outline" onClick={() => ask('plan')} disabled={busy || !brief.trim()}>{busy ? <LoaderCircle className="spin" /> : <Sparkles size={16} />}{he ? 'בנה תוכנית' : 'Build plan'}</Button>
         <div className="director-paid-action">
-          <Button onClick={() => ask('authorize')} disabled={busy || rehearsalActive || !brief.trim() || !plan || !proposalId || planAuthorized}>{busy ? <LoaderCircle className="spin" /> : <ArrowRight size={16} />}{he ? 'אישור תקציב ויצירה בתשלום' : 'Approve budget & paid generation'}</Button>
+          <Button onClick={() => ask('authorize')} disabled={busy || rehearsalActive || speechNeedsGuidedWorkflow || !brief.trim() || !plan || !proposalId || planAuthorized}>{busy ? <LoaderCircle className="spin" /> : <ArrowRight size={16} />}{he ? 'אישור תקציב ויצירה בתשלום' : 'Approve budget & paid generation'}</Button>
           {rehearsalActive && <span>{he ? 'מושהה בזמן בדיקת התהליך ללא חיוב' : 'Disabled while free rehearsal is active'}</span>}
+          {speechNeedsGuidedWorkflow && <span>{he ? 'לדיבור וליפסינק: פתח את המסלול המודרך' : 'Speech/lip-sync requires the guided workflow'}</span>}
           {planAuthorized && <span>{he ? 'התוכנית הזאת כבר אושרה.' : 'This plan is already approved.'}</span>}
         </div>
       </div>}

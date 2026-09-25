@@ -26,3 +26,16 @@ test('an uploaded location is reused and suppresses duplicate world generation',
   assert.equal(schema.assets[0].masterVersionId, 'room');
   assert.equal(schema.assets[0].locked, true);
 });
+
+test('a recurring bartender gets one identity master even without dialogue or an upload', () => {
+  const shots = [
+    { id: 'beat-1', visibleAction: 'The bartender places tools on the bar.' },
+    { id: 'beat-2', visibleAction: 'The bartender shakes the cocktail.' },
+  ];
+  const schema = buildContinuitySchema({ brief: { source: 'A premium bartender prepares a margarita in a dark cocktail bar.' }, shots });
+  const generated = generatedContinuityAssets(schema);
+  assert.equal(generated.filter((asset) => asset.type === 'character').length, 1);
+  assert.equal(generated.find((asset) => asset.type === 'character')?.name, 'Professional bartender');
+  assert.ok(generated.find((asset) => asset.type === 'set')?.canonicalDescription.includes('dark cocktail bar'));
+  assert.equal(schema.shots.every((shot) => shot.assetIds.some((id) => id.startsWith('character-'))), true);
+});
