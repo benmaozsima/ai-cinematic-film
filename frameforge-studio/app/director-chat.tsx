@@ -150,6 +150,11 @@ export function DirectorChat({ film, isHebrew, onChanged, onOpenAdvanced }: Prop
           {plan.costBreakdown.media.map((row: any) => <div key={row.modelId}><span>{row.modelName}</span><span>{row.calls} {he ? 'קריאות' : 'calls'} · {row.seconds}s · ${row.cost}</span></div>)}
           <div><span>{he ? 'תכנון ובדיקות' : 'Planning and QC'}</span><span>{(plan.costBreakdown.planning?.[0]?.calls || 0) + (plan.costBreakdown.qualityChecks?.calls || 0)} {he ? 'קריאות כלולות' : 'included calls'} · $0</span></div>
         </div>}
+        {!!plan.routePlan?.options?.length && <div className="director-plan-costs" aria-label={he ? 'חלופות הפקה' : 'Production route alternatives'}>
+          <b>{he ? 'חלופות שהמתכנן בדק' : 'Routes evaluated by the planner'}</b>
+          {plan.routePlan.options.map((option: any) => <div key={option.modelId}><span>{option.selected ? '✓ ' : ''}{option.modelName} · {option.resolution || ''}</span><span>{option.calls} {he ? 'קריאות' : 'calls'} · ${option.estimatedCost}</span></div>)}
+          <small>{he ? `מדיניות בחירה: ${plan.routePlan.selectionPolicy}` : `Selection policy: ${plan.routePlan.selectionPolicy}`}</small>
+        </div>}
         <p className="director-plan-note">{plan.cameraLanguage}</p>
         <p className="director-plan-note">{plan.audio}</p>
         {!!plan.referenceAssignments?.length && <div className="director-plan-grid" aria-label={he ? 'מיפוי רפרנסים לשוטים' : 'Shot reference mapping'}>{plan.referenceAssignments.map((assignment: any, index: number) => <div key={assignment.shotId}><b>{he ? `שוט ${index + 1}` : `Shot ${index + 1}`}</b><span>{assignment.references?.length ? assignment.references.map((reference: any) => `${reference.label} · ${reference.role}`).join(', ') : (he ? 'ללא רפרנס חיצוני' : 'No external reference')}</span></div>)}</div>}

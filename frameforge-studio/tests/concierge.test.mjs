@@ -168,6 +168,28 @@ test('two character references follow a man and woman together through every mat
   ]);
 });
 
+test('best-value planning chooses a priced multi-reference route and exposes alternatives', () => {
+  const film = S.createFilm({ title: 'Adaptive multi-reference routing' });
+  S.mutate(film.id, 'test.references', (current) => {
+    current.versions.push(
+      { id: 'person-a', kind: 'image', source: 'import', status: 'review', localPath: 'a.png', references: [], checks: {}, notes: [] },
+      { id: 'person-b', kind: 'image', source: 'import', status: 'review', localPath: 'b.png', references: [], checks: {}, notes: [] },
+    );
+  });
+  const result = C.concierge(film.id, {
+    brief: '20-second vertical English film. A man and a woman talk together in four connected shots.',
+    inputs: [
+      { id: 'person-a', kind: 'image', role: 'identity', scope: 'all' },
+      { id: 'person-b', kind: 'image', role: 'identity', scope: 'all' },
+    ],
+    mode: 'plan',
+  });
+  assert.equal(result.plan.models.video, 'minimax/h3-max/reference-to-video');
+  assert.equal(result.plan.estimatedCost, 1.6);
+  assert.equal(result.plan.routePlan.selectionPolicy, 'best-value');
+  assert.ok(result.plan.routePlan.options.some((option) => option.modelId === 'bytedance/seedance-2.5/reference-to-video' && option.estimatedCost > 9));
+});
+
 test('director chat routes each shot for its own assigned references', () => {
   const film = S.createFilm({ title: 'Per-shot routing' });
   S.mutate(film.id, 'test.reference', (current) => {

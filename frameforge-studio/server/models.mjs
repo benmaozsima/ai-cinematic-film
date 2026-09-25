@@ -123,7 +123,43 @@ export const MODELS = [
     ['video_url', 'audio_url'],
     null,
   ),
+  model(
+    'fal-ai/sync-lipsync/v3/image-to-video',
+    'Sync 3 · image + audio avatar',
+    'Avatar lip-sync',
+    'video',
+    'Audio-driven talking-character shot from one approved image and dialogue track. Best for a stylized character speaking directly to camera; output length follows the approved audio.',
+    {},
+    ['image_url', 'audio_url'],
+    null,
+  ),
 ];
+
+// Every reference-capable model must declare (or unambiguously imply) how
+// many inputs it can consume. Keeping these limits on the registry prevents
+// the UI from offering a route that later drops extra references silently.
+MODELS.find((item) => item.id === 'fal-ai/flux-2/edit').capabilities = {
+  maxImageReferences: 4,
+};
+MODELS.find((item) => item.id === 'fal-ai/qwen-image/image-to-image').capabilities = {
+  maxImageReferences: 1,
+};
+MODELS.find((item) => item.id === 'fal-ai/flux-pro/kontext').capabilities = {
+  maxImageReferences: 1,
+};
+MODELS.find((item) => item.id === 'fal-ai/sync-lipsync/v2').capabilities = {
+  maxVideoReferences: 1,
+  maxAudioReferences: 1,
+};
+
+const sync3Avatar = MODELS.at(-1);
+sync3Avatar.capabilities = {
+  nativeAudio: true,
+  maxImageReferences: 1,
+  maxAudioReferences: 1,
+  durations: [],
+};
+sync3Avatar.recommendation = 'audio-first-talking-character';
 
 // Discovery catalog for providers that can be connected through an adapter.
 // These entries are intentionally not added to MODELS until an adapter is
@@ -228,6 +264,30 @@ for (const mode of ['image-to-video', 'text-to-video']) {
   };
   MODELS.push(m);
 }
+// One-pass reference generation is the default for stylized speaking
+// characters: the voice reference conditions motion and sound together,
+// avoiding a second face-warping lip-sync pass.
+const seedanceReference = model(
+  'bytedance/seedance-2.5/reference-to-video',
+  'Seedance 2.5 · reference to video',
+  'Video',
+  'video',
+  'One-pass character, location and dialogue-reference video. Best for animated speaking characters; reference @Image1 and @Audio1 in the prompt.',
+  {
+    task: 'reference', duration: '5', resolution: '720p',
+    generate_audio: true, aspect_ratio: '9:16', bitrate_mode: 'standard',
+  },
+  ['image_urls', 'video_urls', 'audio_urls'],
+  { unit: 'resolution-second', rates: { '480p': 0.2205, '720p': 0.473, '1080p': 1.164 }, verifiedAt: '2026-09-17' },
+);
+seedanceReference.capabilities = {
+  durations: Array.from({ length: 27 }, (_, i) => String(i + 4)),
+  resolutions: ['480p', '720p', '1080p'], nativeAudio: true,
+  maxImageReferences: 30, maxVideoReferences: 10, maxAudioReferences: 10,
+  bitrateModes: ['standard', 'high'],
+};
+seedanceReference.recommendation = 'one-pass-speaking-animation';
+MODELS.push(seedanceReference);
 for (const mode of ['text-to-video', 'reference-to-video']) {
   const reference = mode === 'reference-to-video';
   const m = model(
@@ -245,7 +305,7 @@ for (const mode of ['text-to-video', 'reference-to-video']) {
       aspect_ratio: '16:9',
     },
     reference ? ['image_urls', 'video_urls', 'audio_urls'] : [],
-    null,
+    reference ? { unit: 'resolution-second', rates: { '480p': 0.0721, '720p': 0.1547 }, verifiedAt: '2026-09-25', source: 'https://fal.ai/models/bytedance/seedance-2.0/mini/reference-to-video' } : null,
   );
   m.capabilities = {
     durations: [
@@ -272,6 +332,47 @@ for (const mode of ['text-to-video', 'reference-to-video']) {
   m.recommendation = reference ? 'fast-consistent' : 'fast-exploration';
   MODELS.push(m);
 }
+
+// Verified against fal OpenAPI and model pricing, 2026-09-24.
+for (const turbo of [false, true]) for (const image of [false, true]) {
+  const family = turbo ? 'h3-max-turbo' : 'h3-max';
+  const id = `minimax/${family}/${image ? 'image-to-video' : 'text-to-video'}`;
+  const rates = turbo ? { '480P': 0.025, '768P': 0.04, '1080P': 0.08 } : { '480P': 0.05, '768P': 0.08, '1080P': 0.16 };
+  const m = model(id, `MiniMax H3 Max${turbo ? ' Turbo · fast / lower cost' : ''} · ${image ? 'image to video' : 'text to video'} · fal`, 'Video', 'video',
+    `${turbo ? 'Fast, lower-cost iteration. ' : ''}5–15 seconds, native sound always included. ${image ? 'First image required; optional second image controls the final frame. Canvas follows the image.' : 'Text only; supports portrait 9:16.'} 480P preview default. Speech quality requires review.`,
+    { duration: '5', resolution: '480P', generate_audio: true, prompt_expansion_mode: 'disabled', ...(image ? {} : { aspect_ratio: '16:9' }) },
+    image ? ['image_url', 'end_image_url'] : [],
+    { unit: 'resolution-second', rates, promotionalRates: Object.fromEntries(Object.entries(rates).map(([k,v]) => [k,v/2])), promotionEndsAt: '2026-10-01T00:00:00Z', verifiedAt: '2026-09-24', source: `https://fal.ai/models/${id}` });
+  m.capabilities = { durations: Array.from({length:11}, (_,i) => String(i+5)), resolutions: ['480P','768P','1080P'], nativeAudio: true, nativeAudioAlways: true, maxImageReferences: image ? 2 : 0, maxVideoReferences: 0, maxAudioReferences: 0 };
+  m.recommendation = turbo ? 'fast-exploration' : 'balanced';
+  MODELS.push(m);
+}
+
+// Multi-reference H3 route. Unlike image-to-video, every image here is a
+// subject/location/style reference; the second image is not treated as an end
+// frame. The first 4,096 reference tokens are included by the provider, which
+// covers the normal two-character reference pack after preparation.
+const h3Reference = model(
+  'minimax/h3-max/reference-to-video',
+  'MiniMax H3 Max · multi-reference video · fal',
+  'Video',
+  'video',
+  'Cost-efficient multi-character video with native English dialogue. Accepts image, video and audio references as named subjects; 5–15 seconds.',
+  { duration: '5', resolution: '768P', generate_audio: true, prompt_expansion_mode: 'balanced', aspect_ratio: '9:16' },
+  ['image_urls', 'video_urls', 'audio_urls'],
+  { unit: 'resolution-second', rates: { '480P': 0.05, '768P': 0.08, '1080P': 0.16 }, verifiedAt: '2026-09-25', source: 'https://fal.ai/models/minimax/h3-max/reference-to-video', referenceAllowanceTokens: 4096 },
+);
+h3Reference.capabilities = {
+  durations: Array.from({ length: 11 }, (_, i) => String(i + 5)),
+  resolutions: ['480P', '768P', '1080P'],
+  nativeAudio: true,
+  nativeAudioAlways: true,
+  maxImageReferences: 16,
+  maxVideoReferences: 8,
+  maxAudioReferences: 8,
+};
+h3Reference.recommendation = 'cost-efficient-multi-reference';
+MODELS.push(h3Reference);
 
 // Runway Dev adapters. They use the same workflow contract as FAL while the
 // provider-specific request mapping lives in generation.mjs.
@@ -303,6 +404,39 @@ export function getModel(id) {
   if (!m) fail('Choose a supported model.');
   return m;
 }
+const referenceFields = {
+  image: ['image_url', 'image_urls', 'start_image_url', 'end_image_url'],
+  video: ['video_url', 'video_urls'],
+  audio: ['audio_url', 'audio_urls'],
+};
+const capabilityName = {
+  image: 'maxImageReferences',
+  video: 'maxVideoReferences',
+  audio: 'maxAudioReferences',
+};
+export function referenceCapacity(m, kind) {
+  const fields = referenceFields[kind] || [];
+  if (!fields.some((field) => m.fields.includes(field))) return 0;
+  const configured = m.capabilities?.[capabilityName[kind]];
+  if (configured != null) return configured;
+  const plural = `${kind}_urls`;
+  if (m.fields.includes(plural)) return null;
+  if (kind === 'image' && m.fields.includes('end_image_url')) return 2;
+  return 1;
+}
+export function supportedDuration(m, requested) {
+  const wanted = Number(requested);
+  const values = (m.capabilities?.durations || [])
+    .map(Number)
+    .filter(Number.isFinite)
+    .sort((a, b) => a - b);
+  if (!Number.isFinite(wanted) || wanted <= 0 || !values.length)
+    fail('A supported generation duration is required.');
+  const chosen = values.find((value) => value >= wanted);
+  if (chosen == null)
+    fail(`${m.name} cannot cover a ${wanted}-second shot in one generation.`);
+  return String(chosen);
+}
 export function buildInput(m, prompt, options = {}) {
   const input = { ...m.defaults };
   if (m.task === 'Lip-sync') {
@@ -311,6 +445,9 @@ export function buildInput(m, prompt, options = {}) {
     if (!Number.isFinite(leadIn) || leadIn < 0 || leadIn > 30)
       fail('Speech start must be between 0 and 30 seconds.');
     input.speech_start_seconds = leadIn;
+  } else if (m.task === 'Avatar lip-sync') {
+    input.image_url = options.image_url;
+    input.audio_url = options.audio_url;
   } else if (m.task === 'Dialogue / voice') {
     input.text = prompt;
     if (options.voice) input.voice = String(options.voice);
@@ -401,19 +538,26 @@ export function buildInput(m, prompt, options = {}) {
   ].filter((k) => m.fields.includes(k))) {
     const v = input[k];
     if (k === 'image_urls') {
-      const max = m.capabilities?.maxImageReferences || 4;
+      const max = m.capabilities?.maxImageReferences ?? 4;
       if (!Array.isArray(v) || !v.length || v.length > max)
         fail(`Choose one to ${max === 4 ? 'four' : max} image references.`);
     } else if (!v) fail(`${k.replaceAll('_', ' ')} is required.`);
   }
+  if (m.id.startsWith('minimax/h3-max')) {
+    // These routes generate native audio unconditionally; generate_audio is
+    // a portal option, not a supported fal payload field.
+    delete input.generate_audio;
+    input.duration = Number(input.duration);
+    if (options.seed !== undefined && options.seed !== '') input.seed = number(options.seed, 0, 2147483647, 'Seed');
+  }
   return input;
 }
-export function estimate(m, input) {
+export function estimate(m, input, at = Date.now()) {
   if (!m.pricing) return null;
   if (m.pricing.unit === 'resolution-second')
     return (
       Math.round(
-        Number(input.duration) * m.pricing.rates[input.resolution] * 1000000,
+        Number(input.duration) * (m.pricing.promotionalRates && at < Date.parse(m.pricing.promotionEndsAt) ? m.pricing.promotionalRates : m.pricing.rates)[input.resolution] * 1000000,
       ) / 1000000
     );
   if (m.pricing.unit === 'second')
