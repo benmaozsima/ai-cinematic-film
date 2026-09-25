@@ -359,7 +359,7 @@ const h3Reference = model(
   'video',
   'Cost-efficient multi-character video with native English dialogue. Accepts image, video and audio references as named subjects; 5–15 seconds.',
   { duration: '5', resolution: '768P', generate_audio: true, prompt_expansion_mode: 'balanced', aspect_ratio: '9:16' },
-  ['image_urls', 'video_urls', 'audio_urls'],
+  ['reference_image_urls', 'reference_video_urls', 'reference_audio_urls'],
   { unit: 'resolution-second', rates: { '480P': 0.05, '768P': 0.08, '1080P': 0.16 }, verifiedAt: '2026-09-25', source: 'https://fal.ai/models/minimax/h3-max/reference-to-video', referenceAllowanceTokens: 4096 },
 );
 h3Reference.capabilities = {
@@ -405,9 +405,9 @@ export function getModel(id) {
   return m;
 }
 const referenceFields = {
-  image: ['image_url', 'image_urls', 'start_image_url', 'end_image_url'],
-  video: ['video_url', 'video_urls'],
-  audio: ['audio_url', 'audio_urls'],
+  image: ['image_url', 'image_urls', 'reference_image_urls', 'start_image_url', 'end_image_url'],
+  video: ['video_url', 'video_urls', 'reference_video_urls'],
+  audio: ['audio_url', 'audio_urls', 'reference_audio_urls'],
 };
 const capabilityName = {
   image: 'maxImageReferences',
@@ -464,10 +464,8 @@ export function buildInput(m, prompt, options = {}) {
         input.aspect_ratio = options.aspect_ratio;
       if (options.seed !== undefined && options.seed !== '')
         input.seed = number(options.seed, 0, 2147483647, 'Seed');
-      if (m.fields.includes('image_urls'))
-        input.image_urls = options.image_urls;
-      if (m.fields.includes('video_urls')) input.video_urls = options.video_urls;
-      if (m.fields.includes('audio_urls')) input.audio_urls = options.audio_urls;
+      for (const field of ['image_urls', 'video_urls', 'audio_urls', 'reference_image_urls', 'reference_video_urls', 'reference_audio_urls'])
+        if (m.fields.includes(field)) input[field] = options[field];
       if (options.image_size) input.image_size = options.image_size;
       if (m.fields.includes('image_url')) input.image_url = options.image_url;
       if (options.negative_prompt && m.id.includes('qwen'))
@@ -487,10 +485,8 @@ export function buildInput(m, prompt, options = {}) {
         options.generate_audio ?? m.defaults.generate_audio;
       if (typeof input.generate_audio !== 'boolean')
         fail('Audio setting must be boolean.');
-      if (m.fields.includes('image_urls'))
-        input.image_urls = options.image_urls;
-      if (m.fields.includes('video_urls')) input.video_urls = options.video_urls;
-      if (m.fields.includes('audio_urls')) input.audio_urls = options.audio_urls;
+      for (const field of ['image_urls', 'video_urls', 'audio_urls', 'reference_image_urls', 'reference_video_urls', 'reference_audio_urls'])
+        if (m.fields.includes(field)) input[field] = options[field];
       const startField = m.fields.includes('image_url')
         ? 'image_url'
         : m.fields.includes('start_image_url')
@@ -537,11 +533,16 @@ export function buildInput(m, prompt, options = {}) {
     'audio_url',
   ].filter((k) => m.fields.includes(k))) {
     const v = input[k];
-    if (k === 'image_urls') {
+    if (k === 'image_urls' || k === 'reference_image_urls') {
       const max = m.capabilities?.maxImageReferences ?? 4;
       if (!Array.isArray(v) || !v.length || v.length > max)
         fail(`Choose one to ${max === 4 ? 'four' : max} image references.`);
     } else if (!v) fail(`${k.replaceAll('_', ' ')} is required.`);
+  }
+  if (m.id === 'minimax/h3-max/reference-to-video') {
+    const referenceCount = ['reference_image_urls', 'reference_video_urls', 'reference_audio_urls']
+      .reduce((total, field) => total + (Array.isArray(input[field]) ? input[field].length : 0), 0);
+    if (!referenceCount) fail('Choose at least one image, video, or audio reference.');
   }
   if (m.id.startsWith('minimax/h3-max')) {
     // These routes generate native audio unconditionally; generate_audio is

@@ -1,6 +1,6 @@
 import { MODELS, referenceCapacity } from './models.mjs';
 
-const kindField = { image: ['image_url', 'image_urls', 'start_image_url'], video: ['video_url', 'video_urls'], audio: ['audio_url', 'audio_urls'] };
+const kindField = { image: ['image_url', 'image_urls', 'reference_image_urls', 'start_image_url'], video: ['video_url', 'video_urls', 'reference_video_urls'], audio: ['audio_url', 'audio_urls', 'reference_audio_urls'] };
 
 export function inputManifest(inputs = []) {
   const seen = new Set();
@@ -34,7 +34,7 @@ export function recommendModels({ task = 'video', inputs = [], language = 'he', 
       ? ['video', 'audio']
       : model.task === 'Avatar lip-sync'
         ? ['image', 'audio']
-        : model.kind === 'image' && (model.fields || []).some((field) => ['image_url', 'image_urls'].includes(field))
+        : model.kind === 'image' && (model.fields || []).some((field) => ['image_url', 'image_urls', 'reference_image_urls'].includes(field))
           ? ['image']
           : model.task === 'Video' && (/image-to-video/.test(model.id) || (model.fields || []).includes('start_image_url'))
             ? ['image'] : [];
@@ -58,7 +58,7 @@ export function recommendModels({ task = 'video', inputs = [], language = 'he', 
     // In a hands-off chat run, never nominate an image-conditioned model when
     // the filmmaker supplied no image. It would fail later asking for a
     // keyframe that the chat did not promise to create.
-    if (!manifest.hasImage && (model.fields || []).some((field) => ['image_url', 'image_urls', 'start_image_url'].includes(field))) score -= 30;
+    if (!manifest.hasImage && (model.fields || []).some((field) => ['image_url', 'image_urls', 'reference_image_urls', 'start_image_url'].includes(field))) score -= 30;
     // A chat-run must not accidentally select an adapter with unknown pricing:
     // unknown-price models remain selectable in the advanced workspace.
     if (model.pricing) score += 15;

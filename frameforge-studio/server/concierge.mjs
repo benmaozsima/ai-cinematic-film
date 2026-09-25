@@ -86,12 +86,15 @@ function quoteReferenceOptions(model, assignedInputs) {
   const videos = assignedInputs.filter((input) => input.kind === 'video').map((_, index) => `asset:quote-video-${index + 1}`);
   const audio = assignedInputs.filter((input) => input.kind === 'audio').map((_, index) => `asset:quote-audio-${index + 1}`);
   if (model.fields.includes('image_urls')) options.image_urls = images;
+  if (model.fields.includes('reference_image_urls')) options.reference_image_urls = images;
   if (model.fields.includes('image_url')) options.image_url = images[0];
   if (model.fields.includes('start_image_url')) options.start_image_url = images[0];
   if (model.fields.includes('end_image_url') && images[1]) options.end_image_url = images[1];
   if (model.fields.includes('video_urls')) options.video_urls = videos;
+  if (model.fields.includes('reference_video_urls')) options.reference_video_urls = videos;
   if (model.fields.includes('video_url')) options.video_url = videos[0];
   if (model.fields.includes('audio_urls')) options.audio_urls = audio;
+  if (model.fields.includes('reference_audio_urls')) options.reference_audio_urls = audio;
   if (model.fields.includes('audio_url')) options.audio_url = audio[0];
   return options;
 }
@@ -129,7 +132,7 @@ function planFor(brief, inputs = []) {
     // multi-reference endpoint so the second face is never misread as an end
     // frame and morphed into the first.
     if (identityImages.length > 1)
-      candidates = candidates.filter((candidate) => getModel(candidate.id).fields.includes('image_urls'));
+      candidates = candidates.filter((candidate) => getModel(candidate.id).fields.some((field) => ['image_urls', 'reference_image_urls'].includes(field)));
     if (normalizedBrief.audioPreference === 'speech' && language === 'en')
       candidates = candidates.filter((candidate) => getModel(candidate.id).capabilities?.nativeAudio);
     for (const candidate of candidates) allRouting.set(candidate.id, candidate);
@@ -167,7 +170,7 @@ function planFor(brief, inputs = []) {
     const cost = shots.reduce((sum, shot) => sum + (routeChoicesByShot.get(shot.id) || []).find((item) => item.id === id).estimatedShotCost, 0);
     return { modelId: id, modelName: route.name, calls: shotCount, estimatedCost: Number(cost.toFixed(4)), selected: [...routesByShot.values()].every((selected) => selected === id), resolution: firstChoice?.generationOptions?.resolution || route.defaults.resolution || null, nativeAudio: !!route.capabilities?.nativeAudio };
   }).sort((a, b) => a.estimatedCost - b.estimatedCost).slice(0, 5);
-  const requiresKeyframe = [...routesByShot.values()].some((modelId) => getModel(modelId).fields.some((field) => ['image_url', 'start_image_url', 'image_urls'].includes(field)));
+  const requiresKeyframe = [...routesByShot.values()].some((modelId) => getModel(modelId).fields.some((field) => ['image_url', 'start_image_url', 'image_urls', 'reference_image_urls'].includes(field)));
   const imageCalls = 0;
   const nativeDialogue = normalizedBrief.audioPreference === 'speech' && language === 'en' &&
     [...routesByShot.values()].every((modelId) => getModel(modelId).capabilities?.nativeAudio);

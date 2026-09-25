@@ -35,8 +35,9 @@ test('fal H3 variants build provider-compatible payloads and guard input limits'
   assert.ok(!recommendModels({inputs:[{kind:'audio'}]}).some(m => m.id.startsWith('minimax/h3-max') && !m.id.endsWith('/reference-to-video')));
   assert.ok(recommendModels({inputs:[{kind:'audio'}]}).some(m => m.id.endsWith('/reference-to-video')));
   const reference = models.find((candidate) => candidate.id.endsWith('/reference-to-video'));
-  const referenceInput = buildInput(reference, 'Use [Image1] and [Image2]', { image_urls: ['asset:one', 'asset:two'], duration: '5', aspect_ratio: '9:16' });
-  assert.deepEqual(referenceInput.image_urls, ['asset:one', 'asset:two']);
+  const referenceInput = buildInput(reference, 'Use @Image1 and @Image2', { reference_image_urls: ['asset:one', 'asset:two'], duration: '5', aspect_ratio: '9:16' });
+  assert.deepEqual(referenceInput.reference_image_urls, ['asset:one', 'asset:two']);
+  assert.equal(referenceInput.image_urls, undefined);
   assert.equal(referenceInput.resolution, '768P');
   assert.equal(estimate(reference, referenceInput), 0.4);
   assert.ok(recommendModels({inputs:[{kind:'image'},{kind:'image'},{kind:'image'}]}).some(m => m.id === reference.id));

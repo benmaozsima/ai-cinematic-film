@@ -11,10 +11,11 @@ import {
   listFilms,
   qcComplete,
 } from './store.mjs';
-import { getModel, buildInput, estimate } from './models.mjs';
+import { getModel, buildInput, estimate, referenceCapacity } from './models.mjs';
 import { providerFile, providerPaddedAudio, downloadAsset } from './media.mjs';
 import { readFile } from 'node:fs/promises';
 import { extname } from 'node:path';
+import { createHash } from 'node:crypto';
 import { absolute } from './media.mjs';
 import { secret } from './secrets.mjs';
 import { matchesApprovedDialogue, spokenDialogue } from '../shared/script-contract.mjs';
@@ -44,7 +45,17 @@ export function providerError(error) {
 export function prepare(id, b) {
   const f = getFilm(id),
     entity = b.entityId ? find(f, 'entities', b.entityId) : null,
-    s = b.shotId
+    globalMusic = (b.workflowTask === 'music' || b.audioRole === 'music') && !b.shotId && !entity,
+    s = globalMusic
+      ? {
+          id: null,
+          code: 'FILM',
+          title: 'Global film score',
+          prompt: 'One continuous score for the complete locked film.',
+          camera: '', lighting: '', continuity: 'Mix once across the complete connected cut.',
+          entityIds: [], dialogue: '',
+        }
+      : b.shotId
       ? find(f, 'shots', b.shotId)
       : entity
         ? {
@@ -68,12 +79,16 @@ export function prepare(id, b) {
   }
   if (entity && m.kind !== 'image')
     fail('Identity references can only be generated with an image model.');
+  if (globalMusic && m.task !== 'Music / sound effects')
+    fail('Choose a music or sound-effects model for the global film score.');
+  if ((b.workflowTask === 'music' || b.audioRole === 'music') && b.shotId)
+    fail('Music cannot belong to an individual shot. Generate one global score after picture lock.');
   if (typeof b.prompt !== 'string' || !b.prompt.trim())
     fail('Write a generation prompt.');
   const taskMatches = {
     keyframe: m.kind === 'image',
     dialogue: m.task === 'Dialogue / voice',
-    video: m.task === 'Video',
+    video: m.task === 'Video' || m.task === 'Avatar lip-sync',
     lipsync: m.task === 'Lip-sync',
     sfx: m.task === 'Music / sound effects',
     music: m.task === 'Music / sound effects',
@@ -85,7 +100,7 @@ export function prepare(id, b) {
     if (!matchesApprovedDialogue(b.prompt, s.dialogue))
       fail(`Spoken text must match the approved dialogue exactly: ${expected}`, 409);
   }
-  const refs = (b.references || []).map((id) => find(f, 'versions', id));
+  const refs = [...new Set(b.references || [])].map((id) => find(f, 'versions', id));
   if (b.assetView) {
     const view=ASSET_VIEWS[b.assetView];
     if (!entity || !view?.types.includes(entity.type)) fail('Choose a reference view for this asset type.');
@@ -93,7 +108,7 @@ export function prepare(id, b) {
       const base=refs.find(v=>v.id===b.assetBaseVersionId);
       if (!base || base.entityId!==entity.id || base.kind!=='image' || base.status!=='approved' || !qcComplete(f,base))
         fail('Approve and select a source image of this asset before creating another view.');
-      if (!m.fields.some(field=>['image_urls','image_url'].includes(field))) fail('This view requires an image-reference model.');
+      if (!m.fields.some(field=>['image_urls','reference_image_urls','image_url'].includes(field))) fail('This view requires an image-reference model.');
     }
   }
 
@@ -108,15 +123,31 @@ export function prepare(id, b) {
   }
   if (refs.some((v) => !v.localPath || v.status === 'rejected'))
     fail('References must be ready and not rejected.');
+  // Text-to-video models intentionally do not require a keyframe. Reference
+  // and image-to-video models normally require an approved shot image so the
+  // guided workflow cannot accidentally animate an unreviewed frame. A ready,
+  // imported image is also a deliberate filmmaker-supplied first-frame input;
+  // accepting it here is what makes chat attachments actually reach the video
+  // model instead of forcing users through an unrelated keyframe screen.
+  const textOnlyVideo =
+    b.workflowTask === 'video' &&
+    m.kind === 'video' &&
+    !m.fields.some((field) => ['image_url', 'start_image_url', 'image_urls', 'reference_image_urls'].includes(field));
+  const approvedShotKeyframe = refs.some(
+    (v) =>
+      v.kind === 'image' &&
+      v.shotId === s.id &&
+      v.status === 'approved' &&
+      qcComplete(f, v),
+  );
+  const importedImageReference = refs.some(
+    (v) => v.kind === 'image' && v.source === 'import' && Boolean(v.localPath),
+  );
   if (
     b.workflowTask === 'video' &&
-    !refs.some(
-      (v) =>
-        v.kind === 'image' &&
-        v.shotId === s.id &&
-        v.status === 'approved' &&
-        qcComplete(f, v),
-    )
+    !textOnlyVideo &&
+    !approvedShotKeyframe &&
+    !importedImageReference
   )
     fail('Approve a keyframe before animating this shot.', 409);
   if (
@@ -151,6 +182,7 @@ export function prepare(id, b) {
   const compiled = assemblePrompt(entity ? {...f, style: ''} : f, s, b.prompt, b.correction || '');
   const options = {
     ...b.options,
+    ...(m.capabilities?.nativeAudioAlways ? { generate_audio: true } : {}),
     aspect_ratio: entity ? '1:1' : f.aspectRatio,
   };
   if (m.kind === 'image')
@@ -164,20 +196,24 @@ export function prepare(id, b) {
           : f.aspectRatio === '2.39:1'
             ? { width: 1536, height: 640 }
             : 'landscape_16_9';
-  const images = refs.filter((v) => v.kind === 'image');
+  const byKind = Object.fromEntries(
+    ['image', 'video', 'audio'].map((kind) => [kind, refs.filter((v) => v.kind === kind)]),
+  );
+  for (const kind of ['image', 'video', 'audio']) {
+    if (!byKind[kind].length) continue;
+    const limit = referenceCapacity(m, kind);
+    if (limit == null)
+      fail(`${m.name} is missing a configured ${kind} reference limit.`);
+    if (limit === 0)
+      fail(`Too many ${kind} references for this model: it accepts none, but ${byKind[kind].length} were selected.`);
+    if (byKind[kind].length > limit)
+      fail(`This model accepts at most ${limit} ${kind} reference${limit === 1 ? '' : 's'}; ${byKind[kind].length} were selected.`);
+  }
+  const images = byKind.image;
   if (m.fields.includes('image_urls'))
     options.image_urls = images.map((v) => `asset:${v.id}`);
-  if (
-    m.task === 'Video' &&
-    refs.some(
-      (v) =>
-        v.kind !== 'image' &&
-        !m.fields.includes(v.kind === 'video' ? 'video_urls' : 'audio_urls'),
-    )
-  )
-    fail('This model does not accept all selected reference types.');
-  if (m.task === 'Video' && images.length > m.capabilities.maxImageReferences)
-    fail('Too many image references for this model.');
+  if (m.fields.includes('reference_image_urls'))
+    options.reference_image_urls = images.map((v) => `asset:${v.id}`);
   if (m.fields.includes('image_url')) {
     options.image_url = images[0] ? `asset:${images[0].id}` : null;
     if (images[1]) options.end_image_url = `asset:${images[1].id}`;
@@ -186,22 +222,14 @@ export function prepare(id, b) {
     options.video_urls = refs
       .filter((v) => v.kind === 'video')
       .map((v) => `asset:${v.id}`);
+  if (m.fields.includes('reference_video_urls'))
+    options.reference_video_urls = refs.filter((v) => v.kind === 'video').map((v) => `asset:${v.id}`);
   if (m.fields.includes('audio_urls'))
     options.audio_urls = refs
       .filter((v) => v.kind === 'audio')
       .map((v) => `asset:${v.id}`);
-  if (
-    m.capabilities?.maxVideoReferences != null &&
-    refs.filter((v) => v.kind === 'video').length >
-      m.capabilities.maxVideoReferences
-  )
-    fail('Too many video references for this model.');
-  if (
-    m.capabilities?.maxAudioReferences != null &&
-    refs.filter((v) => v.kind === 'audio').length >
-      m.capabilities.maxAudioReferences
-  )
-    fail('Too many audio references for this model.');
+  if (m.fields.includes('reference_audio_urls'))
+    options.reference_audio_urls = refs.filter((v) => v.kind === 'audio').map((v) => `asset:${v.id}`);
   if (m.fields.includes('start_image_url')) {
     options.start_image_url = images[0] ? `asset:${images[0].id}` : null;
     if (images[1]) options.end_image_url = `asset:${images[1].id}`;
@@ -210,6 +238,12 @@ export function prepare(id, b) {
     options.video_url = refs.find((v) => v.kind === 'video')
       ? `asset:${refs.find((v) => v.kind === 'video').id}`
       : null;
+    options.audio_url = refs.find((v) => v.kind === 'audio')
+      ? `asset:${refs.find((v) => v.kind === 'audio').id}`
+      : null;
+  }
+  if (m.task === 'Avatar lip-sync') {
+    options.image_url = images[0] ? `asset:${images[0].id}` : null;
     options.audio_url = refs.find((v) => v.kind === 'audio')
       ? `asset:${refs.find((v) => v.kind === 'audio').id}`
       : null;
@@ -232,6 +266,16 @@ export function prepare(id, b) {
   const input = buildInput(m, text, options);
   return { f, s, m, refs, compiled, input, estimate: estimate(m, input) };
 }
+function previewFingerprint(p) {
+  return createHash('sha256').update(JSON.stringify({
+    model: p.m.id,
+    shotId: p.s.id || null,
+    references: p.refs.map((reference) => reference.id),
+    input: p.input,
+    context: p.compiled.context,
+    estimate: p.estimate,
+  })).digest('hex');
+}
 export function preview(id, b) {
   const p = prepare(id, b);
   return {
@@ -239,10 +283,12 @@ export function preview(id, b) {
     input: p.input,
     estimate: p.estimate,
     filmRevision: p.f.revision,
+    previewFingerprint: previewFingerprint(p),
     context: p.compiled.context,
   };
 }
 export function generate(id, b) {
+  if (getFilm(id).rehearsalOnly) fail('Rehearsal projects cannot submit paid generation.', 409);
   const requestedProviderKey = String(b.model || '').startsWith('runway/')
     ? 'RUNWAY_API_KEY'
     : 'FAL_KEY';
@@ -262,7 +308,9 @@ export function generate(id, b) {
     (v) => v.idempotencyKey === b.idempotencyKey,
   );
   if (existing) return getFilm(id);
-  if (b.expectedRevision !== p.f.revision)
+  if (b.previewFingerprint
+    ? b.previewFingerprint !== previewFingerprint(p)
+    : b.expectedRevision !== p.f.revision)
     fail(
       'The production changed after this preview. Preview the request again.',
     );
@@ -353,6 +401,9 @@ async function submit(id, vid) {
       'video_url',
       'audio_urls',
       'video_urls',
+      'reference_image_urls',
+      'reference_video_urls',
+      'reference_audio_urls',
     ])
       if (input[key]) {
         const convert = async (s) => {
@@ -366,6 +417,13 @@ async function submit(id, vid) {
             const target = Number(input.speech_start_seconds || 0);
             const providerLeadIn = v.model === 'fal-ai/sync-lipsync/v2' ? 0.55 : 0;
             return providerPaddedAudio(asset, Math.max(0, target - providerLeadIn), fal);
+          }
+          if (key === 'audio_url' && v.model === 'fal-ai/sync-lipsync/v3/image-to-video') {
+            // Sync 3 follows its audio duration exactly. Pad the tail to the
+            // planned shot length so a short line does not collapse a 5-second
+            // edit; speech still starts at the first frame.
+            const target = Number(v.context?.shot?.duration || asset.duration || 0);
+            return providerPaddedAudio(asset, 0, fal, Math.max(0, target - Number(asset.duration || 0)));
           }
           return providerFile(asset, fal);
         };
@@ -385,8 +443,15 @@ async function submit(id, vid) {
       if (images[1]) runwayInput.lastFrame = await localDataUri(images[1]);
       if (videos.length) runwayInput.referenceVideo = await localDataUri(videos[0]);
       if (audios.length) runwayInput.referenceAudio = await localDataUri(audios[0]);
+      // Once the POST begins, a timeout or disconnected response is ambiguous:
+      // Runway may already have accepted and billed the task. Preserve it for
+      // reconciliation instead of allowing an automatic paid retry.
+      sent = true;
       const response = await fetch('https://api.dev.runwayml.com/v1/image_to_video', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret('RUNWAY_API_KEY')}`, 'X-Runway-Version': '2024-11-06' }, body: JSON.stringify(runwayInput), signal: AbortSignal.timeout(120000) });
-      if (!response.ok) throw new Error(`Runway Dev request failed (${response.status}).`);
+      if (!response.ok) {
+        sent = false;
+        throw new Error(`Runway Dev request failed (${response.status}).`);
+      }
       const task = await response.json();
       mutate(id, 'generation.submitted', (f) => { Object.assign(find(f, 'versions', vid), { requestId: task.id, status: 'queued' }); return { versionId: vid, requestId: task.id }; });
       return;

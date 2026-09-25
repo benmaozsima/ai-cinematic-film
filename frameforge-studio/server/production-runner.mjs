@@ -85,7 +85,7 @@ export function quoteVideoJobs(model, shots, aspectRatio, audioRoute = 'native_a
   return { jobs, total: Math.round(jobs.reduce((sum, job) => sum + job.cost, 0) * 10000) / 10000 };
 }
 export function referencePromptSuffix(model, inputs = []) {
-  if (!model.fields.some((field) => ['image_urls', 'video_urls', 'audio_urls'].includes(field))) return '';
+  if (!model.fields.some((field) => ['image_urls', 'video_urls', 'audio_urls', 'reference_image_urls', 'reference_video_urls', 'reference_audio_urls'].includes(field))) return '';
   const counts = { image: 0, video: 0, audio: 0 };
   const prefixes = { image: 'Image', video: 'Video', audio: 'Audio' };
   const rows = inputs.filter((input) => prefixes[input.kind]).map((input) => {
