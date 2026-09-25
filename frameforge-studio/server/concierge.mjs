@@ -410,7 +410,13 @@ export function runAction(id, runId, body = {}) {
       const failed = (run.versionIds || [])
         .map((versionId) => film.versions.find((version) => version.id === versionId))
         .filter((version) => version && version.status === 'failed' && !version.requestId);
-      if (!failed.length)
+      // A local preflight can fail after a video reservation is released but
+      // before a version record exists (for example, a stale keyframe gate).
+      // That is safe to retry: no provider request was submitted.
+      const preflightTasks = (run.budget?.reservations || [])
+        .filter((reservation) => reservation.taskId.startsWith('video:') && reservation.status === 'released' && reservation.reason === 'generation_rejected')
+        .map((reservation) => reservation.taskId);
+      if (!failed.length && !preflightTasks.length)
         fail('This failure cannot be retried safely because provider submission may have occurred. Open the production workspace to reconcile it.', 409);
       const unsafe = (run.versionIds || [])
         .map((versionId) => film.versions.find((version) => version.id === versionId))
@@ -422,6 +428,7 @@ export function runAction(id, runId, body = {}) {
         delete version.idempotencyKey;
         retryTaskIds.push(`video:${version.shotId}`);
       }
+      for (const taskId of preflightTasks) if (!retryTaskIds.includes(taskId)) retryTaskIds.push(taskId);
       for (const reservation of run.budget?.reservations || []) {
         if (retryTaskIds.includes(reservation.taskId) && reservation.status === 'reserved') {
           reservation.status = 'released';
