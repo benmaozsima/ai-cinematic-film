@@ -131,11 +131,17 @@ function planFor(brief, inputs = []) {
     let candidates = recommendModels({ task: 'video', inputs: assignedInputs, language, duration: shot.durationSec })
       .filter((candidate) => normalizedBrief.audioPreference !== 'silent' || !getModel(candidate.id).capabilities?.nativeAudioAlways);
     const identityImages = assignedInputs.filter((input) => input.kind === 'image' && input.role === 'identity');
+    const plannedContinuityImages = assignedInputs.filter((input) => input.kind === 'image' && input.source === 'planned');
     // image_url + end_image_url are a first/last-frame pair, not two
     // independent character identities. Multiple people require a true
     // multi-reference endpoint so the second face is never misread as an end
     // frame and morphed into the first.
-    if (identityImages.length > 1)
+    // Planned character + set/prop masters are independent continuity
+    // references. Never squeeze them into an image-to-video start/end pair;
+    // that makes the second asset look like a transition frame and causes
+    // geometry or identity drift. User-provided first/last frames may still
+    // use the regular image-to-video route when no planned asset is present.
+    if (identityImages.length > 1 || plannedContinuityImages.length > 1)
       candidates = candidates.filter((candidate) => getModel(candidate.id).fields.some((field) => ['image_urls', 'reference_image_urls'].includes(field)));
     if (normalizedBrief.audioPreference === 'speech' && language === 'en')
       candidates = candidates.filter((candidate) => getModel(candidate.id).capabilities?.nativeAudio);
