@@ -69,10 +69,11 @@ export function shotAudioPolicy(audioRoute = 'native_ambience') {
   if (audioRoute === 'native_dialogue') return `${SHOT_AUDIO_POLICY} Speak every quoted line exactly as written, in order, with one clearly visible speaker at a time. Do not paraphrase, omit, add or translate dialogue. Preserve natural pauses and accurate lip movement.`;
   return SHOT_AUDIO_POLICY;
 }
-export function quoteVideoJobs(model, shots, aspectRatio, audioRoute = 'native_ambience') {
+export function quoteVideoJobs(model, shots, aspectRatio, audioRoute = 'native_ambience', plannedOptions = {}) {
   const jobs = shots.map((shot) => {
     const options = {
       ...model.defaults,
+      ...plannedOptions,
       duration: supportedDuration(model, shot.duration || 5),
       aspect_ratio: aspectRatio,
       generate_audio: model.capabilities?.nativeAudioAlways || ['native_ambience', 'native_dialogue'].includes(audioRoute),
@@ -273,7 +274,8 @@ async function launchMedia(filmId, runId) {
     const liveJobs = pendingShots.map((shot) => {
       const modelId = run.plan.models.videoByShot?.[shot.planShotId] || run.plan.models.video;
       const model = getModel(modelId);
-      const quoted = quoteVideoJobs(model, [shot], film.aspectRatio, run.plan.audioRoute).jobs[0];
+      const plannedOptions = run.plan.routePlan?.videoOptionsByShot?.[shot.planShotId] || {};
+      const quoted = quoteVideoJobs(model, [shot], film.aspectRatio, run.plan.audioRoute, plannedOptions).jobs[0];
       return { ...quoted, modelId };
     });
     const liveQuote = { jobs: liveJobs, total: Math.round(liveJobs.reduce((sum, job) => sum + job.cost, 0) * 10000) / 10000 };

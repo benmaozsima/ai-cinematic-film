@@ -115,6 +115,7 @@ function planFor(brief, inputs = []) {
   const requestsFastCheap = /(?:cheap|lower[ -]?cost|budget|turbo|cost[ -]?efficient|זול|חסכ|תקציב)/i.test(brief);
   const requestsFidelity = /(?:best quality|highest quality|premium|maximum quality|איכות (?:הכי )?גבוהה|פרימיום)/i.test(brief);
   const routesByShot = new Map();
+  const routeOptionsByShot = new Map();
   const allRouting = new Map();
   const routeChoicesByShot = new Map();
   for (const shot of shots) {
@@ -136,10 +137,11 @@ function planFor(brief, inputs = []) {
     const priced = candidates.map((candidate) => {
       const candidateModel = getModel(candidate.id);
       try {
-        const options = { ...candidateModel.defaults, duration: supportedDuration(candidateModel, shot.durationSec), aspect_ratio: aspectRatio };
+        const economicalResolution = requestsFastCheap && candidateModel.capabilities?.resolutions?.[0];
+        const options = { ...candidateModel.defaults, ...(economicalResolution ? { resolution: economicalResolution } : {}), duration: supportedDuration(candidateModel, shot.durationSec), aspect_ratio: aspectRatio };
         Object.assign(options, quoteReferenceOptions(candidateModel, assignedInputs));
         const cost = estimate(candidateModel, buildInput(candidateModel, 'Cinematic shot', options));
-        return { ...candidate, estimatedShotCost: cost };
+        return { ...candidate, estimatedShotCost: cost, generationOptions: options };
       } catch { return { ...candidate, estimatedShotCost: null }; }
     }).filter((candidate) => candidate.estimatedShotCost != null)
       .sort((a, b) => a.estimatedShotCost - b.estimatedShotCost);
@@ -154,14 +156,16 @@ function planFor(brief, inputs = []) {
         : priced[0];
     const modelId = preferred?.id || priced[0]?.id || candidates[0]?.id || VIDEO_MODEL;
     routesByShot.set(shot.id, modelId);
+    routeOptionsByShot.set(shot.id, priced.find((candidate) => candidate.id === modelId)?.generationOptions || {});
   }
   const selectedVideo = routesByShot.get(shots[0]?.id) || VIDEO_MODEL;
   const commonRouteIds = shots.length ? [...new Set((routeChoicesByShot.get(shots[0].id) || []).map((item) => item.id))]
     .filter((id) => shots.every((shot) => (routeChoicesByShot.get(shot.id) || []).some((item) => item.id === id))) : [];
   const productionOptions = commonRouteIds.map((id) => {
     const route = getModel(id);
+    const firstChoice = (routeChoicesByShot.get(shots[0].id) || []).find((item) => item.id === id);
     const cost = shots.reduce((sum, shot) => sum + (routeChoicesByShot.get(shot.id) || []).find((item) => item.id === id).estimatedShotCost, 0);
-    return { modelId: id, modelName: route.name, calls: shotCount, estimatedCost: Number(cost.toFixed(4)), selected: [...routesByShot.values()].every((selected) => selected === id), resolution: route.defaults.resolution || null, nativeAudio: !!route.capabilities?.nativeAudio };
+    return { modelId: id, modelName: route.name, calls: shotCount, estimatedCost: Number(cost.toFixed(4)), selected: [...routesByShot.values()].every((selected) => selected === id), resolution: firstChoice?.generationOptions?.resolution || route.defaults.resolution || null, nativeAudio: !!route.capabilities?.nativeAudio };
   }).sort((a, b) => a.estimatedCost - b.estimatedCost).slice(0, 5);
   const requiresKeyframe = [...routesByShot.values()].some((modelId) => getModel(modelId).fields.some((field) => ['image_url', 'start_image_url', 'image_urls'].includes(field)));
   const imageCalls = 0;
@@ -173,7 +177,7 @@ function planFor(brief, inputs = []) {
     const assignment = referenceAssignments.find((item) => item.shotId === shot.id);
     const assignedInputs = (assignment?.inputIds || []).map((id) => inputById.get(id)).filter(Boolean);
     const shotModel = getModel(routesByShot.get(shot.id));
-    const options = { ...shotModel.defaults, duration: supportedDuration(shotModel, shot.durationSec), aspect_ratio: aspectRatio };
+    const options = { ...shotModel.defaults, ...(routeOptionsByShot.get(shot.id) || {}), duration: supportedDuration(shotModel, shot.durationSec), aspect_ratio: aspectRatio };
     Object.assign(options, quoteReferenceOptions(shotModel, assignedInputs));
     const sample = buildInput(shotModel, 'Cinematic shot', options);
     const cost = estimate(shotModel, sample);
@@ -204,7 +208,7 @@ function planFor(brief, inputs = []) {
     audioPlan: { route: audioRoute, language: normalizedBrief.language, originalAudioPolicy: audioRoute === 'silent' ? 'mute_all' : speechCalls ? 'mute_native_dialogue' : nativeDialogue ? 'native_dialogue_single_path' : 'native_ambience_only', musicPolicy: audioRoute === 'silent' ? 'none' : 'global_after_picture_lock' },
     audio: audioRoute === 'silent' ? 'הסרט ייווצר ללא שמע; כל אודיו מובנה יושתק בייצוא.' : speechCalls ? 'קול דיבור נפרד → בדיקת טקסט → lip-sync → mix יחיד ללא כפילות; native dialogue כבוי. מוזיקה מתווספת פעם אחת בלבד אחרי נעילת העריכה.' : nativeDialogue ? 'דיאלוג אנגלי ואווירה נוצרים יחד בווידאו במסלול שמע יחיד, עם הטקסט המדויק בפרומפט. מוזיקה מתווספת פעם אחת בלבד אחרי נעילת העריכה.' : 'כל שוט מקבל רק אווירה, room tone, foley ואפקטים. מוזיקה נוצרת פעם אחת בלבד לכל הסרט אחרי נעילת העריכה.',
     models: { planning: 'google/gemini-2.5-flash', assets: IMAGE_MODEL, video: selectedVideo, videoByShot: Object.fromEntries(routesByShot), voice: speechCalls ? VOICE_MODEL : null },
-    routePlan: { videoModel: selectedVideo, videoModelsByShot: Object.fromEntries(routesByShot), inputManifest: manifest, requiresImageKeyframe: requiresKeyframe, selectionPolicy: requestsFidelity ? 'fidelity' : requestsFastCheap ? 'economy' : 'best-value', options: productionOptions },
+    routePlan: { videoModel: selectedVideo, videoModelsByShot: Object.fromEntries(routesByShot), videoOptionsByShot: Object.fromEntries(routeOptionsByShot), inputManifest: manifest, requiresImageKeyframe: requiresKeyframe, selectionPolicy: requestsFidelity ? 'fidelity' : requestsFastCheap ? 'economy' : 'best-value', options: productionOptions },
     referenceAssignments: referenceAssignments.map((assignment) => ({
       ...assignment,
       references: assignment.inputIds.map((id) => {

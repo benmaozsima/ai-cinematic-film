@@ -188,6 +188,17 @@ test('best-value planning chooses a priced multi-reference route and exposes alt
   assert.equal(result.plan.estimatedCost, 1.6);
   assert.equal(result.plan.routePlan.selectionPolicy, 'best-value');
   assert.ok(result.plan.routePlan.options.some((option) => option.modelId === 'bytedance/seedance-2.5/reference-to-video' && option.estimatedCost > 9));
+  const economy = C.concierge(film.id, {
+    brief: '20-second vertical English budget film. A man and a woman talk together in four connected shots. Use economy 480p.',
+    inputs: [
+      { id: 'person-a', kind: 'image', role: 'identity', scope: 'all' },
+      { id: 'person-b', kind: 'image', role: 'identity', scope: 'all' },
+    ],
+    mode: 'plan',
+  });
+  assert.equal(economy.plan.estimatedCost, 1);
+  assert.equal(economy.plan.routePlan.selectionPolicy, 'economy');
+  assert.equal(economy.plan.routePlan.videoOptionsByShot['beat-1'].resolution, '480P');
 });
 
 test('director chat routes each shot for its own assigned references', () => {
