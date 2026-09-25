@@ -145,7 +145,7 @@ export function DirectorChat({ film, isHebrew, onChanged, onOpenAdvanced }: Prop
           <div><b>{he ? 'מבנה' : 'Structure'}</b><span>{plan.shotCount} {he ? 'שוטים' : 'shots'} · {plan.duration}s</span></div>
           <div><b>{he ? 'פורמט' : 'Format'}</b><span>{plan.aspectRatio} · 24fps</span></div>
           <div><b>{he ? 'קריאות' : 'Calls'}</b><span>{plan.calls?.total} {he ? 'משוערות' : 'estimated'}</span></div>
-          <div><b>{he ? 'עלות מדיה' : 'Media estimate'}</b><span>${plan.estimatedCost} · {he ? 'תקרה' : 'cap'} ${plan.quote?.cap ?? plan.estimatedCost}</span></div>
+          <div><b>{he ? 'עלות כוללת משוערת' : 'Estimated total'}</b><span>${plan.estimatedCost} · {he ? 'תקרה' : 'cap'} ${plan.quote?.cap ?? plan.estimatedCost}</span></div>
         </div>
         {plan.costBreakdown?.media?.length && <div className="director-plan-costs" aria-label={he ? 'פירוט עלות ומודלים' : 'Model and cost breakdown'}>
           <b>{he ? 'פירוט קריאות ועלות' : 'Call and cost breakdown'}</b>
