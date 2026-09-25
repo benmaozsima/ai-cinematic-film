@@ -3,6 +3,7 @@ import {
   writeFileSync,
   createReadStream,
   existsSync,
+  statSync,
 } from 'node:fs';
 import { resolve } from 'node:path';
 import {
@@ -16,6 +17,9 @@ import {
   qcComplete,
   fail,
   mutate,
+  activeCutShots,
+  activeCutView,
+  activeConciergeRunId,
 } from './store.mjs';
 import { run, absolute, probe } from './media.mjs';
 import { subtitles } from './subtitles.mjs';
@@ -46,8 +50,9 @@ export function manifest(id) {
 }
 export function startExport(id, b) {
   const f = getFilm(id);
-  if (!f.shots.length) fail('Add shots before exporting.');
-  const shots = [...f.shots].sort((a, b) => a.order - b.order);
+  if (b.final && f.rehearsalOnly) fail('Rehearsal media can only be exported as a draft.', 409);
+  const shots = [...activeCutShots(f)].sort((a, b) => a.order - b.order);
+  if (!shots.length) fail('Add shots before exporting.');
   for (const s of shots) {
     const v = f.versions.find((v) => v.id === s.selectedVersionId);
     if (!v?.localPath || v.status === 'rejected')
@@ -81,12 +86,14 @@ export function startExport(id, b) {
     final: !!b.final,
     revision: f.revision,
     shotCount: shots.length,
+    cutVersionIds: shots.map((shot) => shot.selectedVersionId),
+    activeRunId: activeConciergeRunId(f),
     filename: 'film.mp4',
     hasSubtitles: true,
   };
   const dir = resolve(EXPORTS, rec.id);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(resolve(dir, 'subtitles.srt'), subtitles(f));
+  writeFileSync(resolve(dir, 'subtitles.srt'), subtitles(activeCutView(f)));
   writeFileSync(
     resolve(dir, 'production.json'),
     JSON.stringify(manifest(id), null, 2),
@@ -245,7 +252,36 @@ async function render(f, shots, rec, dir) {
     rec.duration = Number(meta.format.duration);
     rec.completedAt = now();
     update(rec);
-    mutate(f.id, 'export.completed', () => rec);
+    mutate(f.id, 'export.completed', (currentFilm) => {
+      if (rec.final) {
+        const runId = activeConciergeRunId(currentFilm);
+        const run = currentFilm.concierge?.runs?.find((item) => item.id === runId);
+        const runShots = activeCutShots(currentFilm).filter(
+          (shot) => shot.conciergeRunId === runId,
+        );
+        const ready = runShots.length > 0 && runShots.every((shot) => {
+          const selected = currentFilm.versions.find(
+            (version) => version.id === shot.selectedVersionId,
+          );
+          return selected?.kind === 'video' && selected.status === 'approved';
+        });
+        if (run && ready) {
+          run.status = 'completed';
+          run.completedAt = rec.completedAt;
+          run.result = {
+            exportId: rec.id,
+            filename: rec.filename,
+            duration: rec.duration,
+          };
+          run.progress = {
+            completed: run.tasks?.length || 8,
+            total: run.tasks?.length || 8,
+          };
+          run.nextAction = 'Final film is ready to watch and download.';
+        }
+      }
+      return rec;
+    });
   } catch (e) {
     rec.status = 'failed';
     rec.error = String(e.message).slice(0, 2000);
@@ -264,7 +300,7 @@ export function recoverExports() {
     }
   }
 }
-export function serveExport(res, id, name) {
+export function serveExport(res, id, name, req = null) {
   if (
     !/^[a-f0-9-]{36}$/.test(id) ||
     !['film.mp4', 'production.json', 'cut.csv', 'subtitles.srt'].includes(name)
@@ -272,7 +308,9 @@ export function serveExport(res, id, name) {
     fail('Export not found.', 404);
   const file = resolve(EXPORTS, id, name);
   if (!existsSync(file)) fail('Export file is not ready.', 404);
-  res.writeHead(200, {
+  const size = statSync(file).size;
+  const inline = req && new URL(req.url, 'http://localhost').searchParams.get('inline') === '1';
+  const headers = {
     'Content-Type': name.endsWith('mp4')
       ? 'video/mp4'
       : name.endsWith('json')
@@ -280,7 +318,21 @@ export function serveExport(res, id, name) {
         : name.endsWith('srt')
           ? 'application/x-subrip; charset=utf-8'
           : 'text/csv',
-    'Content-Disposition': `attachment; filename="${name}"`,
-  });
+    'Content-Disposition': `${inline ? 'inline' : 'attachment'}; filename="${name}"`,
+    'Accept-Ranges': 'bytes',
+    'Content-Length': size,
+  };
+  if (req?.headers.range) {
+    const match = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);
+    const start = match?.[1] ? Number(match[1]) : Math.max(0, size - Number(match?.[2]));
+    const end = match?.[1] && match[2] ? Math.min(size - 1, Number(match[2])) : size - 1;
+    if (!match || (!match[1] && !match[2]) || !Number.isSafeInteger(start) || start > end || start >= size) {
+      res.writeHead(416, { 'Content-Range': `bytes */${size}` });
+      return res.end();
+    }
+    res.writeHead(206, { ...headers, 'Content-Range': `bytes ${start}-${end}/${size}`, 'Content-Length': end - start + 1 });
+    return createReadStream(file, { start, end }).pipe(res);
+  }
+  res.writeHead(200, headers);
   createReadStream(file).pipe(res);
 }
