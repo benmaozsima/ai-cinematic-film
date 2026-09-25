@@ -145,6 +145,11 @@ export function DirectorChat({ film, isHebrew, onChanged, onOpenAdvanced }: Prop
           <div><b>{he ? 'קריאות' : 'Calls'}</b><span>{plan.calls?.total} {he ? 'משוערות' : 'estimated'}</span></div>
           <div><b>{he ? 'עלות מדיה' : 'Media estimate'}</b><span>${plan.estimatedCost} · {he ? 'תקרה' : 'cap'} ${plan.quote?.cap ?? plan.estimatedCost}</span></div>
         </div>
+        {plan.costBreakdown?.media?.length && <div className="director-plan-costs" aria-label={he ? 'פירוט עלות ומודלים' : 'Model and cost breakdown'}>
+          <b>{he ? 'פירוט קריאות ועלות' : 'Call and cost breakdown'}</b>
+          {plan.costBreakdown.media.map((row: any) => <div key={row.modelId}><span>{row.modelName}</span><span>{row.calls} {he ? 'קריאות' : 'calls'} · {row.seconds}s · ${row.cost}</span></div>)}
+          <div><span>{he ? 'תכנון ובדיקות' : 'Planning and QC'}</span><span>{(plan.costBreakdown.planning?.[0]?.calls || 0) + (plan.costBreakdown.qualityChecks?.calls || 0)} {he ? 'קריאות כלולות' : 'included calls'} · $0</span></div>
+        </div>}
         <p className="director-plan-note">{plan.cameraLanguage}</p>
         <p className="director-plan-note">{plan.audio}</p>
         {!!plan.referenceAssignments?.length && <div className="director-plan-grid" aria-label={he ? 'מיפוי רפרנסים לשוטים' : 'Shot reference mapping'}>{plan.referenceAssignments.map((assignment: any, index: number) => <div key={assignment.shotId}><b>{he ? `שוט ${index + 1}` : `Shot ${index + 1}`}</b><span>{assignment.references?.length ? assignment.references.map((reference: any) => `${reference.label} · ${reference.role}`).join(', ') : (he ? 'ללא רפרנס חיצוני' : 'No external reference')}</span></div>)}</div>}

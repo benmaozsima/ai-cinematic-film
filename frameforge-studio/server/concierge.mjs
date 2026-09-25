@@ -143,6 +143,7 @@ function planFor(brief, inputs = []) {
   const nativeDialogue = normalizedBrief.audioPreference === 'speech' && language === 'en' &&
     [...routesByShot.values()].every((modelId) => getModel(modelId).capabilities?.nativeAudio);
   const speechCalls = normalizedBrief.audioPreference === 'speech' && !nativeDialogue ? shotCount : 0;
+  const costByModel = new Map();
   const videoCost = shots.reduce((total, shot) => {
     const assignment = referenceAssignments.find((item) => item.shotId === shot.id);
     const assignedInputs = (assignment?.inputIds || []).map((id) => inputById.get(id)).filter(Boolean);
@@ -152,6 +153,12 @@ function planFor(brief, inputs = []) {
     const sample = buildInput(shotModel, 'Cinematic shot', options);
     const cost = estimate(shotModel, sample);
     if (cost == null) fail(`Live pricing is unavailable for ${shotModel.name}. Choose a model with verified pricing before authorizing production.`, 409);
+    const current = costByModel.get(shotModel.id) || { modelId: shotModel.id, modelName: shotModel.name, calls: 0, seconds: 0, cost: 0, shots: [] };
+    current.calls += 1;
+    current.seconds += shot.durationSec;
+    current.cost = Number((current.cost + cost).toFixed(4));
+    current.shots.push(shot.id);
+    costByModel.set(shotModel.id, current);
     return total + cost;
   }, 0);
   const estimatedCost = Number((videoCost + imageCalls * 0.04 + speechCalls * 0.08).toFixed(4));
@@ -182,6 +189,12 @@ function planFor(brief, inputs = []) {
     })),
     calls: { planning: 1, assets: imageCalls, video: videoCalls, speech: speechCalls, qc: shotCount + 2, total: 1 + imageCalls + videoCalls + speechCalls + shotCount + 2 },
     estimatedCost,
+    costBreakdown: {
+      media: [...costByModel.values()],
+      planning: [{ modelId: 'google/gemini-2.5-flash', calls: 1, cost: 0, included: true }],
+      qualityChecks: { calls: shotCount + 2, cost: 0, included: true },
+      totalPaidEstimate: estimatedCost,
+    },
     autoDefaults: true,
     inputManifest: manifest,
     routing: [...allRouting.values()].sort((a, b) => b.score - a.score).slice(0, 6),
