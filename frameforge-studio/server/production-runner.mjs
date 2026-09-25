@@ -329,6 +329,10 @@ export function refreshRunProgress(filmId, runId) {
       current.nextAction = `The selected takes are ready, but final export needs attention: ${autoExportError}`;
     } else if (reviewable.length === versions.length) {
       current.status = 'needs_attention';
+      // A previous accounting failure can be recovered once all provider
+      // results have been committed. Do not leave the stale error banner on
+      // the review state; it makes a successful generation look failed.
+      current.error = null;
       const media = current.tasks?.find((task) => task.kind === 'media');
       if (media) media.status = 'review';
       current.nextAction = 'Generated takes are ready for evidence-based review before sound mix and export.';
