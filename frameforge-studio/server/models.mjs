@@ -49,7 +49,7 @@ export const MODELS = [
     'Open image model for detailed character sheets, props, locations, and text-aware concepts.',
     { image_size: 'landscape_16_9', num_images: 1, output_format: 'jpeg' },
     [],
-    null,
+    { unit: 'generation', rate: 0.04, verifiedAt: '2026-09-25', source: 'https://fal.ai/learn/tools/flux-vs-qwen-image' },
   ),
   model(
     'fal-ai/qwen-image/image-to-image',

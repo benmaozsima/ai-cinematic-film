@@ -19,11 +19,11 @@ test('director chat honors an explicit cheap MiniMax H3 Turbo route and quotes i
     brief: 'סרטון אנכי 10 שניות בדיוק, שתי סצנות של 5 שניות, MiniMax H3 Max Turbo הכי מהיר וזול, ללא דיבור',
     mode: 'plan',
   });
-  assert.equal(result.plan.models.video, 'minimax/h3-max-turbo/text-to-video');
+  assert.equal(result.plan.models.video, 'minimax/h3-max-turbo/image-to-video');
   assert.equal(result.plan.shotCount, 2);
-  assert.equal(result.plan.calls.assets, 0);
-  assert.equal(result.plan.estimatedCost, 0.125);
-  assert.equal(result.plan.quote.cap, 0.175);
+  assert.equal(result.plan.calls.assets, 1);
+  assert.equal(result.plan.estimatedCost, 0.165);
+  assert.equal(result.plan.quote.cap, 0.215);
 });
 
 test('director concierge turns a natural brief into a persistent cinematic proposal', () => {
@@ -87,9 +87,9 @@ test('director concierge turns a natural brief into a persistent cinematic propo
   // provenance, rather than being a transient attachment that disappears
   // between the plan and the provider request.
   assert.deepEqual(scaffold.shots.map((shot) => shot.referenceVersionIds), [['portrait'], ['portrait'], ['portrait'], ['portrait']]);
-  assert.equal(scaffold.entities.filter((entity) => entity.conciergeRunId === running.id).length, 1);
-  assert.equal(scaffold.entities.at(-1).locked, true);
-  assert.deepEqual(scaffold.shots.map((shot) => shot.entityIds), [[scaffold.entities.at(-1).id], [scaffold.entities.at(-1).id], [scaffold.entities.at(-1).id], [scaffold.entities.at(-1).id]]);
+  assert.equal(scaffold.entities.filter((entity) => entity.conciergeRunId === running.id).length, 2);
+  assert.equal(scaffold.entities.find((entity) => entity.sourceReferenceId === 'portrait').locked, true);
+  assert.equal(scaffold.shots.every((shot) => shot.entityIds.length === 2), true);
   assert.throws(() => B.reserveRunTask(film.id, running.id, 'unknown-price', null), /price is unavailable/);
   B.reserveRunTask(film.id, running.id, 'missing-actual', 0);
   assert.throws(() => B.commitRunTask(film.id, running.id, 'missing-actual', undefined), /cost is unavailable/);
@@ -185,7 +185,7 @@ test('best-value planning chooses a priced multi-reference route and exposes alt
     mode: 'plan',
   });
   assert.equal(result.plan.models.video, 'minimax/h3-max/reference-to-video');
-  assert.equal(result.plan.estimatedCost, 1.6);
+  assert.equal(result.plan.estimatedCost, 1.64);
   assert.equal(result.plan.routePlan.selectionPolicy, 'best-value');
   assert.ok(result.plan.routePlan.options.some((option) => option.modelId === 'bytedance/seedance-2.5/reference-to-video' && option.estimatedCost > 9));
   const economy = C.concierge(film.id, {
@@ -196,7 +196,7 @@ test('best-value planning chooses a priced multi-reference route and exposes alt
     ],
     mode: 'plan',
   });
-  assert.equal(economy.plan.estimatedCost, 1);
+  assert.equal(economy.plan.estimatedCost, 1.04);
   assert.equal(economy.plan.routePlan.selectionPolicy, 'economy');
   assert.equal(economy.plan.routePlan.videoOptionsByShot['beat-1'].resolution, '480P');
 });
@@ -212,7 +212,7 @@ test('director chat routes each shot for its own assigned references', () => {
     mode: 'plan',
   });
   assert.match(result.plan.models.videoByShot['beat-1'], /(image|reference)-to-video/);
-  assert.match(result.plan.models.videoByShot['beat-2'], /text-to-video/);
+  assert.match(result.plan.models.videoByShot['beat-2'], /(image|reference)-to-video/);
 });
 
 test('safe retry releases only unsubmitted failures and preserves their history', () => {

@@ -4,6 +4,7 @@ import { authorizationForQuote, quoteForPlan } from './director-budget.mjs';
 import { normalizeBrief, proposalShotPlan, stableHash, validateProposal } from './director-contract.mjs';
 import { getModel, buildInput, estimate, supportedDuration } from './models.mjs';
 import { transitionDirectorTask } from './director-task-store.mjs';
+import { buildContinuitySchema, generatedContinuityAssets } from './director-continuity.mjs';
 
 // Keep this ID aligned with the active capability registry in models.mjs.
 // The provider adapter adds the FAL namespace when submitting the request.
@@ -104,15 +105,18 @@ function planFor(brief, inputs = []) {
   const duration = normalizedBrief.durationSec;
   const aspectRatio = normalizedBrief.aspectRatio;
   const shots = proposalShotPlan(normalizedBrief);
+  const continuitySchema = buildContinuitySchema({ brief: normalizedBrief, shots, inputs });
+  const plannedAssetInputs = generatedContinuityAssets(continuitySchema).map((asset) => ({ id: `planned:${asset.id}`, kind: 'image', role: asset.type === 'character' ? 'identity' : asset.type === 'set' ? 'location' : asset.type, label: asset.name, scope: 'all', source: 'planned' }));
+  const routingInputs = [...inputs, ...plannedAssetInputs];
   for (const input of inputs) {
     if (/^beat-\d+$/.test(input.scope) && !shots.some((shot) => shot.id === input.scope))
       fail(`${input.label} is assigned to a shot that is not in the current plan. Choose automatic mapping or rebuild the assignment.`, 409);
   }
-  const referenceAssignments = assignReferencesToShots(inputs, shots);
-  const inputById = new Map(inputs.map((input) => [input.id, input]));
+  const referenceAssignments = assignReferencesToShots(routingInputs, shots);
+  const inputById = new Map(routingInputs.map((input) => [input.id, input]));
   const shotCount = shots.length;
   const videoCalls = shotCount;
-  const manifest = inputManifest(inputs);
+  const manifest = inputManifest(routingInputs);
   const language = /[\u0590-\u05ff]/.test(brief) ? 'he' : 'en';
   const requestsH3 = /(?:minimax|mini[ -]?max|h3|max turbo|מינימאקס)/i.test(brief);
   const requestsFastCheap = /(?:cheap|lower[ -]?cost|budget|turbo|cost[ -]?efficient|זול|חסכ|תקציב)/i.test(brief);
@@ -171,7 +175,8 @@ function planFor(brief, inputs = []) {
     return { modelId: id, modelName: route.name, calls: shotCount, estimatedCost: Number(cost.toFixed(4)), selected: [...routesByShot.values()].every((selected) => selected === id), resolution: firstChoice?.generationOptions?.resolution || route.defaults.resolution || null, nativeAudio: !!route.capabilities?.nativeAudio };
   }).sort((a, b) => a.estimatedCost - b.estimatedCost).slice(0, 5);
   const requiresKeyframe = [...routesByShot.values()].some((modelId) => getModel(modelId).fields.some((field) => ['image_url', 'start_image_url', 'image_urls', 'reference_image_urls'].includes(field)));
-  const imageCalls = 0;
+  const continuityAssets = generatedContinuityAssets(continuitySchema);
+  const imageCalls = continuityAssets.length;
   const nativeDialogue = normalizedBrief.audioPreference === 'speech' && language === 'en' &&
     [...routesByShot.values()].every((modelId) => getModel(modelId).capabilities?.nativeAudio);
   const speechCalls = normalizedBrief.audioPreference === 'speech' && !nativeDialogue ? shotCount : 0;
@@ -193,7 +198,8 @@ function planFor(brief, inputs = []) {
     costByModel.set(shotModel.id, current);
     return total + cost;
   }, 0);
-  const estimatedCost = Number((videoCost + imageCalls * 0.04 + speechCalls * 0.08).toFixed(4));
+  const assetCost = Number((imageCalls * 0.04).toFixed(4));
+  const estimatedCost = Number((videoCost + assetCost + speechCalls * 0.08).toFixed(4));
   const audioRoute = normalizedBrief.audioPreference === 'silent'
     ? 'silent'
     : nativeDialogue ? 'native_dialogue'
@@ -207,6 +213,7 @@ function planFor(brief, inputs = []) {
     shotCount,
     cameraLanguage: 'מספרי קולנוע: establishing, medium, close-up, over-the-shoulder, motivated movement, matched eyelines and screen direction.',
     continuity: ['זהות דמויות נעולה', 'מלתחה ואביזרים נשמרים בין שוטים', 'לוקיישן ותאורה מקבלים reference pack', 'פריים סיום של כל שוט נבדק מול הבא'],
+    continuitySchema,
     audioRoute,
     audioPlan: { route: audioRoute, language: normalizedBrief.language, originalAudioPolicy: audioRoute === 'silent' ? 'mute_all' : speechCalls ? 'mute_native_dialogue' : nativeDialogue ? 'native_dialogue_single_path' : 'native_ambience_only', musicPolicy: audioRoute === 'silent' ? 'none' : 'global_after_picture_lock' },
     audio: audioRoute === 'silent' ? 'הסרט ייווצר ללא שמע; כל אודיו מובנה יושתק בייצוא.' : speechCalls ? 'קול דיבור נפרד → בדיקת טקסט → lip-sync → mix יחיד ללא כפילות; native dialogue כבוי. מוזיקה מתווספת פעם אחת בלבד אחרי נעילת העריכה.' : nativeDialogue ? 'דיאלוג אנגלי ואווירה נוצרים יחד בווידאו במסלול שמע יחיד, עם הטקסט המדויק בפרומפט. מוזיקה מתווספת פעם אחת בלבד אחרי נעילת העריכה.' : 'כל שוט מקבל רק אווירה, room tone, foley ואפקטים. מוזיקה נוצרת פעם אחת בלבד לכל הסרט אחרי נעילת העריכה.',
@@ -223,6 +230,7 @@ function planFor(brief, inputs = []) {
     estimatedCost,
     costBreakdown: {
       media: [...costByModel.values()],
+      assets: continuityAssets.map((asset) => ({ assetId: asset.id, assetName: asset.name, modelId: IMAGE_MODEL, calls: 1, cost: 0.04 })),
       planning: [{ modelId: 'google/gemini-2.5-flash', calls: 1, cost: 0, included: true }],
       qualityChecks: { calls: shotCount + 2, cost: 0, included: true },
       totalPaidEstimate: estimatedCost,

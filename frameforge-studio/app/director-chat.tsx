@@ -149,6 +149,7 @@ export function DirectorChat({ film, isHebrew, onChanged, onOpenAdvanced }: Prop
         {plan.costBreakdown?.media?.length && <div className="director-plan-costs" aria-label={he ? 'פירוט עלות ומודלים' : 'Model and cost breakdown'}>
           <b>{he ? 'פירוט קריאות ועלות' : 'Call and cost breakdown'}</b>
           {plan.costBreakdown.media.map((row: any) => <div key={row.modelId}><span>{row.modelName}</span><span>{row.calls} {he ? 'קריאות' : 'calls'} · {row.seconds}s · ${row.cost}</span></div>)}
+          {!!plan.costBreakdown.assets?.length && <div><span>{he ? `נכסי רציפות משותפים (${plan.costBreakdown.assets.map((asset: any) => asset.assetName).join(', ')})` : `Shared continuity assets (${plan.costBreakdown.assets.map((asset: any) => asset.assetName).join(', ')})`}</span><span>{plan.costBreakdown.assets.length} {he ? 'קריאות תמונה' : 'image calls'} · ${plan.costBreakdown.assets.reduce((sum: number, asset: any) => sum + Number(asset.cost || 0), 0).toFixed(2)}</span></div>}
           <div><span>{he ? 'תכנון ובדיקות' : 'Planning and QC'}</span><span>{(plan.costBreakdown.planning?.[0]?.calls || 0) + (plan.costBreakdown.qualityChecks?.calls || 0)} {he ? 'קריאות כלולות' : 'included calls'} · $0</span></div>
         </div>}
         {!!plan.routePlan?.options?.length && <div className="director-plan-costs" aria-label={he ? 'חלופות הפקה' : 'Production route alternatives'}>
@@ -158,6 +159,7 @@ export function DirectorChat({ film, isHebrew, onChanged, onOpenAdvanced }: Prop
         </div>}
         <p className="director-plan-note">{plan.cameraLanguage}</p>
         <p className="director-plan-note">{plan.audio}</p>
+        {!!plan.continuitySchema?.assets?.length && <div className="director-plan-costs" aria-label={he ? 'סכמת רציפות הסרט' : 'Film continuity schema'}><b>{he ? 'נכסי רציפות לפני יצירת וידאו' : 'Continuity assets prepared before video'}</b>{plan.continuitySchema.assets.map((asset: any) => <div key={asset.id}><span>{asset.source === 'upload' ? '✓ ' : '＋ '}{asset.name}</span><span>{asset.type} · {asset.source === 'upload' ? (he ? 'רפרנס שהועלה' : 'uploaded master') : (he ? 'ייווצר ויינעל' : 'generated and locked')}</span></div>)}</div>}
         {!!plan.referenceAssignments?.length && <div className="director-plan-grid" aria-label={he ? 'מיפוי רפרנסים לשוטים' : 'Shot reference mapping'}>{plan.referenceAssignments.map((assignment: any, index: number) => <div key={assignment.shotId}><b>{he ? `שוט ${index + 1}` : `Shot ${index + 1}`}</b><span>{assignment.references?.length ? assignment.references.map((reference: any) => `${reference.label} · ${reference.role}`).join(', ') : (he ? 'ללא רפרנס חיצוני' : 'No external reference')}</span></div>)}</div>}
         {!planAuthorized && <div className="director-rehearsal">
           <div className="director-rehearsal-heading">

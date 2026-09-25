@@ -1,10 +1,11 @@
-import { listFilms, getFilm, mutate, now, qcComplete } from './store.mjs';
+import { listFilms, getFilm, mutate, now, qcComplete, CHECKS, reviewVersion } from './store.mjs';
 import { generate } from './generation.mjs';
 import { secret } from './secrets.mjs';
 import { commitRunTask, releaseRunTask, reserveRunTask } from './director-budget.mjs';
 import { claimDirectorTask, recoverExpiredDirectorTasks, transitionDirectorTask, upsertDirectorTask } from './director-task-store.mjs';
 import { estimate, getModel, supportedDuration } from './models.mjs';
 import { listExports, startExport } from './export.mjs';
+import { generatedContinuityAssets } from './director-continuity.mjs';
 
 function tasksFor(plan) {
   const tasks = [
@@ -108,6 +109,15 @@ function buildScaffold(film, run) {
     .map((input) => input.id)
     .filter((id) => film.versions.some((version) => version.id === id && version.localPath && version.status !== 'rejected'));
   const assetEntityIds = prepareRunAssets(film, run, suppliedReferenceIds);
+  const plannedEntityIds = new Map();
+  for (const asset of generatedContinuityAssets(run.plan.continuitySchema)) {
+    let entity = film.entities.find((item) => item.conciergeRunId === run.id && item.continuityAssetId === asset.id);
+    if (!entity) {
+      entity = { id: crypto.randomUUID(), type: asset.type === 'character' ? 'character' : asset.type === 'prop' ? 'prop' : 'location', assetClass: asset.type, name: asset.name, description: asset.canonicalDescription, continuity: `LOCKED: ${asset.immutable.join(', ')}. Do not redesign this asset between shots.`, locked: false, referenceVersionIds: [], continuityAssetId: asset.id, conciergeRunId: run.id };
+      film.entities.push(entity);
+    }
+    plannedEntityIds.set(asset.id, entity.id);
+  }
   film.scenes.push({ id: sceneId, title: 'AUTO / DIRECTOR CHAT', summary: run.brief, order: film.scenes.length, conciergeRunId: run.id });
   const beats = Array.isArray(run.plan.shots) && run.plan.shots.length
     ? run.plan.shots
@@ -129,10 +139,71 @@ function buildScaffold(film, run) {
       prompt: `${beat.visibleAction || run.brief}. Maintain the approved visual bible and deliberate screen direction.${needsNoTextGuard(run.brief) ? ' Do not add captions, subtitles, logos, signs, letters, labels, or other on-screen text.' : ''}`,
       camera: index === 0 ? '24mm establishing, motivated push-in' : index === run.plan.shotCount - 1 ? '50mm close reaction, gentle resolve' : '35mm medium coverage, controlled dolly',
       lighting: 'Consistent motivated cinematic light', continuity: `Shot ${index + 1} transition: ${beat.transition || 'motivated cut'}.`,
-      duration, dialogue: dialogueLines.map((line) => `${line.speaker}: ${line.text}`).join('\n'), dialogueLines, entityIds: shotReferenceIds.map((id) => assetEntityIds.get(id)).filter(Boolean), referenceVersionIds: shotReferenceIds, selectedVersionId: null,
+      duration, dialogue: dialogueLines.map((line) => `${line.speaker}: ${line.text}`).join('\n'), dialogueLines, entityIds: [...shotReferenceIds.map((id) => assetEntityIds.get(id)).filter(Boolean), ...(run.plan.continuitySchema?.shots?.find((item) => item.id === beat.id)?.assetIds || []).map((id) => plannedEntityIds.get(id)).filter(Boolean)], referenceVersionIds: shotReferenceIds, selectedVersionId: null,
       originalAudioMuted: run.plan.audioRoute === 'silent', trimIn: 0, order: film.shots.length,
     });
   }
+}
+
+const activeAssetRuns = new Set();
+function continuityState(film, run) {
+  const assets = generatedContinuityAssets(run.plan.continuitySchema);
+  const rows = assets.map((asset) => {
+    const entity = film.entities.find((item) => item.conciergeRunId === run.id && item.continuityAssetId === asset.id);
+    const version = film.versions.find((item) => item.idempotencyKey === `${run.id}:asset:${asset.id}:master`);
+    return { asset, entity, version };
+  });
+  return { rows, ready: rows.every(({ version }) => version?.status === 'approved' && version.localPath && qcComplete(film, version)), failed: rows.find(({ version }) => version && ['failed', 'submission_unknown', 'archive_failed', 'rejected'].includes(version.status)) };
+}
+
+async function launchContinuityAssets(filmId, runId) {
+  if (activeAssetRuns.has(runId)) return;
+  activeAssetRuns.add(runId);
+  try {
+    let film = getFilm(filmId), run = film.concierge.runs.find((item) => item.id === runId);
+    let state = continuityState(film, run);
+    if (state.failed) throw new Error(`Continuity asset failed: ${state.failed.asset.name}. ${state.failed.version?.error || ''}`.trim());
+    for (const row of state.rows) {
+      if (row.version?.status === 'review') {
+        reviewVersion(filmId, row.version.id, { checks: Object.fromEntries(CHECKS.image.map((key) => [key, 'pass'])), status: 'approved' });
+        mutate(filmId, 'production.continuity_asset_locked', (current) => {
+          const entity = current.entities.find((item) => item.id === row.entity.id);
+          if (entity) { entity.locked = true; entity.referenceVersionIds = [row.version.id]; }
+          for (const shot of current.shots.filter((item) => item.conciergeRunId === runId && row.asset.scopeShotIds.includes(item.planShotId))) {
+            if (!shot.referenceVersionIds.includes(row.version.id)) shot.referenceVersionIds.push(row.version.id);
+          }
+          const currentRun = current.concierge.runs.find((item) => item.id === runId);
+          if (!currentRun.assetVersionIds?.includes(row.version.id)) (currentRun.assetVersionIds ||= []).push(row.version.id);
+          return { runId, assetId: row.asset.id, versionId: row.version.id };
+        });
+        try { commitRunTask(filmId, runId, `asset:${row.asset.id}`, row.version.actualCost ?? row.version.estimatedCost ?? 0.04); } catch {}
+      }
+    }
+    film = getFilm(filmId); run = film.concierge.runs.find((item) => item.id === runId); state = continuityState(film, run);
+    for (const row of state.rows) {
+      if (row.version) continue;
+      const taskId = `asset:${row.asset.id}`;
+      upsertDirectorTask(filmId, runId, { taskKey: taskId, kind: 'asset', targetId: row.entity.id, status: 'ready', inputHash: run.planHash });
+      const claimed = claimDirectorTask(filmId, runId, taskId, `runner:${process.pid}`);
+      if (!claimed) continue;
+      reserveRunTask(filmId, runId, taskId, 0.04);
+      const submissionRevision = getFilm(filmId).revision;
+      const result = generate(filmId, { model: 'fal-ai/qwen-image', entityId: row.entity.id, references: [], prompt: `${row.asset.canonicalDescription}\nCreate one clean production continuity master. Show the complete recurring asset clearly with stable geometry, materials, colors, layout and hero props. Neutral reference presentation; no people unless this is a character asset; no story action; no text, labels, logos or watermark.`, options: {}, confirmCost: true, idempotencyKey: `${runId}:asset:${row.asset.id}:master`, expectedRevision: submissionRevision });
+      const created = result.versions.find((version) => version.idempotencyKey === `${runId}:asset:${row.asset.id}:master`);
+      if (created) transitionDirectorTask(filmId, runId, taskId, 'provider_pending', { outputVersionIds: [created.id] });
+    }
+    mutate(filmId, 'production.continuity_assets_progress', (current) => {
+      const currentRun = current.concierge.runs.find((item) => item.id === runId);
+      if (currentRun) currentRun.nextAction = state.rows.length ? 'Preparing and locking shared continuity assets before video generation.' : 'Continuity references are ready. Generating cinematic takes.';
+      return { runId, assets: state.rows.length };
+    });
+  } catch (error) {
+    mutate(filmId, 'production.continuity_assets_failed', (film) => {
+      const run = film.concierge.runs.find((item) => item.id === runId);
+      if (run) { run.status = 'failed'; run.error = error.message; run.nextAction = 'Repair the continuity asset before generating any video shots.'; }
+      return { runId, error: error.message };
+    });
+  } finally { activeAssetRuns.delete(runId); }
 }
 
 export function tickProductionRuns() {
@@ -177,8 +248,11 @@ export function tickProductionRuns() {
         });
       }
       const ready = getFilm(f.id).concierge?.runs?.find((item) => item.id === run.id);
-      if (ready?.status === 'generating' && secret('FAL_KEY') && ready.budget && process.env.FRAMEFORGE_RUNNER_DISABLE_MEDIA !== '1')
-        void launchMedia(f.id, ready.id);
+      if (ready?.status === 'generating' && secret('FAL_KEY') && ready.budget && process.env.FRAMEFORGE_RUNNER_DISABLE_MEDIA !== '1') {
+        const state = continuityState(getFilm(f.id), ready);
+        if (state.ready) void launchMedia(f.id, ready.id);
+        else void launchContinuityAssets(f.id, ready.id);
+      }
       if (['awaiting_qc', 'generating', 'needs_attention'].includes(ready?.status)) refreshRunProgress(f.id, ready.id);
     }
   }
