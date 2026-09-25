@@ -16,7 +16,8 @@ export function buildContinuitySchema({ brief, shots = [], inputs = [] }) {
     requiredViews: ['master'], scopeShotIds: input.scope === 'all' || input.scope === 'auto' ? shotIds : [input.scope], status: 'source', locked: true,
   }));
   const identityCount = assets.filter((asset) => asset.type === 'character').length;
-  const speakers = [...new Set(shots.flatMap((shot) => [...String(shot.visibleAction || '').matchAll(speakerPattern)].map((match) => match[1].trim())))];
+  const ignoredLabels = new Set(['audio', 'style', 'camera', 'lighting', 'shot', 'sequence', 'important details', 'final on-screen text']);
+  const speakers = [...new Set(shots.flatMap((shot) => [...String(shot.visibleAction || '').matchAll(speakerPattern)].map((match) => match[1].trim()).filter((name) => !ignoredLabels.has(name.toLowerCase()))))];
   for (const name of speakers.slice(identityCount)) assets.push({
     id: `character-${slug(name)}`, type: 'character', name,
     canonicalDescription: `Canonical identity and wardrobe master for ${name}, derived from the approved film brief. Neutral reference pose; no story action.`,
