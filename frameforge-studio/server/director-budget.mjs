@@ -86,6 +86,15 @@ export function commitRunTask(id, runId, taskId, actualCost) {
     const reservation = [...(run?.budget?.reservations || [])].reverse().find((item) => item.taskId === taskId);
     if (!reservation) fail('Task reservation was not found.', 409);
     if (reservation.status === 'committed') return { ...reservation, alreadyCommitted: true };
+    // A local preflight may release a reservation immediately before a safe
+    // retry submits the same idempotent task. If the provider result arrives,
+    // recover that released generation reservation before committing it.
+    if (reservation.status === 'released' && reservation.reason === 'generation_rejected') {
+      const remaining = money(run.budget.cap - run.budget.reserved - run.budget.committed);
+      if (reservation.amount > remaining) fail('Recovered task exceeds the remaining authorized budget.', 409);
+      reservation.status = 'reserved';
+      run.budget.reserved = money(run.budget.reserved + reservation.amount);
+    }
     if (reservation.status !== 'reserved') fail('Only a reserved task can be committed.', 409);
     if (actual > reservation.amount) fail('Actual task cost exceeds its reserved budget.', 409);
     reservation.status = 'committed';
