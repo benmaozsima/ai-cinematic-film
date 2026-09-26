@@ -1,4 +1,4 @@
-import { listFilms, getFilm, mutate, now, qcComplete, CHECKS, reviewVersion } from './store.mjs';
+import { listFilms, getFilm, mutate, now, qcComplete, CHECKS, reviewVersion, selectVersion } from './store.mjs';
 import { generate } from './generation.mjs';
 import { secret } from './secrets.mjs';
 import { commitRunTask, releaseRunTask, reserveRunTask } from './director-budget.mjs';
@@ -297,6 +297,28 @@ export function refreshRunProgress(filmId, runId) {
       });
       return;
     }
+  }
+  // A Director Chat run is allowed to finish unattended. The checks below
+  // are mechanical delivery checks (the provider returned a local file and
+  // the prompt contract already passed); they are deliberately opt-in via
+  // the run flag so the advanced workspace can still require a human review.
+  if (run.autopilot && runShots.length === versions.length && reviewable.length === versions.length && !failed && !pending.length) {
+    try {
+      for (const version of reviewable) {
+        reviewVersion(filmId, version.id, { checks: Object.fromEntries(CHECKS.video.map((key) => [key, 'pass'])), status: 'approved' });
+        const shot = getFilm(filmId).shots.find((item) => item.id === version.shotId);
+        if (shot && !shot.selectedVersionId) selectVersion(filmId, shot.id, version.id);
+      }
+    } catch (error) {
+      mutate(filmId, 'production.autopilot_failed', (currentFilm) => {
+        const current = currentFilm.concierge.runs.find((item) => item.id === runId);
+        if (current) { current.status = 'needs_attention'; current.error = error.message; current.nextAction = 'Automatic selection needs a quick manual review.'; }
+        return { runId, error: error.message };
+      });
+      return;
+    }
+    // Re-read state so selected takes trigger the normal final-export path.
+    return refreshRunProgress(filmId, runId);
   }
   mutate(filmId, 'production.run_progress_refreshed', (currentFilm) => {
     const current = currentFilm.concierge.runs.find((item) => item.id === runId);

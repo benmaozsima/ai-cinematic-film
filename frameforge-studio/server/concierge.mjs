@@ -315,7 +315,11 @@ export function concierge(id, body = {}) {
       proposal.status = 'authorized';
       proposal.authorizedRunId = runId;
       proposal.authorizedAt = now();
-      f.concierge.runs.push({ id: runId, idempotencyKey, proposalId, brief, inputs: committedInputs, plan: committedPlan, planHash: committedPlanHash, quote: committedPlan.quote, budget: authorization, status: 'queued', createdAt: now() });
+      // Director Chat is an unattended production path: once the provider
+      // returns reviewable takes, the runner may perform the mechanical QC,
+      // choose the best available take per shot and export the cut. Advanced
+      // workspace runs can omit this flag and retain manual review.
+      f.concierge.runs.push({ id: runId, idempotencyKey, proposalId, brief, inputs: committedInputs, plan: committedPlan, planHash: committedPlanHash, quote: committedPlan.quote, budget: authorization, autopilot: true, status: 'queued', createdAt: now() });
     }
     return { plan: committedPlan, status: mode, filmId: f.id, planHash: committedPlanHash };
   });
