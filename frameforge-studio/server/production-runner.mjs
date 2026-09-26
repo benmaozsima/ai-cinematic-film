@@ -276,7 +276,7 @@ export function refreshRunProgress(filmId, runId) {
   const cutVersionIds = [...runShots].sort((a, b) => a.order - b.order).map((shot) => shot.selectedVersionId);
   const sameCut = (item) => Array.isArray(item.cutVersionIds) && item.cutVersionIds.length === cutVersionIds.length && item.cutVersionIds.every((id, index) => id === cutVersionIds[index]);
   let matchingExport = selectedTakesReady
-    ? [...listExports(filmId)].reverse().find((item) => item.final && item.activeRunId === runId && sameCut(item))
+    ? [...listExports(filmId)].reverse().find((item) => item.final && item.activeRunId === runId && sameCut(item) && item.status !== 'failed')
     : null;
   let autoExportError = null;
   if (selectedTakesReady && !matchingExport) {
